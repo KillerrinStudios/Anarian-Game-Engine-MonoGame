@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anarian Game Engine.Windows", "Anarian Game Engine.Windows\Anarian Game Engine.Windows.csproj", "{95EA8521-92D7-4EC7-862C-2CDD706A495D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anarian Game Engine.WindowsPhone", "Anarian Game Engine.WindowsPhone\Anarian Game Engine.WindowsPhone.csproj", "{87E92B8A-DAD3-49A2-862D-9940BBEF7594}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Anarian Game Engine.Shared", "Anarian Game Engine.Shared\Anarian Game Engine.Shared.shproj", "{FCA7D7D0-5705-42B4-B694-8BE177B44B07}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Anarian Game Engine.Shared\Anarian Game Engine.Shared.projitems*{87e92b8a-dad3-49a2-862d-9940bbef7594}*SharedItemsImports = 4
+		Anarian Game Engine.Shared\Anarian Game Engine.Shared.projitems*{fca7d7d0-5705-42b4-b694-8be177b44b07}*SharedItemsImports = 13
+		Anarian Game Engine.Shared\Anarian Game Engine.Shared.projitems*{95ea8521-92d7-4ec7-862c-2cdd706a495d}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Debug|ARM.ActiveCfg = Debug|ARM
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Debug|ARM.Build.0 = Debug|ARM
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Debug|x64.ActiveCfg = Debug|x64
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Debug|x64.Build.0 = Debug|x64
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Debug|x86.ActiveCfg = Debug|x86
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Debug|x86.Build.0 = Debug|x86
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Release|ARM.ActiveCfg = Release|ARM
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Release|ARM.Build.0 = Release|ARM
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Release|x64.ActiveCfg = Release|x64
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Release|x64.Build.0 = Release|x64
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Release|x86.ActiveCfg = Release|x86
+		{95EA8521-92D7-4EC7-862C-2CDD706A495D}.Release|x86.Build.0 = Release|x86
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Debug|ARM.ActiveCfg = Debug|ARM
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Debug|ARM.Build.0 = Debug|ARM
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Debug|x86.ActiveCfg = Debug|x86
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Debug|x86.Build.0 = Debug|x86
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Release|ARM.ActiveCfg = Release|ARM
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Release|ARM.Build.0 = Release|ARM
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Release|x64.ActiveCfg = Release|Any CPU
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Release|x86.ActiveCfg = Release|x86
+		{87E92B8A-DAD3-49A2-862D-9940BBEF7594}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

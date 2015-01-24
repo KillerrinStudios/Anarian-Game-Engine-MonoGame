@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>fca7d7d0-5705-42b4-b694-8be177b44b07</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Anarian</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AnarianGameEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\AnarianObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\AnimatedGameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Animation\AnimatedModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Animation\AnimationClip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Animation\AnimationClipReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Animation\AnimationPlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Animation\AnimationState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Animation\Bone.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Animation\ModelExtra.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Animation\ModelExtraReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Camera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Components\Component.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Components\Health.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Components\Mana.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Components\Physics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Components\Transform.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\GameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\Controller.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\KeyboardManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\MouseManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\TouchScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Level.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\TerrainHeightData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\Terrain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\ScreenEffects\Overlay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\ScreenEffects\Fade.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\StaticGameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Timer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\ComponentTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\GuiState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\InputType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\NavigationSaveState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\PausedState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\PointerPress.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\PointDirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\ProgressStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\ButtonPressedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\GamePadMovedEventsArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\GamePadPressedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\KeyboardPressedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\TouchGestureEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\PointerMovedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\PointerPressedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUIManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Camera2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Components\Component2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Components\Health2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Components\Mana2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Components\Transform2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Element.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Events\GuiButtonDownEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Label.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\Menu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\CustomContentLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DebugTools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\HelperUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\BoundingSphereRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\PrimitiveHelper2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\PrimitiveHelper3D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InputManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMoveable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRenderable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IScene2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IScreenEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISelectableEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUpdatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResourceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\GuiObject.cs" />
+  </ItemGroup>
+</Project>
