@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Anarian.DataStructures;
 using Anarian.Interfaces;
+using Anarian.Helpers;
 
 namespace Anarian.DataStructures.Rendering
 {
@@ -59,9 +60,11 @@ namespace Anarian.DataStructures.Rendering
         public Sphere(GraphicsDevice graphicsDevice, Texture2D texture, float radius, int longitudeInterval = 10, int latitudeInterval = 10)
             :base()
         {
-            m_texture = texture;
             m_radius = radius;
-
+            
+            if (texture == null) m_texture = Color.White.CreateTextureFromSolidColor(graphicsDevice, 1, 1);
+            else m_texture = texture;
+            
             // Setup the Values
             LONGITUDE_INTERVAL = longitudeInterval;
             LONGITUDE_COUNT = 360 / LONGITUDE_INTERVAL;
@@ -81,6 +84,14 @@ namespace Anarian.DataStructures.Rendering
             // Finally, Create the Sphere
             CreateSphereModel();
             SetupEffects(graphicsDevice);
+        }
+
+        public static Sphere SphereFromBoundingSphere(GraphicsDevice graphicsDevice, BoundingSphere boundingSphere, Texture2D texture = null)
+        {
+            Sphere sphere = new Sphere(graphicsDevice, texture, boundingSphere.Radius);
+            sphere.Transform.Position = boundingSphere.Center;
+
+            return sphere;
         }
 
         #region SphereSetup
@@ -198,7 +209,8 @@ namespace Anarian.DataStructures.Rendering
                 }
             }
 
-            //m_boundingBox.DrawBoundingBox(graphics, Color.Red, camera, Matrix.Identity);
+            if (m_renderBounds)
+                BoundingSphere.RenderBoundingSphere(graphics, Matrix.Identity, camera.View, camera.Projection, Color.White);
         }
         #endregion
     }
