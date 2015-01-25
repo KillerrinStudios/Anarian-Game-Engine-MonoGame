@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\MouseManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\TouchScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Level.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\Sphere.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\TerrainHeightData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\Terrain.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\ScreenEffects\Overlay.cs" />
@@ -46,6 +47,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\PointerPress.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\PointDirection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\ProgressStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\AnarianEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\ButtonPressedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\GamePadMovedEventsArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\GamePadPressedEventArgs.cs" />

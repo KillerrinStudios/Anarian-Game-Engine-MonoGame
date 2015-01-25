@@ -64,45 +64,46 @@ namespace Anarian.DataStructures.Input
 
             #region Preform Events
             if (GamePadDown != null) {
-                if (IsButtonDown(Buttons.A)) { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.A, PlayerIndex)); }
-                if (IsButtonDown(Buttons.B)) { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.B, PlayerIndex)); }
-                if (IsButtonDown(Buttons.X)) { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.X, PlayerIndex)); }
-                if (IsButtonDown(Buttons.Y)) { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.Y, PlayerIndex)); }
+                if (IsButtonDown(Buttons.A)) { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.A, PlayerIndex)); }
+                if (IsButtonDown(Buttons.B)) { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.B, PlayerIndex)); }
+                if (IsButtonDown(Buttons.X)) { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.X, PlayerIndex)); }
+                if (IsButtonDown(Buttons.Y)) { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.Y, PlayerIndex)); }
 
-                if (IsButtonDown(Buttons.LeftShoulder))     { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.LeftShoulder, PlayerIndex)); }
-                if (IsButtonDown(Buttons.RightShoulder))    { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.RightShoulder, PlayerIndex)); }
+                if (IsButtonDown(Buttons.LeftShoulder))     { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.LeftShoulder, PlayerIndex)); }
+                if (IsButtonDown(Buttons.RightShoulder))    { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.RightShoulder, PlayerIndex)); }
 
-                if (IsButtonDown(Buttons.LeftStick))    { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.LeftStick, PlayerIndex)); }
-                if (IsButtonDown(Buttons.RightStick))   { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.RightStick, PlayerIndex)); }
+                if (IsButtonDown(Buttons.LeftStick))    { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.LeftStick, PlayerIndex)); }
+                if (IsButtonDown(Buttons.RightStick))   { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.RightStick, PlayerIndex)); }
 
-                if (IsButtonDown(Buttons.DPadUp))       { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.DPadUp, PlayerIndex)); }
-                if (IsButtonDown(Buttons.DPadDown))     { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.DPadDown, PlayerIndex)); }
-                if (IsButtonDown(Buttons.DPadLeft))     { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.DPadLeft, PlayerIndex)); }
-                if (IsButtonDown(Buttons.DPadRight))    { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.DPadRight, PlayerIndex)); }
+                if (IsButtonDown(Buttons.DPadUp))       { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.DPadUp, PlayerIndex)); }
+                if (IsButtonDown(Buttons.DPadDown))     { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.DPadDown, PlayerIndex)); }
+                if (IsButtonDown(Buttons.DPadLeft))     { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.DPadLeft, PlayerIndex)); }
+                if (IsButtonDown(Buttons.DPadRight))    { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.DPadRight, PlayerIndex)); }
             }
 
             if (GamePadClicked != null) {
-                if (ButtonPressed(Buttons.A)) { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.A, PlayerIndex)); }
-                if (ButtonPressed(Buttons.B)) { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.B, PlayerIndex)); }
-                if (ButtonPressed(Buttons.X)) { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.X, PlayerIndex)); }
-                if (ButtonPressed(Buttons.Y)) { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.Y, PlayerIndex)); }
+                if (ButtonPressed(Buttons.A)) { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.A, PlayerIndex)); }
+                if (ButtonPressed(Buttons.B)) { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.B, PlayerIndex)); }
+                if (ButtonPressed(Buttons.X)) { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.X, PlayerIndex)); }
+                if (ButtonPressed(Buttons.Y)) { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.Y, PlayerIndex)); }
 
-                if (ButtonPressed(Buttons.LeftShoulder))    { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.LeftShoulder, PlayerIndex)); }
-                if (ButtonPressed(Buttons.RightShoulder))   { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.RightShoulder, PlayerIndex)); }
+                if (ButtonPressed(Buttons.LeftShoulder))    { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.LeftShoulder, PlayerIndex)); }
+                if (ButtonPressed(Buttons.RightShoulder))   { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.RightShoulder, PlayerIndex)); }
 
-                if (ButtonPressed(Buttons.LeftStick))   { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.LeftStick, PlayerIndex)); }
-                if (ButtonPressed(Buttons.RightStick))  { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.RightStick, PlayerIndex)); }
+                if (ButtonPressed(Buttons.LeftStick))   { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.LeftStick, PlayerIndex)); }
+                if (ButtonPressed(Buttons.RightStick))  { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.RightStick, PlayerIndex)); }
 
-                if (ButtonPressed(Buttons.DPadUp))      { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.DPadUp, PlayerIndex)); }
-                if (ButtonPressed(Buttons.DPadDown))    { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.DPadDown, PlayerIndex)); }
-                if (ButtonPressed(Buttons.DPadLeft))    { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.DPadLeft, PlayerIndex)); }
-                if (ButtonPressed(Buttons.DPadRight))   { GamePadClicked(this, new GamePadPressedEventArgs(Buttons.DPadRight, PlayerIndex)); }
+                if (ButtonPressed(Buttons.DPadUp))      { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.DPadUp, PlayerIndex)); }
+                if (ButtonPressed(Buttons.DPadDown))    { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.DPadDown, PlayerIndex)); }
+                if (ButtonPressed(Buttons.DPadLeft))    { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.DPadLeft, PlayerIndex)); }
+                if (ButtonPressed(Buttons.DPadRight))   { GamePadClicked(this, new GamePadPressedEventArgs(gameTime, Buttons.DPadRight, PlayerIndex)); }
             }
 
             if (GamePadMoved != null) {
                 if (HasLeftThumbstickMoved()) {
                     GamePadMoved(this,
                                  new GamePadMovedEventsArgs(
+                                     gameTime,
                                      Buttons.LeftStick,
                                      PlayerIndex,
                                      m_gamePadState.ThumbSticks.Left,
@@ -112,6 +113,7 @@ namespace Anarian.DataStructures.Input
                 if (HasRightThumbstickMoved()) {
                     GamePadMoved(this,
                                  new GamePadMovedEventsArgs(
+                                     gameTime,
                                      Buttons.RightStick,
                                      PlayerIndex,
                                      m_gamePadState.ThumbSticks.Right,
@@ -122,6 +124,7 @@ namespace Anarian.DataStructures.Input
                 if (HasLeftTriggerMoved()) {
                     GamePadMoved(this,
                                  new GamePadMovedEventsArgs(
+                                     gameTime,
                                      Buttons.LeftTrigger,
                                      PlayerIndex,
                                      new Vector2(0.0f, m_gamePadState.Triggers.Left),
@@ -131,6 +134,7 @@ namespace Anarian.DataStructures.Input
                 if (HasRightTriggerMoved()) {
                     GamePadMoved(this,
                                  new GamePadMovedEventsArgs(
+                                     gameTime,
                                      Buttons.RightTrigger,
                                      PlayerIndex,
                                      new Vector2(0.0f, m_gamePadState.Triggers.Right),

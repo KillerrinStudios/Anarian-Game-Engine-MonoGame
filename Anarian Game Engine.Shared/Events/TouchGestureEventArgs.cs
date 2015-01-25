@@ -10,30 +10,30 @@ namespace Anarian.Events
 {
     public delegate void TouchGestureEventHandler(object sender, TouchGestureEventArgs e);
 
-    public class TouchGestureEventArgs : System.ComponentModel.AsyncCompletedEventArgs
+    public class TouchGestureEventArgs : AnarianEventArgs
     {
         public int ID { get; private set; }
         public InputType InputType { get; private set; }
         public GestureSample Gesture { get; private set; }
 
-        public TouchGestureEventArgs()
-            : base(new Exception(), false, null)
+        public TouchGestureEventArgs(GameTime gameTime)
+            : base(gameTime)
         {
             ID = -1;
             InputType = Enumerators.InputType.None;
             Gesture = new GestureSample();
         }
 
-        public TouchGestureEventArgs(GestureSample gesture)
-            : base(new Exception(), false, null)
+        public TouchGestureEventArgs(GameTime gameTime, GestureSample gesture)
+            : base(gameTime)
         {
             ID = 0;
             InputType = Enumerators.InputType.Touch;
             Gesture = gesture;
         }
 
-        public TouchGestureEventArgs(GestureSample gesture, Exception e, bool canceled, Object state)
-            : base(e, canceled, state)
+        public TouchGestureEventArgs(GameTime gameTime, GestureSample gesture, Exception e, bool canceled, Object state)
+            : base(gameTime, e, canceled, state)
         {
             ID = 0;
             InputType = Enumerators.InputType.Touch;

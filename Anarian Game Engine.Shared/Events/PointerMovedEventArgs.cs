@@ -9,15 +9,15 @@ namespace Anarian.Events
 {
     public delegate void PointerMovedEventHandler(object sender, PointerMovedEventArgs e);
 
-    public class PointerMovedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
+    public class PointerMovedEventArgs : AnarianEventArgs
     {
         public int ID { get; private set; }
         public InputType InputType { get; private set; }
         public Vector2 Position { get; private set; }
         public Vector2 DeltaPosition { get; private set;}
 
-        public PointerMovedEventArgs()
-            : base(new Exception(), false, null)
+        public PointerMovedEventArgs(GameTime gameTime)
+            : base(gameTime)
         {
             Position = new Vector2(-1.0f, -1.0f);
             DeltaPosition = Vector2.Zero;
@@ -26,15 +26,15 @@ namespace Anarian.Events
         }
 
         #region Mouse
-        public PointerMovedEventArgs(Vector2 mousePosition, Vector2 deltaMousePosition)
-            : base(new Exception(), false, null)
+        public PointerMovedEventArgs(GameTime gameTime, Vector2 mousePosition, Vector2 deltaMousePosition)
+            : base(gameTime)
         {
             Position = mousePosition;
             DeltaPosition = deltaMousePosition;
             SetupMouse();
         }
-        public PointerMovedEventArgs(Vector2 mousePosition, Vector2 deltaMousePosition, Exception e, bool canceled, Object state)
-            : base(e, canceled, state)
+        public PointerMovedEventArgs(GameTime gameTime, Vector2 mousePosition, Vector2 deltaMousePosition, Exception e, bool canceled, Object state)
+            : base(gameTime, e, canceled, state)
         {
             Position = mousePosition;
             DeltaPosition = deltaMousePosition;
@@ -49,16 +49,16 @@ namespace Anarian.Events
         #endregion
 
         #region Touch
-        public PointerMovedEventArgs(int id, Vector2 mousePosition, Vector2 deltaMousePosition)
-            : base(new Exception(), false, null)
+        public PointerMovedEventArgs(GameTime gameTime, int id, Vector2 mousePosition, Vector2 deltaMousePosition)
+            : base(gameTime)
         {
             ID = id;
             InputType = Enumerators.InputType.Touch;
             Position = mousePosition;
             DeltaPosition = deltaMousePosition;
         }
-        public PointerMovedEventArgs(int id, Vector2 mousePosition, Vector2 deltaMousePosition, Exception e, bool canceled, Object state)
-            : base(e, canceled, state)
+        public PointerMovedEventArgs(GameTime gameTime, int id, Vector2 mousePosition, Vector2 deltaMousePosition, Exception e, bool canceled, Object state)
+            : base(gameTime, e, canceled, state)
         {
             ID = id;
             InputType = Enumerators.InputType.Touch;

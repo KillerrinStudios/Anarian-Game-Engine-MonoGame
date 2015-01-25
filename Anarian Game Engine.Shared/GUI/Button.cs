@@ -68,17 +68,17 @@ namespace Anarian.GUI
         }
 
         public event GuiButtonPressedEventHandler Pressed;
-        internal void CallPressed()
+        internal void CallPressed(GameTime gameTime)
         {
             if (Pressed == null) return;
-            Pressed(this, new GuiButtonPressedEventArgs());
+            Pressed(this, new GuiButtonPressedEventArgs(gameTime));
         }
 
         public event GuiButtonDownEventHandler ButtonDown;
-        internal void CallButtonDown()
+        internal void CallButtonDown(GameTime gameTime)
         {
             if (ButtonDown == null) return;
-            ButtonDown(this, new GuiButtonPressedEventArgs());
+            ButtonDown(this, new GuiButtonPressedEventArgs(gameTime));
         }
     }
 }

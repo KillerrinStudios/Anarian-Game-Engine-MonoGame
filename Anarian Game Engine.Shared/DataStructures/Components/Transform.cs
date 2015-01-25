@@ -16,6 +16,9 @@ namespace Anarian.DataStructures.Components
                              IEnumerable, IUpdatable, IMoveable
     {
         #region Fields/Properties
+        protected Transform m_followTarget;
+        public Transform FollowTarget { get { return m_followTarget; } set { m_followTarget = value; } }
+
         #region Vectors
         Vector3 m_orbitalRotation;
         public Vector3 OrbitalRotation
@@ -252,6 +255,8 @@ namespace Anarian.DataStructures.Components
 
         private void Setup()
         {
+            m_followTarget = null;
+
             // Setup Transform Vectors
             m_orbitalRotation = Vector3.Zero;
             m_lastPosition = m_position;
@@ -297,6 +302,12 @@ namespace Anarian.DataStructures.Components
 
         public override void Update(GameTime gameTime)
         {
+            if (m_followTarget != null)
+            {
+                MoveToPosition(gameTime, m_followTarget.WorldPosition);
+            }
+
+
             CreateAllMatrices();
         }
 

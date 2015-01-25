@@ -71,25 +71,25 @@ namespace Anarian.DataStructures.Input
 
             if (MouseDown != null) {
                 if (LeftMouseDown())
-                    MouseDown(this, new PointerPressedEventArgs(PointerPress.LeftMouseButton, GetMousePosition(), GetMouseDelta()));
+                    MouseDown(this, new PointerPressedEventArgs(gameTime, PointerPress.LeftMouseButton, GetMousePosition(), GetMouseDelta()));
                 if (MiddleMouseDown())
-                    MouseDown(this, new PointerPressedEventArgs(PointerPress.MiddleMouseButton, GetMousePosition(), GetMouseDelta()));
+                    MouseDown(this, new PointerPressedEventArgs(gameTime, PointerPress.MiddleMouseButton, GetMousePosition(), GetMouseDelta()));
                 if (RightMouseDown())
-                    MouseDown(this, new PointerPressedEventArgs(PointerPress.RightMouseButton, GetMousePosition(), GetMouseDelta()));
+                    MouseDown(this, new PointerPressedEventArgs(gameTime, PointerPress.RightMouseButton, GetMousePosition(), GetMouseDelta()));
             }
             
             if (MouseClicked != null) {
                 if (LeftMouseClicked())
-                    MouseClicked(this, new PointerPressedEventArgs(PointerPress.LeftMouseButton, GetMousePosition(), GetMouseDelta()));
+                    MouseClicked(this, new PointerPressedEventArgs(gameTime, PointerPress.LeftMouseButton, GetMousePosition(), GetMouseDelta()));
                 if (MiddleMouseClicked())
-                    MouseClicked(this, new PointerPressedEventArgs(PointerPress.MiddleMouseButton, GetMousePosition(), GetMouseDelta()));
+                    MouseClicked(this, new PointerPressedEventArgs(gameTime, PointerPress.MiddleMouseButton, GetMousePosition(), GetMouseDelta()));
                 if (RightMouseClicked())
-                    MouseClicked(this, new PointerPressedEventArgs(PointerPress.RightMouseButton, GetMousePosition(), GetMouseDelta()));
+                    MouseClicked(this, new PointerPressedEventArgs(gameTime, PointerPress.RightMouseButton, GetMousePosition(), GetMouseDelta()));
             }
 
             if (MouseMoved != null) {
-                if (m_mouseState.Position != m_prevMouseState.Position) 
-                    MouseMoved(this, new PointerMovedEventArgs(GetMousePosition(), GetMouseDelta()));
+                if (m_mouseState.Position != m_prevMouseState.Position)
+                    MouseMoved(this, new PointerMovedEventArgs(gameTime, GetMousePosition(), GetMouseDelta()));
             }
 
             // If Mouse is Fixed, Place it back to its fixed location

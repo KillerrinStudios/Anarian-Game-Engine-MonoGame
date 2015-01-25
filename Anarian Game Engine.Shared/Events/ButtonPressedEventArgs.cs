@@ -10,16 +10,16 @@ namespace Anarian.Events
     public delegate void ButtonDownEventHandler(object sender, ButtonPressedEventArgs e);
     public delegate void ButtonPressedEventHandler(object sender, ButtonPressedEventArgs e);
 
-    public class ButtonPressedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
+    public class ButtonPressedEventArgs : AnarianEventArgs
     {
 
-        public ButtonPressedEventArgs()
-            : base(new Exception(), false, null)
+        public ButtonPressedEventArgs(GameTime gameTime)
+            : base(gameTime)
         {
 
         }
-        public ButtonPressedEventArgs(Exception e, bool canceled, Object state)
-            : base(e, canceled, state)
+        public ButtonPressedEventArgs(GameTime gameTime, Exception e, bool canceled, Object state)
+            : base(gameTime, e, canceled, state)
         {
 
         }

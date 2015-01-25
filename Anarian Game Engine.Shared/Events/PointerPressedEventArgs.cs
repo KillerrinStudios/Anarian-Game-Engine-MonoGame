@@ -10,7 +10,7 @@ namespace Anarian.Events
     public delegate void PointerPressedEventHandler(object sender, PointerPressedEventArgs e);
     public delegate void PointerDownEventHandler(object sender, PointerPressedEventArgs e);
 
-    public class PointerPressedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
+    public class PointerPressedEventArgs : AnarianEventArgs
     {
         public int ID { get; private set; }
         public float Pressure { get; private set; }
@@ -19,8 +19,8 @@ namespace Anarian.Events
         public Vector2 Position { get; private set; }
         public Vector2 DeltaPosition { get; private set; }
 
-        public PointerPressedEventArgs()
-            : base(new Exception(), false, null)
+        public PointerPressedEventArgs(GameTime gameTime)
+            : base(gameTime)
         {
             Pointer = PointerPress.None;
             Position = new Vector2(-1.0f, -1.0f);
@@ -34,8 +34,8 @@ namespace Anarian.Events
         /// <summary>
         /// Mouse Event Args
         /// </summary>
-        public PointerPressedEventArgs(PointerPress pointerPress, Vector2 mousePosition, Vector2 deltaPosition)
-            : base(new Exception(), false, null)
+        public PointerPressedEventArgs(GameTime gameTime, PointerPress pointerPress, Vector2 mousePosition, Vector2 deltaPosition)
+            : base(gameTime)
         {
             Pointer = pointerPress;
             Position = mousePosition;
@@ -46,8 +46,8 @@ namespace Anarian.Events
         /// <summary>
         /// Mouse Event Args
         /// </summary>
-        public PointerPressedEventArgs(PointerPress pointerPress, Vector2 mousePosition, Vector2 deltaPosition, Exception e, bool canceled, Object state)
-            : base(e, canceled, state)
+        public PointerPressedEventArgs(GameTime gameTime, PointerPress pointerPress, Vector2 mousePosition, Vector2 deltaPosition, Exception e, bool canceled, Object state)
+            : base(gameTime, e, canceled, state)
         {
             Pointer = pointerPress;
             Position = mousePosition;
@@ -66,8 +66,8 @@ namespace Anarian.Events
         /// <summary>
         /// Touch Event Args
         /// </summary>
-        public PointerPressedEventArgs(int id, PointerPress pointerPress, Vector2 mousePosition, Vector2 deltaPosition, float pressure)
-            : base(new Exception(), false, null)
+        public PointerPressedEventArgs(GameTime gameTime, int id, PointerPress pointerPress, Vector2 mousePosition, Vector2 deltaPosition, float pressure)
+            : base(gameTime)
         {
             ID = id;
             Pointer = pointerPress;
@@ -79,8 +79,8 @@ namespace Anarian.Events
         /// <summary>
         /// Touch Event Args
         /// </summary>
-        public PointerPressedEventArgs(int id, PointerPress pointerPress, Vector2 mousePosition, Vector2 deltaPosition, float pressure, Exception e, bool canceled, Object state)
-            : base(e, canceled, state)
+        public PointerPressedEventArgs(GameTime gameTime, int id, PointerPress pointerPress, Vector2 mousePosition, Vector2 deltaPosition, float pressure, Exception e, bool canceled, Object state)
+            : base(gameTime, e, canceled, state)
         {
             ID = id;
             Pointer = pointerPress;

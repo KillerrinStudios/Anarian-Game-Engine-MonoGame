@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Anarian.Events;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,16 +9,16 @@ namespace Anarian.GUI.Events
     public delegate void GuiButtonPressedEventHandler(object sender, GuiButtonPressedEventArgs e);
     public delegate void GuiButtonDownEventHandler(object sender, GuiButtonPressedEventArgs e);
 
-    public class GuiButtonPressedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
+    public class GuiButtonPressedEventArgs : AnarianEventArgs
     {
 
-        public GuiButtonPressedEventArgs()
-            : base(new Exception(), false, null)
+        public GuiButtonPressedEventArgs(GameTime gameTime)
+            : base(gameTime)
         {
         }
 
-        public GuiButtonPressedEventArgs(Exception e, bool canceled, Object state)
-            : base(e, canceled, state)
+        public GuiButtonPressedEventArgs(GameTime gameTime, Exception e, bool canceled, Object state)
+            : base(gameTime, e, canceled, state)
         {
 
         }

@@ -10,7 +10,7 @@ namespace Anarian.Events
 {
     public delegate void GamePadMovedEventHandler(object sender, GamePadMovedEventsArgs e);
 
-    public class GamePadMovedEventsArgs : System.ComponentModel.AsyncCompletedEventArgs
+    public class GamePadMovedEventsArgs : AnarianEventArgs
     {
         public Buttons ButtonPressed { get; private set; }
         public PlayerIndex GamePadIndex { get; private set; }
@@ -18,24 +18,24 @@ namespace Anarian.Events
         public Vector2 Position { get; private set; }
         public Vector2 DeltaPosition { get; private set; }
 
-        public GamePadMovedEventsArgs()
-            : base(new Exception(), false, null)
+        public GamePadMovedEventsArgs(GameTime gameTime)
+            : base(gameTime)
         {
             ButtonPressed = Buttons.BigButton;
             GamePadIndex = PlayerIndex.One;
             Position = Vector2.Zero;
             Position = Vector2.Zero;
         }
-        public GamePadMovedEventsArgs(Buttons buttonPressed, PlayerIndex playerIndex, Vector2 position, Vector2 deltaPosition)
-            : base(new Exception(), false, null)
+        public GamePadMovedEventsArgs(GameTime gameTime, Buttons buttonPressed, PlayerIndex playerIndex, Vector2 position, Vector2 deltaPosition)
+            : base(gameTime)
         {
             ButtonPressed = buttonPressed;
             GamePadIndex = playerIndex;
             Position = position;
             Position = deltaPosition;
         }
-        public GamePadMovedEventsArgs(Buttons buttonPressed, PlayerIndex playerIndex, Vector2 position, Vector2 deltaPosition, Exception e, bool canceled, Object state)
-            : base(e, canceled, state)
+        public GamePadMovedEventsArgs(GameTime gameTime, Buttons buttonPressed, PlayerIndex playerIndex, Vector2 position, Vector2 deltaPosition, Exception e, bool canceled, Object state)
+            : base(gameTime, e, canceled, state)
         {
             ButtonPressed = buttonPressed;
             GamePadIndex = playerIndex;

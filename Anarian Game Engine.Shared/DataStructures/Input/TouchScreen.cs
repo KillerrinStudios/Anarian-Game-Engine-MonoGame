@@ -78,7 +78,7 @@ namespace Anarian.DataStructures.Input
             if (TouchDown != null) {
                 foreach (var touch in m_touchCollection) {
                     if (IsTouchDown(touch.Id)) {
-                            TouchDown(this, new PointerPressedEventArgs(touch.Id, PointerPress.Touch, touch.Position, GetDeltaTouchPosition(touch.Id), touch.Pressure));
+                        TouchDown(this, new PointerPressedEventArgs(gameTime, touch.Id, PointerPress.Touch, touch.Position, GetDeltaTouchPosition(touch.Id), touch.Pressure));
                     }
                 }
             }
@@ -86,7 +86,7 @@ namespace Anarian.DataStructures.Input
             if (TouchPressed != null) {
                 foreach (var touch in m_touchCollection) {
                     if (WasTouchPressed(touch.Id)) {
-                        TouchPressed(this, new PointerPressedEventArgs(touch.Id, PointerPress.Touch, touch.Position, GetDeltaTouchPosition(touch.Id), touch.Pressure));
+                        TouchPressed(this, new PointerPressedEventArgs(gameTime, touch.Id, PointerPress.Touch, touch.Position, GetDeltaTouchPosition(touch.Id), touch.Pressure));
                     }
                 }
             }
@@ -98,7 +98,7 @@ namespace Anarian.DataStructures.Input
                     if (!prevLocationAvailable) continue;
 
                     if (touch.Position != prevLocation.Position) {
-                        TouchMoved(this, new PointerMovedEventArgs(touch.Id, touch.Position, touch.Position - prevLocation.Position));
+                        TouchMoved(this, new PointerMovedEventArgs(gameTime, touch.Id, touch.Position, touch.Position - prevLocation.Position));
                     }
                 }
             }
@@ -106,7 +106,7 @@ namespace Anarian.DataStructures.Input
             if (OnGesture != null) {
                 List<GestureSample> allGestures = ReadAllGestures();
                 foreach (var gesture in allGestures) {
-                    OnGesture(this, new TouchGestureEventArgs(gesture));
+                    OnGesture(this, new TouchGestureEventArgs(gameTime, gesture));
                 }
             }
         }

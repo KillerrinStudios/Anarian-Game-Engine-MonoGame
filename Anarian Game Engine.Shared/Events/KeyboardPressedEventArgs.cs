@@ -11,22 +11,22 @@ namespace Anarian.Events
     public delegate void KeyboardPressedEventHandler(object sender, KeyboardPressedEventArgs e);
     public delegate void KeyboardDownEventHandler(object sender, KeyboardPressedEventArgs e);
 
-    public class KeyboardPressedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
+    public class KeyboardPressedEventArgs : AnarianEventArgs
     {
         public Keys KeyClicked { get; private set; }
 
-        public KeyboardPressedEventArgs()
-            : base(new Exception(), false, null)
+        public KeyboardPressedEventArgs(GameTime gameTime)
+            : base(gameTime)
         {
             KeyClicked = Keys.None;
         }
-        public KeyboardPressedEventArgs(Keys keyboardKeyClicked)
-            : base(new Exception(), false, null)
+        public KeyboardPressedEventArgs(GameTime gameTime, Keys keyboardKeyClicked)
+            : base(gameTime)
         {
             KeyClicked = keyboardKeyClicked;
         }
-        public KeyboardPressedEventArgs(Keys keyboardKeyClicked, Exception e, bool canceled, Object state)
-            : base(e, canceled, state)
+        public KeyboardPressedEventArgs(GameTime gameTime, Keys keyboardKeyClicked, Exception e, bool canceled, Object state)
+            : base(gameTime, e, canceled, state)
         {
             KeyClicked = keyboardKeyClicked;
         }
