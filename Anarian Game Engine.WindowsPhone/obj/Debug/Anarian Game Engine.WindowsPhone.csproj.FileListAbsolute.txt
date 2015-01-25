@@ -32,3 +32,34 @@ C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engin
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt.intermediate
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pdb
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pri
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\AnimationAux.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\MonoGame.Framework.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.XAudio2.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct3D11.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct2D1.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.DXGI.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.MediaFoundation.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\MonoGame.Framework.xml
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.XAudio2.xml
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.xml
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct3D11.xml
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct2D1.xml
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.DXGI.xml
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.MediaFoundation.xml
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.dll
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.pdb
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\priconfig.xml
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\priconfig.xml.intermediate
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\layout.resfiles
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\layout.resfiles.intermediate
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\resources.resfiles
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\resources.resfiles.intermediate
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\pri.resfiles
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\pri.resfiles.intermediate
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt.intermediate
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\MultipleQualifiersPerDimensionFound.txt
