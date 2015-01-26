@@ -1,37 +1,3 @@
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pdb
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pri
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\AnimationAux.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\MonoGame.Framework.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.XAudio2.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct3D11.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct2D1.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.DXGI.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.MediaFoundation.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\AnimationAux.pdb
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\AnimationAux.pri
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\MonoGame.Framework.xml
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.XAudio2.xml
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.xml
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct3D11.xml
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct2D1.xml
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.DXGI.xml
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.MediaFoundation.xml
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.csprojResolveAssemblyReference.cache
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.dll
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.pdb
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\priconfig.xml
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\priconfig.xml.intermediate
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\layout.resfiles
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\layout.resfiles.intermediate
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\resources.resfiles
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\resources.resfiles.intermediate
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\pri.resfiles
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\pri.resfiles.intermediate
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt.intermediate
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\MultipleQualifiersPerDimensionFound.txt
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.dll
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pdb
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pri
@@ -63,3 +29,35 @@ D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhon
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt.intermediate
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pdb
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pri
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\AnimationAux.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\MonoGame.Framework.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.XAudio2.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct3D11.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct2D1.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.DXGI.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\MonoGame.Framework.xml
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.XAudio2.xml
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.xml
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct3D11.xml
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct2D1.xml
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.DXGI.xml
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.csprojResolveAssemblyReference.cache
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.dll
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.pdb
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\priconfig.xml
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\priconfig.xml.intermediate
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\layout.resfiles
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\layout.resfiles.intermediate
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\resources.resfiles
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\resources.resfiles.intermediate
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\pri.resfiles
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\pri.resfiles.intermediate
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt.intermediate
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\MultipleQualifiersPerDimensionFound.txt

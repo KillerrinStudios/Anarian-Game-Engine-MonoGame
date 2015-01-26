@@ -46,9 +46,9 @@ namespace Anarian.DataStructures.Rendering
         private short[] m_northIndices;
         private short[] m_southIndices;
 
-        // the radius of this sphere
+        //// the radius of this sphere
         private float m_radius;
-        public float Radius { get { return m_radius; } protected set { if (value <= 0.0) throw new ArgumentOutOfRangeException(); m_radius = value; } }
+        //public float Radius { get { return m_radius; } protected set { if (value <= 0.0) throw new ArgumentOutOfRangeException(); m_radius = value; } }
 
         public BoundingSphere BoundingSphere { get { return new BoundingSphere(m_transform.WorldPosition, m_radius); } }
 
@@ -57,7 +57,7 @@ namespace Anarian.DataStructures.Rendering
         /// </summary>
         /// <param name="tex">A Texture to wrap around the sphere</param>
         /// <param name="equator">The radius of the sphere</param>
-        public Sphere(GraphicsDevice graphicsDevice, Texture2D texture, float radius, int longitudeInterval = 10, int latitudeInterval = 10)
+        public Sphere(GraphicsDevice graphicsDevice, Texture2D texture, int longitudeInterval = 10, int latitudeInterval = 10, float radius = 1.0f)
             :base()
         {
             m_radius = radius;
@@ -88,7 +88,7 @@ namespace Anarian.DataStructures.Rendering
 
         public static Sphere SphereFromBoundingSphere(GraphicsDevice graphicsDevice, BoundingSphere boundingSphere, Texture2D texture = null)
         {
-            Sphere sphere = new Sphere(graphicsDevice, texture, boundingSphere.Radius);
+            Sphere sphere = new Sphere(graphicsDevice, texture, 10, 10, boundingSphere.Radius);
             sphere.Transform.Position = boundingSphere.Center;
 
             return sphere;

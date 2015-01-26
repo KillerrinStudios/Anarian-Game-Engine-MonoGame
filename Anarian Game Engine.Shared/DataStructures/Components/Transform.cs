@@ -20,18 +20,11 @@ namespace Anarian.DataStructures.Components
         public Transform FollowTarget { get { return m_followTarget; } set { m_followTarget = value; } }
 
         #region Vectors
-        Vector3 m_orbitalRotation;
-        public Vector3 OrbitalRotation
-        {
-            get { return m_orbitalRotation; }
-            set { m_orbitalRotation = value; }
-        }
-
         Quaternion m_rotation;
         public Quaternion Rotation
         {
             get { return m_rotation; }
-            private set { m_rotation = value; }
+            set { m_rotation = value; }
         }
 
         Vector3 m_scale;
@@ -81,19 +74,6 @@ namespace Anarian.DataStructures.Components
             }
         }
 
-        public Vector3 WorldOrbitalRotation
-        {
-            get
-            {
-                Vector3 rot = m_orbitalRotation;
-
-                if (m_parent != null) {
-                    rot += m_parent.WorldOrbitalRotation;
-                }
-                return rot;
-            }
-        }
-
         public Vector3 WorldScale
         {
             get
@@ -101,7 +81,10 @@ namespace Anarian.DataStructures.Components
                 Vector3 sca = m_scale;
 
                 if (m_parent != null) {
-                    sca += m_parent.WorldScale;
+                    Vector3 pWS = m_parent.WorldScale;
+                    if (pWS != Vector3.Zero) {
+                        sca *= pWS;
+                    }
                 }
                 return sca;
             }
@@ -138,13 +121,6 @@ namespace Anarian.DataStructures.Components
             set { m_translationMatrix = value; }
         }
 
-        private Matrix m_orbitalRotationMatrix = Matrix.Identity;
-        public Matrix OrbitalRotationMatrix
-        {
-            get { return m_orbitalRotationMatrix; }
-            set { m_orbitalRotationMatrix = value; }
-        }
-
         #region Matrix Helpers
         protected void CreateScaleMatrix()
         {
@@ -164,17 +140,9 @@ namespace Anarian.DataStructures.Components
         {
             m_translationMatrix = Matrix.CreateTranslation(WorldPosition);
         }
-        protected void CreateOrbitalRotationMatrix()
-        {
-            Vector3 worldOrbitalRotation = WorldOrbitalRotation;
-            Matrix rotOX = Matrix.CreateRotationX(worldOrbitalRotation.X);
-            Matrix rotOY = Matrix.CreateRotationY(worldOrbitalRotation.Y);
-            Matrix rotOZ = Matrix.CreateRotationZ(worldOrbitalRotation.Z);
-            m_orbitalRotationMatrix = rotOX * rotOY * rotOZ;
-        }
         public void CreateWorldMatrix()
         {
-            m_worldMatrix = m_scaleMatrix * m_rotationMatrix * m_translationMatrix * m_orbitalRotationMatrix;
+            m_worldMatrix = m_scaleMatrix * m_rotationMatrix * m_translationMatrix;
         }
 
         public void CreateAllMatrices()
@@ -182,7 +150,6 @@ namespace Anarian.DataStructures.Components
             CreateRotationMatrix();
             CreateScaleMatrix();
             CreateTranslationMatrix();
-            CreateOrbitalRotationMatrix();
             CreateWorldMatrix();
         }
 
@@ -258,7 +225,6 @@ namespace Anarian.DataStructures.Components
             m_followTarget = null;
 
             // Setup Transform Vectors
-            m_orbitalRotation = Vector3.Zero;
             m_lastPosition = m_position;
 
             // Setup the Direction Vectors
@@ -267,7 +233,6 @@ namespace Anarian.DataStructures.Components
             m_right = Vector3.Normalize(Vector3.Cross(Forward, this.Up));
 
             // Reset all Matrices
-            m_orbitalRotationMatrix = Matrix.Identity;
             m_rotationMatrix = Matrix.Identity;
             m_scaleMatrix = Matrix.Identity;
             m_translationMatrix = Matrix.Identity;
@@ -422,8 +387,7 @@ namespace Anarian.DataStructures.Components
             return base.ToString() + 
                    "Position: " + WorldPosition + " " +
                    "Rotation: " + WorldRotation + " " +
-                   "Scale: " + WorldScale + " " +
-                   "OrbitalRotation: " + WorldOrbitalRotation + " ";
+                   "Scale: " + WorldScale + " ";
         }
     }
 }
