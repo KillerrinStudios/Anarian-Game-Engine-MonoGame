@@ -32,6 +32,11 @@ namespace Anarian.DataStructures.ScreenEffects
         float m_fadeRate;
         public float FadeRate { get { return m_fadeRate; } set { m_fadeRate = value; } }
 
+
+        public readonly float MinimumFade = 0.0f;
+        public readonly float MaximumFade = 1.0f;
+
+
         Texture2D m_fadeTexture;
         public Texture2D FadeTexture { get { return m_fadeTexture; } set { m_fadeTexture = value; } }
 
@@ -47,7 +52,7 @@ namespace Anarian.DataStructures.ScreenEffects
             m_progressStatus = ProgressStatus.None;
             m_fadeStatus = ScreenEffects.FadeStatus.FadingToContent;
             m_fadeRate = fadeRate;
-            m_fadePercentage = 0.0f;
+            m_fadePercentage = MinimumFade;
 
             ChangeFadeColor(graphicsDevice, solidColour);
         }
@@ -57,7 +62,7 @@ namespace Anarian.DataStructures.ScreenEffects
             m_progressStatus = ProgressStatus.None;
             m_fadeStatus = ScreenEffects.FadeStatus.FadingToContent;
             m_fadeRate = fadeRate;
-            m_fadePercentage = 0.0f;
+            m_fadePercentage = MinimumFade;
 
             m_fadeTexture = texture;
             m_fadeColour = Color.White;
@@ -119,9 +124,10 @@ namespace Anarian.DataStructures.ScreenEffects
                 case FadeStatus.FadingToContent:    m_fadePercentage -= m_fadeRate * gameTime.DeltaTime();  break;
                 case FadeStatus.FadingIn:           m_fadePercentage += m_fadeRate * gameTime.DeltaTime();  break;
             }
-            
-            m_fadePercentage = MathHelper.Clamp(m_fadePercentage, 0.0f, 1.0f);
-            if (m_fadePercentage <= 0.0f || m_fadePercentage >= 1.0f) {
+
+            m_fadePercentage = MathHelper.Clamp(m_fadePercentage, MinimumFade, MaximumFade);
+            if (m_fadePercentage <= MinimumFade || m_fadePercentage >= MaximumFade)
+            {
                 m_progressStatus = ProgressStatus.Completed;
 
                 if (Completed != null)
