@@ -14,6 +14,13 @@ namespace Anarian.DataStructures
             set { m_name = value; }
         }
 
+        internal uint m_id;
+        public uint ID
+        {
+            get { return m_id; }
+            internal set { m_id = value; }
+        }
+
         internal string m_tag;
         public string Tag
         {
@@ -27,6 +34,7 @@ namespace Anarian.DataStructures
 
         public AnarianObject(string name = "", string tag = "")
         {
+            m_id = IDManagers.AnarianObjectIDManager.GetNewID();
             m_name = name;
             m_tag = tag;
             m_lockObject = new object();

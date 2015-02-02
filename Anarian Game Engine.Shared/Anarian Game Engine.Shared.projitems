@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AnarianGameEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CreditsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\AnarianObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\AnimatedGameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Animation\AnimatedModel.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\PrimitiveHelper2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\PrimitiveHelper3D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\RenderText.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IDManagers\AnarianObjectIDManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InputManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMoveable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRenderable.cs" />
