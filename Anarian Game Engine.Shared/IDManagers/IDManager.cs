@@ -4,13 +4,18 @@ using System.Text;
 
 namespace Anarian.IDManagers
 {
-    public static class AnarianObjectIDManager
+    public class IDManager
     {
-        public static uint CurrentID { get; set; }
+        public uint CurrentID { get; set; }
 
-        public static void Reset() { CurrentID = 0; }
+        public IDManager()
+        {
+            CurrentID = 0;
+        }
 
-        public static uint GetNewID()
+        public void Reset() { CurrentID = 0; }
+
+        public uint GetNewID()
         {
             uint IDToUse = CurrentID;
             IncrimentID();
@@ -18,7 +23,7 @@ namespace Anarian.IDManagers
             return IDToUse;
         }
 
-        private static void IncrimentID()
+        private void IncrimentID()
         {
             if (CurrentID < uint.MaxValue)
                 CurrentID++;

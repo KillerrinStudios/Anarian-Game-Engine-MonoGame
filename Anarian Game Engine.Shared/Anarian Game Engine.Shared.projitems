@@ -80,6 +80,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\PrimitiveHelper3D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\RenderText.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IDManagers\AnarianObjectIDManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IDManagers\IDManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InputManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMoveable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRenderable.cs" />
