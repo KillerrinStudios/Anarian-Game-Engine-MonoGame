@@ -10,6 +10,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AnarianGameEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\GridCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\KDTree.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\PriorityQueue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\PriorityQueueNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\TreeNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreditsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\AnarianObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\AnimatedGameObject.cs" />

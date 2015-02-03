@@ -29,12 +29,16 @@ namespace Anarian.GUI
             set { m_navigationSaveState = value; }
         }
 
+        object m_menuParameter;
+        public object MenuParameter { get { return m_menuParameter; } protected set { m_menuParameter = value; } }
+
         public event EventHandler OnLoad;
 
-        public Menu()
+        public Menu(object menuParameter = null)
             :base()
         {
             m_navigationSaveState = NavigationSaveState.KeepSate;
+            m_menuParameter = menuParameter;
 
             // When Creating the Base SceneNode, we will set
             // its Scale to Zero so that SceneNodes which get
