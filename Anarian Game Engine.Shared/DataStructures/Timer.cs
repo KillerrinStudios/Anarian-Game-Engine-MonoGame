@@ -30,7 +30,7 @@ namespace Anarian.DataStructures
             Reset();
         }
 
-        public virtual void Reset()
+        public void Reset()
         {
             m_progress = ProgressStatus.NotStarted;
             m_paused = PausedState.Unpaused;

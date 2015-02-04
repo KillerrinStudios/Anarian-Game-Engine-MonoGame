@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Anarian.Helpers;
 using Anarian.DataStructures.ScreenEffects;
 
-namespace Mars_Life
+namespace Anarian
 {
     public class CreditManager
     {

@@ -43,6 +43,10 @@ namespace Anarian
             Initialized = false;
         }
 
+        public virtual void Dispose(bool cleanupAll)
+        {
+            Dispose();
+        }
         public void Dispose()
         {
             Initialized = false;
