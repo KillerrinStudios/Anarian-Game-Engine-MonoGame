@@ -49,13 +49,8 @@ namespace Anarian.Collections
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            // Lets call the generic version here
-            return this.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() { return this.GetEnumerator(); }
         #endregion
-
 
         public KDTree()
         {

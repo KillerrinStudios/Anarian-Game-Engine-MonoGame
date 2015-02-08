@@ -1,13 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace Anarian.Collections
 {
-    public struct GridCell
+    public struct GridCell<T>
     {
-        public int ID;
+        public readonly int ID;
+        T Data;
+
         public GridCell(int id)
         {
             ID = id;
+            Data = default(T);
+        }
+
+        public GridCell(int id, T data)
+        {
+            ID = id;
+            Data = data;
         }
         public override string ToString() { return "" + ID; }
     }
