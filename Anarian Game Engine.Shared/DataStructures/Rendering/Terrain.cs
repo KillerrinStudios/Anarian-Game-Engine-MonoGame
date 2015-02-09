@@ -11,6 +11,8 @@ using Anarian.DataStructures;
 using Anarian.DataStructures.Components;
 using Anarian.Interfaces;
 using Anarian.Helpers;
+using Anarian.Collections;
+using Anarian.Pathfinding;
 
 namespace Anarian.DataStructures.Rendering
 {
@@ -31,6 +33,9 @@ namespace Anarian.DataStructures.Rendering
 
         TerrainHeightData m_heightData;
         public TerrainHeightData HeightData { get { return m_heightData; } }
+
+        Grid<AStarNode> m_terrainGrid;
+        public Grid<AStarNode> TerrainGrid { get { return m_terrainGrid; } }
         #endregion
 
         public Terrain(GraphicsDevice graphics, Texture2D heightMap, Texture2D texture = null)
@@ -94,6 +99,326 @@ namespace Anarian.DataStructures.Rendering
             }
 
             m_boundingBoxes.Add(BoundingBox.CreateFromPoints(points));
+        }
+        #endregion
+
+        #region Grid Setup
+        public void SetupGrid(bool hookUpDiagnols, params AStarTerrainRule[] parameters)
+        {
+            m_terrainGrid = new Grid<AStarNode>(m_heightData.TerrainWidth, m_heightData.TerrainHeight);
+
+            // Precreate the Data
+            foreach(var i in m_terrainGrid) {
+                i.Data = new AStarNode(i.ID);
+            }
+               
+            // Apply the Grid Rules
+            ApplyGridRules(parameters);
+
+            // Find every node and hook up parents
+            AddGridConnections(hookUpDiagnols);
+        }
+
+        private void ApplyGridRules(params AStarTerrainRule[] parameters)
+        {
+            foreach (var param in parameters)
+            {
+                switch (param.AppliedTo)
+                {
+                    case RuleTypeAppliedTo.Passable:            ApplyPassableRule(param);           break;
+                    case RuleTypeAppliedTo.Impassable:          ApplyImpassableRule(param);         break;
+                    case RuleTypeAppliedTo.BaseMovementCost:    ApplyBaseMovementCostRule(param);   break;
+                    default: break;
+                }
+            }
+        }
+
+        #region Rules
+        private void ApplyPassableRule(AStarTerrainRule rule)
+        {
+            for (int x = 0; x < m_heightData.TerrainWidth; x++)
+            {
+                for (int y = 0; y < m_heightData.TerrainHeight; y++)
+                {
+                    if (rule.Measurement == RuleMeasureType.Absolute)
+                    {
+                        switch (rule.Comparison)
+                        {
+                            case Anarian.Enumerators.Comparison.GreaterThan:
+                                if (rule.Height > m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = true; }
+                                //else { m_terrainGrid[x, y].Passible = false; }
+                                break;
+                            case Anarian.Enumerators.Comparison.EqualTo:
+                                if (rule.Height == m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = true; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThan:
+                                if (rule.Height < m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = true; }
+                                break;
+
+                            case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
+                                if (rule.Height >= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = true; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThanEqualTo:
+                                if (rule.Height <= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = true; }
+                                break;
+
+                            default: break;
+                        }
+                    }
+                    if (rule.Measurement == RuleMeasureType.Delta)
+                    {
+                        int x1 = x + 1;
+                        int y1 = y + 1;
+                        if (x1 > m_heightData.TerrainWidth) break;  //x1 = m_heightData.TerrainWidth;
+                        if (y1 > m_heightData.TerrainWidth) break;  //y1 = m_heightData.TerrainHeight;
+                        float deltaHeight = m_heightData.TerrainVertsPos[x1, y1].Y - m_heightData.TerrainVertsPos[x, y].Y;
+
+                        switch (rule.Comparison)
+                        {
+                            case Anarian.Enumerators.Comparison.GreaterThan:
+                                if (rule.Height > deltaHeight) { m_terrainGrid[x, y].Passible = true; }
+                                break;
+                            case Anarian.Enumerators.Comparison.EqualTo:
+                                if (rule.Height == deltaHeight) { m_terrainGrid[x, y].Passible = true; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThan:
+                                if (rule.Height < deltaHeight) { m_terrainGrid[x, y].Passible = true; }
+                                break;
+
+                            case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
+                                if (rule.Height >= deltaHeight) { m_terrainGrid[x, y].Passible = true; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThanEqualTo:
+                                if (rule.Height <= deltaHeight) { m_terrainGrid[x, y].Passible = true; }
+                                break;
+
+                            default: break;
+                        }
+                    }
+                }
+            }
+        }
+        private void ApplyImpassableRule(AStarTerrainRule rule)
+        {
+            for (int x = 0; x < m_heightData.TerrainWidth; x++)
+            {
+                for (int y = 0; y < m_heightData.TerrainHeight; y++)
+                {
+                    if (rule.Measurement == RuleMeasureType.Absolute)
+                    {
+                        switch (rule.Comparison)
+                        {
+                            case Anarian.Enumerators.Comparison.GreaterThan:
+                                if (rule.Height > m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = false; }
+                                //else { m_terrainGrid[x, y].Passible = true; }
+                                break;
+                            case Anarian.Enumerators.Comparison.EqualTo:
+                                if (rule.Height == m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = false; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThan:
+                                if (rule.Height < m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = false; }
+                                break;
+
+                            case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
+                                if (rule.Height >= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = false; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThanEqualTo:
+                                if (rule.Height <= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = false; }
+                                break;
+
+                            default: break;
+                        }
+                    }
+                    if (rule.Measurement == RuleMeasureType.Delta)
+                    {
+                        int x1 = x + 1;
+                        int y1 = y + 1;
+                        if (x1 > m_heightData.TerrainWidth) break;  //x1 = m_heightData.TerrainWidth;
+                        if (y1 > m_heightData.TerrainWidth) break;  //y1 = m_heightData.TerrainHeight;
+                        float deltaHeight = m_heightData.TerrainVertsPos[x1, y1].Y - m_heightData.TerrainVertsPos[x, y].Y;
+
+                        switch (rule.Comparison)
+                        {
+                            case Anarian.Enumerators.Comparison.GreaterThan:
+                                if (rule.Height > deltaHeight) { m_terrainGrid[x, y].Passible = false; }
+                                break;
+                            case Anarian.Enumerators.Comparison.EqualTo:
+                                if (rule.Height == deltaHeight) { m_terrainGrid[x, y].Passible = false; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThan:
+                                if (rule.Height < deltaHeight) { m_terrainGrid[x, y].Passible = false; }
+                                break;
+
+                            case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
+                                if (rule.Height >= deltaHeight) { m_terrainGrid[x, y].Passible = false; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThanEqualTo:
+                                if (rule.Height <= deltaHeight) { m_terrainGrid[x, y].Passible = false; }
+                                break;
+
+                            default: break;
+                        }
+                    }
+                }
+            }
+        }
+        private void ApplyBaseMovementCostRule(AStarTerrainRule rule)
+        {
+            for (int x = 0; x < m_heightData.TerrainWidth; x++)
+            {
+                for (int y = 0; y < m_heightData.TerrainHeight; y++)
+                {
+                    if (rule.Measurement == RuleMeasureType.Absolute)
+                    {
+                        switch (rule.Comparison)
+                        {
+                            case Anarian.Enumerators.Comparison.GreaterThan:
+                                if (rule.Height > m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+                            case Anarian.Enumerators.Comparison.EqualTo:
+                                if (rule.Height == m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThan:
+                                if (rule.Height < m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+
+                            case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
+                                if (rule.Height >= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThanEqualTo:
+                                if (rule.Height <= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+
+                            default: break;
+                        }
+                    }
+                    if (rule.Measurement == RuleMeasureType.Delta)
+                    {
+                        int x1 = x + 1;
+                        int y1 = y + 1;
+                        if (x1 > m_heightData.TerrainWidth) break;  //x1 = m_heightData.TerrainWidth;
+                        if (y1 > m_heightData.TerrainWidth) break;  //y1 = m_heightData.TerrainHeight;
+                        float deltaHeight = m_heightData.TerrainVertsPos[x1, y1].Y - m_heightData.TerrainVertsPos[x, y].Y;
+
+                        switch (rule.Comparison)
+                        {
+                            case Anarian.Enumerators.Comparison.GreaterThan:
+                                if (rule.Height > deltaHeight) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+                            case Anarian.Enumerators.Comparison.EqualTo:
+                                if (rule.Height == deltaHeight) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThan:
+                                if (rule.Height < deltaHeight) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+
+                            case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
+                                if (rule.Height >= deltaHeight) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+                            case Anarian.Enumerators.Comparison.LessThanEqualTo:
+                                if (rule.Height <= deltaHeight) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+
+                            default: break;
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+        
+        private void AddGridConnections(bool hookupDiagnols)
+        {
+            for (int x = 0; x < m_terrainGrid.Columns; x++)
+            {
+                for (int y = 0; y < m_terrainGrid.Rows; y++)
+                {
+                    Point thisNodePos = new Point(x, y);
+
+                    // Up Down Left Right
+                    Point northPos = thisNodePos + new Point(0, 1);
+                    Point southPos = thisNodePos - new Point(0, 1);
+                    Point eastPos = thisNodePos + new Point(1, 0);
+                    Point westPos = thisNodePos - new Point(1, 0);
+
+                    if (m_terrainGrid.InGrid(northPos))
+                    {
+                        var north = m_terrainGrid[northPos];
+                        if (north.Passible) {
+                            Debug.WriteLine("Found North: " + north.GridCellID.ToString());
+                            m_terrainGrid[x, y].Connections.Add(north);
+                        }
+                    }
+                    if (m_terrainGrid.InGrid(southPos))
+                    {
+                        var south = m_terrainGrid[southPos];
+                        if (south.Passible) {
+                            Debug.WriteLine("Found South: " + south.GridCellID.ToString());
+                            m_terrainGrid[x, y].Connections.Add(south);
+                        }
+                    }
+
+                    if (m_terrainGrid.InGrid(eastPos))
+                    {
+                        var east = m_terrainGrid[eastPos];
+                        if (east.Passible) {
+                            Debug.WriteLine("Found East: " + east.GridCellID.ToString());
+                            m_terrainGrid[x, y].Connections.Add(east);
+                        }
+                    }
+                    if (m_terrainGrid.InGrid(westPos))
+                    {
+                        var west = m_terrainGrid[westPos];
+                        if (west.Passible) {
+                            Debug.WriteLine("Found West: " + west.GridCellID.ToString());
+                            m_terrainGrid[x, y].Connections.Add(west);
+                        }
+                    }
+
+                    // Diagnols
+                    if (hookupDiagnols)
+                    {
+                        Point northEastPos = thisNodePos + new Point(1, 1);
+                        Point northWestPos = thisNodePos - new Point(1, 1);
+                        Point southEastPos = thisNodePos + new Point(1, 1);
+                        Point southWestPos = thisNodePos - new Point(1, 1);
+
+                        if (m_terrainGrid.InGrid(northEastPos))
+                        {
+                            var northeast = m_terrainGrid[northEastPos];
+                            if (northeast.Passible) {
+                                Debug.WriteLine("Found northEastPos: " + northeast.GridCellID.ToString());
+                                m_terrainGrid[x, y].Connections.Add(northeast);
+                            }
+                        }
+                        if (m_terrainGrid.InGrid(northWestPos))
+                        {
+                            var northwest = m_terrainGrid[northWestPos];
+                            if (northwest.Passible) {
+                                Debug.WriteLine("Found northWestPos: " + northwest.GridCellID.ToString());
+                                m_terrainGrid[x, y].Connections.Add(northwest);
+                            }
+                        }
+
+                        if (m_terrainGrid.InGrid(southEastPos))
+                        {
+                            var southeast = m_terrainGrid[southEastPos];
+                            if (southeast.Passible) {
+                                Debug.WriteLine("Found southEastPos: " + southeast.GridCellID.ToString());
+                                m_terrainGrid[x, y].Connections.Add(southeast);
+                            }
+                        }
+                        if (m_terrainGrid.InGrid(southWestPos))
+                        {
+                            var southwest = m_terrainGrid[southWestPos];
+                            if (southwest.Passible) {
+                                Debug.WriteLine("Found southWestPos: " + southwest.GridCellID.ToString());
+                                m_terrainGrid[x, y].Connections.Add(southwest);
+                            }
+                        }
+                    }
+                }
+            }
         }
         #endregion
 

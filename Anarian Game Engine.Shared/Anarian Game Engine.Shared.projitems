@@ -11,7 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AnarianGameEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\Grid.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Collections\GridCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\GridCellNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\KDTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\PriorityQueue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\PriorityQueueNode.cs" />
@@ -46,6 +46,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\ScreenEffects\Fade.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\StaticGameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Timer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\Comparison.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\ComponentTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\GuiState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\InputType.cs" />
@@ -90,6 +91,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IScreenEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISelectableEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUpdatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStarNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStarPathFinder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStarTerrainRule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\IPathfindable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\PathfindingData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\PathFoundEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\RuleMeasureType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\RuleTypeAppliedTo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GUI\GuiObject.cs" />

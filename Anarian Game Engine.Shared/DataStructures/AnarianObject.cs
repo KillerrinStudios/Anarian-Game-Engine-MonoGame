@@ -34,10 +34,23 @@ namespace Anarian.DataStructures
 
         public AnarianObject(string name = "", string tag = "")
         {
-            m_id = IDManagers.AnarianObjectIDManager.GetNewID();
             m_name = name;
+            m_id = IDManagers.AnarianObjectIDManager.GetNewID();
             m_tag = tag;
             m_lockObject = new object();
+        }
+
+        public virtual AnarianObject DeepCopy(bool generateNewID = true)
+        {
+            if (generateNewID) { return new AnarianObject(Name, Tag); }
+
+            return new AnarianObject
+            {
+                Name = this.Name,
+                ID = this.ID,
+                m_tag = this.Tag,
+                LockObject = new object()
+            };
         }
     }
 }
