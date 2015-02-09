@@ -6,10 +6,13 @@ namespace Anarian.IDManagers
 {
     public class IDManager
     {
+        private object lockObject;
+
         public uint CurrentID { get; set; }
 
         public IDManager()
         {
+            lockObject = new object();
             CurrentID = 0;
         }
 
@@ -17,8 +20,12 @@ namespace Anarian.IDManagers
 
         public uint GetNewID()
         {
-            uint IDToUse = CurrentID;
-            IncrimentID();
+            uint IDToUse;
+            lock (lockObject)
+            {
+                IDToUse = CurrentID;
+                IncrimentID();
+            }
 
             return IDToUse;
         }

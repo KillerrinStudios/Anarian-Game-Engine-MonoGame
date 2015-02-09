@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Anarian.IDManagers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,8 @@ namespace Anarian.DataStructures
 {
     public class AnarianObject
     {
+        public static IDManager AnarianObjectIDManager = new IDManager();
+
         #region Fields/Properties
         internal string m_name;
         public string Name
@@ -35,7 +38,7 @@ namespace Anarian.DataStructures
         public AnarianObject(string name = "", string tag = "")
         {
             m_name = name;
-            m_id = IDManagers.AnarianObjectIDManager.GetNewID();
+            m_id = AnarianObjectIDManager.GetNewID();
             m_tag = tag;
             m_lockObject = new object();
         }
