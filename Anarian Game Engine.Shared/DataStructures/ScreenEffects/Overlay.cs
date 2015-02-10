@@ -29,8 +29,12 @@ namespace Anarian.DataStructures.ScreenEffects
         public event EventHandler ProgressTick;
         public event EventHandler Completed;
 
+        public bool Active { get; set; }
+
         public Overlay(GraphicsDevice graphicsDevice, Color solidColour)
         {
+            Active = true;
+
             m_progressStatus = ProgressStatus.None;
             m_fadePercentage = 1.0f;
 
@@ -39,6 +43,8 @@ namespace Anarian.DataStructures.ScreenEffects
 
         public Overlay(Texture2D texture, Color colour)
         {
+            Active = true;
+
             m_progressStatus = ProgressStatus.None;
             m_fadePercentage = 1.0f;
 
@@ -78,10 +84,21 @@ namespace Anarian.DataStructures.ScreenEffects
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {            
-            spriteBatch.Begin();
-            spriteBatch.Draw(m_texture, Vector2.Zero, m_colour * m_fadePercentage);
-            spriteBatch.End();
+        {
+            if (!Active) return;
+
+            try
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(m_texture, Vector2.Zero, m_colour * m_fadePercentage);
+            }
+            catch (Exception) { }
+
+            try
+            {
+                spriteBatch.End();
+            }
+            catch (Exception) { }
         }
 
         public override string ToString()

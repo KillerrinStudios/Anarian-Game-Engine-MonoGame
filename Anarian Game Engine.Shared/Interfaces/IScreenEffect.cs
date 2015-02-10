@@ -14,6 +14,8 @@ namespace Anarian.Interfaces
         event EventHandler ProgressTick;
         event EventHandler Completed;
 
+        bool Active { get; set; }
+
         ProgressStatus Progress { get; set; }
 
         void PreformEffect(GameTime gameTime);
