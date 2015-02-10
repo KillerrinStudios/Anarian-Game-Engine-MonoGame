@@ -45,6 +45,18 @@ namespace Anarian
         public GUIManager GuiManager { get { return m_guiManager; } }
         #endregion
 
+        private object m_graphicsDeviceLockObject = new object();
+        public GraphicsDevice ThreadSafeGraphicsDevice
+        {
+            get
+            {
+                GraphicsDevice gd;
+                lock(m_graphicsDeviceLockObject) {
+                    gd = GraphicsDevice;
+                }
+                return gd;
+            }
+        }
         #endregion
 
         public AnarianGameEngine()
