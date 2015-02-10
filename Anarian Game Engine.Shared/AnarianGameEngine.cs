@@ -65,8 +65,13 @@ namespace Anarian
         /// </summary>
         protected override void Initialize()
         {
+            // Store the Game Engine for later access if needed
+            AnarianConsts.AnarianGameEngine = this;
+
+            // Store other variables
             m_random = new System.Random();
 
+            // Create the Managers
             m_resourceManager = ResourceManager.Instance;
             m_inputManager = InputManager.Instance;
             m_sceneManager = SceneManager.Instance;
@@ -88,6 +93,9 @@ namespace Anarian
         /// </summary>
         protected virtual void LoadContent(Color backgroundColor)
         {
+            // Store the Screen Rectangle for later
+            AnarianConsts.ScreenRectangle = GraphicsDevice.Viewport.GetViewportRectangle();
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 

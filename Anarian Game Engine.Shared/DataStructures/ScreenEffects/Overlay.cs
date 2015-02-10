@@ -24,6 +24,8 @@ namespace Anarian.DataStructures.ScreenEffects
 
         Color m_colour;
         public Color Colour { get { return m_colour; } set { m_colour = value; } }
+
+        private Rectangle m_screenRect;
         #endregion
 
         public event EventHandler ProgressTick;
@@ -34,16 +36,18 @@ namespace Anarian.DataStructures.ScreenEffects
         public Overlay(GraphicsDevice graphicsDevice, Color solidColour)
         {
             Active = true;
+            m_screenRect = graphicsDevice.Viewport.GetViewportRectangle();
 
             m_progressStatus = ProgressStatus.None;
             m_fadePercentage = 1.0f;
 
-            ChangeFadeColor(graphicsDevice, solidColour);
+            ChangeOverlayColor(graphicsDevice, solidColour);
         }
 
-        public Overlay(Texture2D texture, Color colour)
+        public Overlay(GraphicsDevice graphicsDevice, Texture2D texture, Color colour)
         {
             Active = true;
+            m_screenRect = graphicsDevice.Viewport.GetViewportRectangle();
 
             m_progressStatus = ProgressStatus.None;
             m_fadePercentage = 1.0f;
@@ -61,10 +65,10 @@ namespace Anarian.DataStructures.ScreenEffects
         #endregion
 
         #region Helper Methods
-        public void ChangeFadeColor(GraphicsDevice graphicsDevice, Color colour)
+        public void ChangeOverlayColor(GraphicsDevice graphicsDevice, Color colour)
         {
             m_colour = colour;
-            m_texture = m_colour.CreateTextureFromSolidColor(graphicsDevice, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height);
+            m_texture = m_colour.CreateTextureFromSolidColor(graphicsDevice, 1, 1);
         }
         #endregion
 
@@ -90,7 +94,7 @@ namespace Anarian.DataStructures.ScreenEffects
             try
             {
                 spriteBatch.Begin();
-                spriteBatch.Draw(m_texture, Vector2.Zero, m_colour * m_fadePercentage);
+                spriteBatch.Draw(m_texture, m_screenRect, m_colour * m_fadePercentage);
             }
             catch (Exception) { }
 

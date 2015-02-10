@@ -42,6 +42,8 @@ namespace Anarian.DataStructures.ScreenEffects
 
         Color m_fadeColour;
         public Color FadeColour { get { return m_fadeColour; } set { m_fadeColour = value; } }
+
+        private Rectangle m_screenRect;
         #endregion
 
         public event EventHandler ProgressTick;
@@ -116,7 +118,9 @@ namespace Anarian.DataStructures.ScreenEffects
         public void ChangeFadeColor(GraphicsDevice graphicsDevice, Color colour)
         {
             m_fadeColour = colour;
-            m_fadeTexture = m_fadeColour.CreateTextureFromSolidColor(graphicsDevice, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height);
+            m_screenRect = graphicsDevice.Viewport.GetViewportRectangle();
+
+            m_fadeTexture = m_fadeColour.CreateTextureFromSolidColor(graphicsDevice, 1, 1);
         }
         #endregion
 
@@ -154,7 +158,7 @@ namespace Anarian.DataStructures.ScreenEffects
             try
             {
                 spriteBatch.Begin();
-                spriteBatch.Draw(m_fadeTexture, Vector2.Zero, m_fadeColour * m_fadePercentage);
+                spriteBatch.Draw(m_fadeTexture, m_screenRect, m_fadeColour * m_fadePercentage);
             }
             catch (Exception) { }
 
