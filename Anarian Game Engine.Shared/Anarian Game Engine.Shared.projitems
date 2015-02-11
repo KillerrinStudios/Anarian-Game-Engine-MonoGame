@@ -39,9 +39,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\MouseManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\TouchScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Level.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\Quad.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\Sphere.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\TerrainHeightData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\Terrain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Rendering\Triangle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\ScreenEffects\Overlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\ScreenEffects\Fade.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\StaticGameObject.cs" />
