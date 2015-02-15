@@ -92,7 +92,7 @@ namespace Anarian.DataStructures
 
             // Draw the model. A model can have multiple meshes, so loop.
             foreach (ModelMesh mesh in m_model.Meshes) {
-                Debug.WriteLine(mesh.Name);
+                //Debug.WriteLine(mesh.Name);
                 // This is where the mesh orientation is set, as well 
                 // as our camera and projection.
 
@@ -103,7 +103,7 @@ namespace Anarian.DataStructures
                         beffect.View = camera.View;
                         beffect.Projection = camera.Projection;
                         beffect.EnableDefaultLighting();
-                        beffect.LightingEnabled = false;
+                        beffect.LightingEnabled = true;
                         beffect.PreferPerPixelLighting = true;
                         beffect.DiffuseColor = new Vector3(1, 1, 1);
                     }
