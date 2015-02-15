@@ -93,6 +93,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IScreenEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISelectableEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUpdatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MonoGame\Circle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MonoGame\PrimitiveBatch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStarNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStarPathFinder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStarTerrainRule.cs" />

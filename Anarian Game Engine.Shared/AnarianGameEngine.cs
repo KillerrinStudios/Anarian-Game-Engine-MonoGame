@@ -11,25 +11,24 @@ using Anarian;
 using Anarian.DataStructures;
 using Anarian.Interfaces;
 using Anarian.Helpers;
+using Anarian.MonoGame;
 
 namespace Anarian
 {
     public class AnarianGameEngine : Game
     {
         #region Fields/Properties
-        #region MonoGame
         protected GraphicsDeviceManager graphics;
         public GraphicsDeviceManager Graphics { get { return graphics; } protected set { graphics = value; } }
 
         protected SpriteBatch spriteBatch;
         public SpriteBatch SpriteBatch { get { return spriteBatch; } protected set { spriteBatch = value; } }
 
-        protected Color m_backgroundColor;
-        public Color BackgroundColor { get { return m_backgroundColor; } set { m_backgroundColor = value; } }
+        protected PrimitiveBatch primitiveBatch;
+        public PrimitiveBatch PrimitiveBatch { get { return primitiveBatch; } protected set { primitiveBatch = value; } }
 
-        protected Random m_random;
-        public Random Random { get { return m_random; } protected set { m_random = value; } }
-        #endregion
+        public Color BackgroundColor;
+        public Random Random;
 
         #region Managers
         protected SceneManager m_sceneManager;
@@ -81,7 +80,7 @@ namespace Anarian
             AnarianConsts.AnarianGameEngine = this;
 
             // Store other variables
-            m_random = new System.Random();
+            Random = new System.Random();
 
             // Create the Managers
             m_resourceManager = ResourceManager.Instance;
@@ -110,9 +109,10 @@ namespace Anarian
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            primitiveBatch = new PrimitiveBatch(GraphicsDevice);
 
             // Set the Background Color
-            m_backgroundColor = backgroundColor;
+            BackgroundColor = backgroundColor;
 
             // Create the Scene
             m_sceneManager.CurrentScene = new Level(graphics.GraphicsDevice);
@@ -184,7 +184,7 @@ namespace Anarian
         /// <param name="gameTime">The GameTime</param>
         protected virtual void PreDraw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(m_backgroundColor);
+            GraphicsDevice.Clear(BackgroundColor);
         }
 
         /// <summary>
