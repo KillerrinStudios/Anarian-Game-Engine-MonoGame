@@ -53,7 +53,7 @@ namespace Anarian.Collections
             return (column >= 0) &&
                    (column < Columns) &&
                    (row >= 0) &&
-                   (row <= Rows);
+                   (row < Rows);
         }
 
 

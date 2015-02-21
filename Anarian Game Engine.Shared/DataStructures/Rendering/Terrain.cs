@@ -158,6 +158,9 @@ namespace Anarian.DataStructures.Rendering
                             case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
                                 if (rule.Height >= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = true; }
                                 break;
+                            case Anarian.Enumerators.Comparison.NotEqualTo:
+                                if (rule.Height != m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = true; }
+                                break;
                             case Anarian.Enumerators.Comparison.LessThanEqualTo:
                                 if (rule.Height <= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = true; }
                                 break;
@@ -222,6 +225,9 @@ namespace Anarian.DataStructures.Rendering
                             case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
                                 if (rule.Height >= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = false; }
                                 break;
+                            case Anarian.Enumerators.Comparison.NotEqualTo:
+                                if (rule.Height != m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = false; }
+                                break;
                             case Anarian.Enumerators.Comparison.LessThanEqualTo:
                                 if (rule.Height <= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].Passible = false; }
                                 break;
@@ -284,6 +290,9 @@ namespace Anarian.DataStructures.Rendering
 
                             case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
                                 if (rule.Height >= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+                            case Anarian.Enumerators.Comparison.NotEqualTo:
+                                if (rule.Height != m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
                                 break;
                             case Anarian.Enumerators.Comparison.LessThanEqualTo:
                                 if (rule.Height <= m_heightData.TerrainVertsPos[x, y].Y) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
@@ -418,6 +427,21 @@ namespace Anarian.DataStructures.Rendering
                         }
                     }
                 }
+            }
+        }
+
+        public void DebugPrintGrid()
+        {
+            if (m_terrainGrid == null) return;
+
+            for (int x = 0; x < m_terrainGrid.Columns; x++)
+            {
+                string line = "";
+                for (int y = 0; y < m_terrainGrid.Rows; y++)
+                {
+                    line += Convert.ToInt32(m_terrainGrid[x, y].Passible).ToString();
+                }
+                Debug.WriteLine(line);
             }
         }
         #endregion

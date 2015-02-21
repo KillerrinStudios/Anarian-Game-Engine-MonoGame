@@ -22,11 +22,11 @@ namespace Anarian.Pathfinding
             Amount = amount;
         }
 
-        public static AStarTerrainRule PassableRule (RuleMeasureType measurementType, Comparison comparison, int height)
+        public static AStarTerrainRule PassableRule(RuleMeasureType measurementType, Comparison comparison, float height)
         {
             return new AStarTerrainRule(RuleTypeAppliedTo.Passable, measurementType, comparison, height, 0);
         }
-        public static AStarTerrainRule ImPassableRule (RuleMeasureType measurementType, Comparison comparison, int height)
+        public static AStarTerrainRule ImpassableRule(RuleMeasureType measurementType, Comparison comparison, float height)
         {
             return new AStarTerrainRule(RuleTypeAppliedTo.Impassable, measurementType, comparison, height, 0);
         }

@@ -12,6 +12,7 @@ namespace Anarian.Enumerators
 
         // Extras to cover all options
         GreaterThanEqualTo,
+        NotEqualTo,
         LessThanEqualTo
     }
 }

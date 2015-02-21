@@ -55,6 +55,13 @@ namespace Anarian.DataStructures.Rendering
             SetupTerrain(heightMap, terrainHeightScale);
         }
 
+        public Vector3 this[int column, int row]
+        {
+            get { return m_terrainVertsPos[column,row]; }
+            protected set { m_terrainVertsPos[column, row] = value; }
+        }
+
+        #region Terrain Setup
         public void SetupTerrain(Texture2D heightMap, float terrainHeightScale)
         {
             LoadHeightData(heightMap, terrainHeightScale);
@@ -158,5 +165,6 @@ namespace Anarian.DataStructures.Rendering
             for (int i = 0; i < m_vertices.Length; i++)
                 m_vertices[i].Normal.Normalize();
         }
+        #endregion
     }
 }
