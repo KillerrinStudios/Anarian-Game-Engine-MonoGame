@@ -191,6 +191,9 @@ namespace Anarian.DataStructures.Rendering
                             case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
                                 if (rule.Height >= deltaHeight) { m_terrainGrid[x, y].Passible = true; }
                                 break;
+                            case Anarian.Enumerators.Comparison.NotEqualTo:
+                                if (rule.Height != deltaHeight) { m_terrainGrid[x, y].Passible = true; }
+                                break;
                             case Anarian.Enumerators.Comparison.LessThanEqualTo:
                                 if (rule.Height <= deltaHeight) { m_terrainGrid[x, y].Passible = true; }
                                 break;
@@ -258,6 +261,9 @@ namespace Anarian.DataStructures.Rendering
                             case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
                                 if (rule.Height >= deltaHeight) { m_terrainGrid[x, y].Passible = false; }
                                 break;
+                            case Anarian.Enumerators.Comparison.NotEqualTo:
+                                if (rule.Height != deltaHeight) { m_terrainGrid[x, y].Passible = false; }
+                                break;
                             case Anarian.Enumerators.Comparison.LessThanEqualTo:
                                 if (rule.Height <= deltaHeight) { m_terrainGrid[x, y].Passible = false; }
                                 break;
@@ -323,6 +329,9 @@ namespace Anarian.DataStructures.Rendering
 
                             case Anarian.Enumerators.Comparison.GreaterThanEqualTo:
                                 if (rule.Height >= deltaHeight) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
+                                break;
+                            case Anarian.Enumerators.Comparison.NotEqualTo:
+                                if (rule.Height != deltaHeight) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
                                 break;
                             case Anarian.Enumerators.Comparison.LessThanEqualTo:
                                 if (rule.Height <= deltaHeight) { m_terrainGrid[x, y].MovementGCost += rule.Amount; }
