@@ -15,6 +15,8 @@ namespace Anarian.DataStructures.Animation
     /// </summary>
     public class AnimationPlayer
     {
+        public event EventHandler Completed;
+
         #region Fields
         /// <summary>
         /// Current position in time in the clip
@@ -118,10 +120,10 @@ namespace Anarian.DataStructures.Animation
                 boneInfos[b].SetModel(m_animationState);
             }
 
-            SetDefaults();
+            Reset();
         }
 
-        public void SetDefaults()
+        public void Reset()
         {
             Looping = false;
             Paused = false;
@@ -141,16 +143,27 @@ namespace Anarian.DataStructures.Animation
         }
 
         /// <summary>
-        /// Update the clip position
+        /// Update the clip position. 
         /// </summary>
-        /// <param name="delta"></param>
+        /// <param name="gameTime">The gameTime which will be used to animate off of</param>
         public void Update(GameTime gameTime)
         {
             if (Paused) return;
 
             Position = Position + (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (looping && Position >= Duration)
+
+            if (Position >= Duration)
+            {
+                // No mater what, reset the Position back to 0
                 Position = 0;
+
+                // If we aren't looping, Pause the Animation...
+                if (!looping) Paused = true; 
+             
+                /// Then call the Event so that we know that the animation is completed
+                if (Completed != null)
+                    Completed(this, null);
+            }
         }
 
         #endregion
