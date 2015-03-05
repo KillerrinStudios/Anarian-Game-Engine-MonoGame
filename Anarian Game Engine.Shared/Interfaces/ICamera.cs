@@ -7,6 +7,7 @@ namespace Anarian.Interfaces
 {
     public interface ICamera
     {
+        float FieldOfView { get; set; }
         float Near { get; set; }
         float Far { get; set; }
         float AspectRatio { get; set; }

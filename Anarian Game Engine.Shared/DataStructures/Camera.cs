@@ -208,6 +208,11 @@ namespace Anarian.DataStructures
         }
 
         #region Interface Implimentation
+        float ICamera.FieldOfView
+        {
+            get { return FoV; }
+            set { FoV = value; }
+        }
         float ICamera.Near
         {
             get { return Near; }
