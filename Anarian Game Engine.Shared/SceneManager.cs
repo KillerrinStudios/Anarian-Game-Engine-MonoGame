@@ -37,7 +37,7 @@ namespace Anarian
 
         #region Interfaces
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
-        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
+        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
         #endregion
 
         public void Update(GameTime gameTime)
@@ -49,14 +49,14 @@ namespace Anarian
             }
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera = null)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera = null)
         {
             if (!Active) return;
             if (!Visible) return;
 
             if (CurrentScene != null) {
 
-                Camera cameraToUse;
+                ICamera cameraToUse;
                 if (camera == null) cameraToUse = CurrentScene.Camera;
                 else cameraToUse = camera;
 

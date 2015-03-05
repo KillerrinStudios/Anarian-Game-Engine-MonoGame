@@ -61,7 +61,7 @@ namespace Anarian.DataStructures.ScreenEffects
         void IScreenEffect.Draw(GameTime gameTime, SpriteBatch spriteBatch) { Draw(gameTime, spriteBatch); }
         ProgressStatus IScreenEffect.Progress { get { return Progress; } set { Progress = value; } }
 
-        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera) { Draw(gameTime, spriteBatch); }
+        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera) { Draw(gameTime, spriteBatch); }
         #endregion
 
         #region Helper Methods

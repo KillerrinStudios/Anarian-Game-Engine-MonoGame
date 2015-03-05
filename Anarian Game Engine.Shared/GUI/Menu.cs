@@ -74,7 +74,7 @@ namespace Anarian.GUI
 
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
 
-        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera) { Draw(gameTime, spriteBatch, graphics); }
+        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera) { Draw(gameTime, spriteBatch, graphics); }
         #endregion
 
         public virtual void Update(GameTime gameTime)

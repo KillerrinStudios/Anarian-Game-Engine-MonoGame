@@ -170,7 +170,7 @@ namespace Anarian.DataStructures
 
         #region Interface Implimentations
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
-        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
+        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
         #endregion
 
         #region Update/Draw
@@ -191,7 +191,7 @@ namespace Anarian.DataStructures
             // Finally, Update the Transform
             m_transform.Update(gameTime);
         }
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
         {
             if (!m_active) return;
             if (!m_visible) return;

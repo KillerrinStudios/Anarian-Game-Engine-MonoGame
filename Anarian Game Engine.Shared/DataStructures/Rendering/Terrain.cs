@@ -457,7 +457,7 @@ namespace Anarian.DataStructures.Rendering
 
         #region Interface Implimentation
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
-        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
+        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
         #endregion
 
         /// <summary>
@@ -648,7 +648,7 @@ namespace Anarian.DataStructures.Rendering
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
         {
             if (!m_active) return;
             if (!m_visible) return;

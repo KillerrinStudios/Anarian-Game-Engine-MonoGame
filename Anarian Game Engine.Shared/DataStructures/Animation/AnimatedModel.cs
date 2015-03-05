@@ -8,9 +8,12 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 
 using Anarian.DataStructures.Animation.Aux;
+using Anarian.Interfaces;
 
 namespace Anarian.DataStructures.Animation
 {
+    public delegate void SetupEffectsDelegate(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime);
+
     /// <summary>
     /// An encloser for an XNA model that we will use that includes support for
     /// bones, animation, and some manipulations.
@@ -97,13 +100,14 @@ namespace Anarian.DataStructures.Animation
         /// <summary>
         /// Draws the Model to the screen
         /// </summary>
+        /// <param name="gameTime">The GameTime</param>
         /// <param name="graphics">The graphics device to draw on</param>
-        /// <param name="view"> The Camera View</param>
-        /// <param name="projection">The Camera Projection</param>
+        /// <param name="camera">The camera utilized for the Draw</param>
         /// <param name="world">The World Matrix of the Model</param>
         /// <param name="animationState">An Instanced Animation State to render the animation using. Set to null to use the models Default AnimationState</param>
+        /// <param name="setupEffectsMethod">The SetupEffects method which will be called to allow user provided effect customization</param>
         /// <remarks>Warning: Drawing using the Default AnimationState will effect every object drawn with the default.</remarks>
-        public void Draw(GraphicsDevice graphics, Matrix view, Matrix projection, Matrix world, AnimationState animationState)
+        public void Draw(GameTime gameTime, GraphicsDevice graphics, ICamera camera, Matrix world, AnimationState animationState, SetupEffectsDelegate setupEffectsMethod)
         {
             if (model == null)
                 return;
@@ -150,21 +154,20 @@ namespace Anarian.DataStructures.Animation
                     if (effect is BasicEffect) {
                         BasicEffect beffect = effect as BasicEffect;
                         beffect.World = boneTransforms[modelMesh.ParentBone.Index] * world;
-                        beffect.View = view;
-                        beffect.Projection = projection;
-                        beffect.EnableDefaultLighting();
-                        beffect.PreferPerPixelLighting = true;
+                        beffect.View = camera.View;
+                        beffect.Projection = camera.Projection;
                     }
 
                     if (effect is SkinnedEffect) {
                         SkinnedEffect seffect = effect as SkinnedEffect;
                         seffect.World = boneTransforms[modelMesh.ParentBone.Index] * world;
-                        seffect.View = view;
-                        seffect.Projection = projection;
-                        seffect.EnableDefaultLighting();
-                        seffect.PreferPerPixelLighting = true;
+                        seffect.View = camera.View;
+                        seffect.Projection = camera.Projection;
                         seffect.SetBoneTransforms(skeleton);
                     }
+
+                    if (setupEffectsMethod != null)
+                        setupEffectsMethod(effect, graphics, camera, gameTime);
                 }
 
                 modelMesh.Draw();

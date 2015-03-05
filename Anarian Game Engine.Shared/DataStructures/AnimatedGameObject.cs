@@ -68,7 +68,7 @@ namespace Anarian.DataStructures
 
         #region Interface Implimentations
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
-        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
+        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
         #endregion
 
         #region Animation Helpers
@@ -89,7 +89,7 @@ namespace Anarian.DataStructures
             m_animationState.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
         {
             if (!m_active) return;
 
@@ -111,13 +111,36 @@ namespace Anarian.DataStructures
             }
 
             // Finally, we render This Object
-            Model3D.Draw(graphics, camera.View, camera.Projection, Transform.WorldMatrix, m_animationState);
+            Model3D.Draw(gameTime, graphics, camera, Transform.WorldMatrix, m_animationState,
+                (Effect delEffect, GraphicsDevice delGraphics, ICamera delCamera, GameTime delGameTime) =>
+                    {
+                        SetupEffects(delEffect, delGraphics, delCamera, delGameTime);
+                    }
+            );
+            
 
             if (m_renderBounds) {
                 //mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, Color.Red);
                 for (int i = 0; i < m_boundingBoxes.Count; i++) {
                     m_boundingBoxes[i].DrawBoundingBox(graphics, Color.Red, camera, Matrix.Identity);
                 }
+            }
+        }
+
+        protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)
+        {
+            if (effect is BasicEffect)
+            {
+                BasicEffect beffect = effect as BasicEffect;
+                beffect.EnableDefaultLighting();
+                beffect.PreferPerPixelLighting = true;
+            }
+
+            if (effect is SkinnedEffect)
+            {
+                SkinnedEffect seffect = effect as SkinnedEffect;
+                seffect.EnableDefaultLighting();
+                seffect.PreferPerPixelLighting = true;
             }
         }
         #endregion

@@ -9,6 +9,6 @@ namespace Anarian.Interfaces
 {
     public interface IRenderable
     {
-        void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera);
+        void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera);
     }
 }

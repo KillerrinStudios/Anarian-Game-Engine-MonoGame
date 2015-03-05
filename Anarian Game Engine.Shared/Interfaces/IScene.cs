@@ -8,7 +8,7 @@ namespace Anarian.Interfaces
 {
     public interface IScene
     {
-        Camera Camera
+        ICamera Camera
         {
             get;
             set;

@@ -15,7 +15,7 @@ namespace Anarian.Helpers
 {
     public static class PrimitiveHelper3D
     {
-        public static void DrawRay(this Ray ray, GraphicsDevice graphics, Color color, Camera camera, Matrix WorldMatrix)
+        public static void DrawRay(this Ray ray, GraphicsDevice graphics, Color color, ICamera camera, Matrix WorldMatrix)
         {
             // Inside your Game class
             BasicEffect basicEffect;
@@ -34,7 +34,7 @@ namespace Anarian.Helpers
             graphics.DrawUserPrimitives(PrimitiveType.LineList, vertices, 0, 1);
         }
 
-        public static void DrawBoundingBox(this BoundingBox boundingBox, GraphicsDevice graphics, Color color, Camera camera, Matrix WorldMatrix)
+        public static void DrawBoundingBox(this BoundingBox boundingBox, GraphicsDevice graphics, Color color, ICamera camera, Matrix WorldMatrix)
         {
             // Initialize an array of indices for the box. 12 lines require 24 indices
             short[] bBoxIndices = {

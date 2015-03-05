@@ -9,7 +9,7 @@ using Anarian.Interfaces;
 namespace Anarian.DataStructures
 {
     public class Camera : AnarianObject,
-                          IMoveable
+                          ICamera, IMoveable
     {
         BoundingFrustum m_frustrum;
 
@@ -18,9 +18,9 @@ namespace Anarian.DataStructures
         Matrix m_projection;
         Matrix m_world;
 
-        public Matrix View { get { return m_view; } }
-        public Matrix Projection { get { return m_projection; } }
-        public Matrix World { get { return m_world; } }
+        public Matrix View { get { return m_view; } protected set { m_view = value; } }
+        public Matrix Projection { get { return m_projection; } protected set { m_projection = value; } }
+        public Matrix World { get { return m_world; } protected set { m_world = value; } }
         #endregion
 
         #region View
@@ -125,7 +125,7 @@ namespace Anarian.DataStructures
         #endregion
 
         #region Helper Properties
-        public BoundingFrustum Frustum { get { return m_frustrum; } }
+        public BoundingFrustum Frustum { get { return m_frustrum; } protected set { m_frustrum = value; } }
 
         public Vector3 Direction { get { return Vector3.Normalize(m_lookAt - m_eye); } }
         public Vector3 Right { get { return Vector3.Normalize(Vector3.Cross(this.Direction, this.Up)); } }
@@ -208,6 +208,43 @@ namespace Anarian.DataStructures
         }
 
         #region Interface Implimentation
+        float ICamera.Near
+        {
+            get { return Near; }
+            set { Near = value; }
+        }
+        float ICamera.Far
+        {
+            get { return Far; }
+            set { Far = value; }
+        }
+        float ICamera.AspectRatio
+        {
+            get { return AspectRatio; }
+            set { AspectRatio = value; }
+        }
+        Matrix ICamera.View
+        {
+            get { return View; }
+            set { View = value; }
+        }
+        Matrix ICamera.Projection
+        {
+            get { return Projection; }
+            set { Projection = value; }
+        }
+        Matrix ICamera.World
+        {
+            get { return World; }
+            set { World = value; }
+        }
+        BoundingFrustum ICamera.Frustum
+        {
+            get { return Frustum; }
+            set { Frustum = value; }
+        }
+
+
         void IMoveable.Move(GameTime gameTime, Vector3 movement)
         {
             MoveHorizontal(movement.X);

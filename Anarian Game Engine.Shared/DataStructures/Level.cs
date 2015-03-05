@@ -13,7 +13,7 @@ namespace Anarian.DataStructures
                          IScene, IUpdatable, IRenderable
     {
         private NavigationSaveState m_navigationSaveState;
-        private Camera m_camera;
+        private ICamera m_camera;
         private Transform m_sceneNode;
 
         public NavigationSaveState NavigationSaveState
@@ -22,7 +22,7 @@ namespace Anarian.DataStructures
             set { m_navigationSaveState = value; }
         }
 
-        public Camera Camera
+        public ICamera Camera
         {
             get { return m_camera; }
             set { m_camera = value; }
@@ -41,7 +41,7 @@ namespace Anarian.DataStructures
             m_navigationSaveState = NavigationSaveState.KeepSate;
 
             // Create the Camera using the Graphics Device
-            m_camera = new Camera();
+            m_camera = new DataStructures.Camera();
             m_camera.AspectRatio = graphics.Viewport.AspectRatio;
 
             // When Creating the Base SceneNode, we will set
@@ -71,7 +71,7 @@ namespace Anarian.DataStructures
         }
 
         #region Interface Implimentation
-        Camera IScene.Camera
+        ICamera IScene.Camera
         {
             get { return Camera; }
             set { Camera = value; }
@@ -92,7 +92,7 @@ namespace Anarian.DataStructures
         /// <param name="spriteBatch">The SpriteBatch</param>
         /// <param name="graphics">The GraphicsDevice</param>
         /// <param name="camera">Set Camera to null to use Main Camera</param>
-        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
+        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
         #endregion
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Anarian.DataStructures
         /// <param name="spriteBatch">The SpriteBatch</param>
         /// <param name="graphics">The GraphicsDevice</param>
         /// <param name="camera">Set to null to use Camera attached to Level</param>
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera = null)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera = null)
         {
             if (camera == null)
                 m_sceneNode.GameObject.Draw(gameTime, spriteBatch, graphics, m_camera);

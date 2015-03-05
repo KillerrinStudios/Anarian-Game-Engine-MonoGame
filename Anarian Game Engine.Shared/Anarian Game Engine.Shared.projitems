@@ -52,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\ComponentTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\GuiState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\InputType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\LoadingStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\NavigationSaveState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\PausedState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\PointerPress.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\RenderText.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IDManagers\IDManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InputManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICamera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMoveable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRenderable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IScene.cs" />

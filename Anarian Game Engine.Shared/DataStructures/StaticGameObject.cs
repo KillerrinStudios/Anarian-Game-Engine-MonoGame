@@ -50,7 +50,7 @@ namespace Anarian.DataStructures
 
         #region Interface Implimentations
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
-        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
+        void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
         #endregion
 
         #region Update/Draw
@@ -64,7 +64,7 @@ namespace Anarian.DataStructures
             // Then we Update this
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, Camera camera)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
         {
             if (!m_active) return;
 
@@ -102,10 +102,6 @@ namespace Anarian.DataStructures
                         beffect.World = boneTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix;
                         beffect.View = camera.View;
                         beffect.Projection = camera.Projection;
-                        beffect.EnableDefaultLighting();
-                        beffect.LightingEnabled = true;
-                        beffect.PreferPerPixelLighting = true;
-                        beffect.DiffuseColor = new Vector3(1, 1, 1);
                     }
 
                     if (effect is SkinnedEffect) {
@@ -113,10 +109,9 @@ namespace Anarian.DataStructures
                         seffect.World = boneTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix;
                         seffect.View = camera.View;
                         seffect.Projection = camera.Projection;
-                        seffect.EnableDefaultLighting();
-                        seffect.PreferPerPixelLighting = true;
-                        seffect.DiffuseColor = new Vector3(1, 1, 1);
                     }
+
+                    SetupEffects(effect, graphics, camera, gameTime);
                 }
                 // Draw the mesh, using the effects set above.
                 mesh.Draw();
@@ -127,6 +122,26 @@ namespace Anarian.DataStructures
                         m_boundingBoxes[i].DrawBoundingBox(graphics, Color.Red, camera, Matrix.Identity);
                     }
                 }
+            }
+        }
+
+        protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)
+        {
+            if (effect is BasicEffect)
+            {
+                BasicEffect beffect = effect as BasicEffect;
+                beffect.EnableDefaultLighting();
+                beffect.LightingEnabled = true;
+                beffect.PreferPerPixelLighting = true;
+                beffect.DiffuseColor = new Vector3(1, 1, 1);
+            }
+
+            if (effect is SkinnedEffect)
+            {
+                SkinnedEffect seffect = effect as SkinnedEffect;
+                seffect.EnableDefaultLighting();
+                seffect.PreferPerPixelLighting = true;
+                seffect.DiffuseColor = new Vector3(1, 1, 1);
             }
         }
         #endregion
