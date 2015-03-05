@@ -84,8 +84,6 @@ namespace Anarian.DataStructures.Rendering
                 m_effect.TextureEnabled = true;
                 m_effect.Texture = m_texture;
             }
-
-            m_effect.EnableDefaultLighting();
         }
 
         #region Interface Implimentation
@@ -119,6 +117,9 @@ namespace Anarian.DataStructures.Rendering
             m_effect.View = camera.View;
             m_effect.Projection = camera.Projection;
 
+            // Setup user defined effects
+            SetupEffects(m_effect, graphics, camera, gameTime);
+
             foreach (EffectPass pass in m_effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
@@ -131,6 +132,11 @@ namespace Anarian.DataStructures.Rendering
             }
 
             //m_boundingBox.DrawBoundingBox(graphics, Color.Red, camera, Matrix.Identity);
+        }
+
+        protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)
+        {
+            m_effect.EnableDefaultLighting();
         }
         #endregion
     }
