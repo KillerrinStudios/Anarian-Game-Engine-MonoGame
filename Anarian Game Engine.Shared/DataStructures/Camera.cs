@@ -11,12 +11,12 @@ namespace Anarian.DataStructures
     public class Camera : AnarianObject,
                           ICamera, IMoveable
     {
-        BoundingFrustum m_frustrum;
+        protected BoundingFrustum m_frustrum;
 
         #region Matricies
-        Matrix m_view;
-        Matrix m_projection;
-        Matrix m_world;
+        protected Matrix m_view;
+        protected Matrix m_projection;
+        protected Matrix m_world;
 
         public Matrix View { get { return m_view; } protected set { m_view = value; } }
         public Matrix Projection { get { return m_projection; } protected set { m_projection = value; } }
@@ -24,9 +24,9 @@ namespace Anarian.DataStructures
         #endregion
 
         #region View
-        Vector3 m_eye;
-        Vector3 m_up;
-        Vector3 m_lookAt;
+        protected Vector3 m_eye;
+        protected Vector3 m_up;
+        protected Vector3 m_lookAt;
 
         public Vector3 Eye
         {
@@ -57,8 +57,8 @@ namespace Anarian.DataStructures
             CalculateYawPitch();
         }
 
-        float m_yaw;
-        float m_pitch;
+        protected float m_yaw;
+        protected float m_pitch;
         public float Yaw
         {
             get { return m_yaw; }
@@ -207,7 +207,9 @@ namespace Anarian.DataStructures
             return new BoundingFrustum(View * regionProjMatrix);
         }
 
-        #region Interface Implimentation
+        #region ICamera Implimentation
+        void ICamera.Update(GameTime gameTime) { }
+
         float ICamera.FieldOfView
         {
             get { return FoV; }
@@ -228,6 +230,39 @@ namespace Anarian.DataStructures
             get { return AspectRatio; }
             set { AspectRatio = value; }
         }
+
+        Vector3 ICamera.Position
+        {
+            get { return Eye; }
+            set { Eye = value; }
+        }
+        Vector3 ICamera.LookAt
+        {
+            get { return LookAt; }
+            set { LookAt = value; }
+        }
+        Vector3 ICamera.Up
+        {
+            get { return Up; }
+            set { Up = value; }
+        }
+
+        float ICamera.Pitch
+        {
+            get { return Pitch; }
+            set { Pitch = value; }
+        }
+        float ICamera.Yaw
+        {
+            get { return Yaw; }
+            set { Yaw = value; }
+        }
+        float ICamera.Roll
+        {
+            get { return 0.0f; }
+            set { }
+        }
+
         Matrix ICamera.View
         {
             get { return View; }
@@ -248,8 +283,9 @@ namespace Anarian.DataStructures
             get { return Frustum; }
             set { Frustum = value; }
         }
+        #endregion
 
-
+        #region Moveable Implementation
         void IMoveable.Move(GameTime gameTime, Vector3 movement)
         {
             MoveHorizontal(movement.X);
@@ -273,7 +309,6 @@ namespace Anarian.DataStructures
         void IMoveable.MoveToPosition(GameTime gameTime, Vector3 point) { MoveToPosition(point); }
         #endregion
 
-        #region Camera Movement
         public void Move(Vector3 movement)
         {
             MoveHorizontal(movement.X);
@@ -298,7 +333,7 @@ namespace Anarian.DataStructures
         {
             m_eye += amount * this.Up;
             m_lookAt += amount * this.Up;
-            CreateViewMatrix(m_eye, m_lookAt, m_up); 
+            CreateViewMatrix(m_eye, m_lookAt, m_up);
         }
         public void MoveForward(float amount)
         {
@@ -345,7 +380,5 @@ namespace Anarian.DataStructures
             m_lookAt.Y += amount;
             CreateViewMatrix(m_eye, m_lookAt, m_up);
         }
-        #endregion
     }
-
 }

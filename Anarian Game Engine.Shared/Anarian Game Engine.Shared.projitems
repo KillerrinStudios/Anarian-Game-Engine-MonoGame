@@ -48,6 +48,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\ScreenEffects\Fade.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\StaticGameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Timer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\UniversalCamera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\CameraMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\Comparison.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\ComponentTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\GuiState.cs" />

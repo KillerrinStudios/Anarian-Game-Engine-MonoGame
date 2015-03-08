@@ -41,7 +41,7 @@ namespace Anarian.DataStructures
             m_navigationSaveState = NavigationSaveState.KeepSate;
 
             // Create the Camera using the Graphics Device
-            m_camera = new DataStructures.Camera();
+            m_camera = new DataStructures.UniversalCamera();
             m_camera.AspectRatio = graphics.Viewport.AspectRatio;
 
             // When Creating the Base SceneNode, we will set
@@ -57,7 +57,7 @@ namespace Anarian.DataStructures
             if (m_navigationSaveState == NavigationSaveState.RecreateState) {
                 // Recreate Camera
                 float tempAspectRatio = m_camera.AspectRatio;
-                m_camera = new Camera();
+                m_camera = new UniversalCamera();
                 m_camera.AspectRatio = tempAspectRatio;
 
                 // Recreate Node
@@ -101,6 +101,7 @@ namespace Anarian.DataStructures
         /// <param name="gameTime">The GameTime</param>
         public virtual void Update(GameTime gameTime)
         {
+            ((UniversalCamera)m_camera).Update(gameTime);
             m_sceneNode.GameObject.Update(gameTime);
         }
 

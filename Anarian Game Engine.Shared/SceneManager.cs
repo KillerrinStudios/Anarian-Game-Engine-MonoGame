@@ -45,6 +45,7 @@ namespace Anarian
             if (!Active) return;
 
             if (CurrentScene != null) {
+                CurrentScene.Camera.Update(gameTime);
                 CurrentScene.SceneNode.GameObject.Update(gameTime);
             }
         }
