@@ -33,6 +33,7 @@ namespace Anarian.GUI
         public object MenuParameter { get { return m_menuParameter; } protected set { m_menuParameter = value; } }
 
         public event EventHandler OnLoad;
+        public event EventHandler OnExited;
 
         public Menu(object menuParameter = null)
             :base()
@@ -58,6 +59,13 @@ namespace Anarian.GUI
 
             if (OnLoad != null)
                 OnLoad(this, null);
+        }
+
+        public virtual void MenuExited()
+        {
+
+            if (OnExited != null)
+                OnExited(this, null);
         }
 
         #region Interface Implimentation

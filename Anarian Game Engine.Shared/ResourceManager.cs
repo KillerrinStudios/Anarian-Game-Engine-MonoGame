@@ -42,12 +42,16 @@ namespace Anarian
             return assetNameSplit[assetNameSplit.Length - 1];
         }
 
-        public void LoadAsset(ContentManager Content, Type assetType, string assetName)
+        public object LoadAsset(ContentManager Content, Type assetType, string assetName)
         {
             Debug.WriteLine("Loading Asset: " + assetName + " | " + assetType.Name);
-            if (assetType == typeof(Texture2D)) { m_textures.Add(AssetName(assetName), Content.Load<Texture2D>(assetName)); }
-            else if (assetType == typeof(Model)) { m_models.Add(AssetName(assetName), Content.Load<Model>(assetName)); }
-            else if (assetType == typeof(AnimatedModel)) { m_animatedModels.Add(AssetName(assetName), CustomContentLoader.LoadAnimatedModel(Content, assetName)); }
+            object loadedAsset = null;
+
+            if (assetType == typeof(Texture2D)) { loadedAsset = Content.Load<Texture2D>(assetName); m_textures.Add(AssetName(assetName), (Texture2D)loadedAsset); }
+            else if (assetType == typeof(Model)) { loadedAsset = Content.Load<Model>(assetName); m_models.Add(AssetName(assetName), (Model)loadedAsset); }
+            else if (assetType == typeof(AnimatedModel)) { loadedAsset = CustomContentLoader.LoadAnimatedModel(Content, assetName); m_animatedModels.Add(AssetName(assetName), (AnimatedModel)loadedAsset); }
+
+            return loadedAsset;
         }
 
         public void AddAsset(object asset, string assetName)

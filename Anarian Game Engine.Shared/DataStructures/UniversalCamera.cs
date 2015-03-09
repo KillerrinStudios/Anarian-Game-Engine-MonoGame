@@ -19,6 +19,8 @@ namespace Anarian.DataStructures
         public Matrix Projection { get; protected set; }
         public Matrix World { get; protected set; }
 
+        public Matrix CameraRotation { get; protected set; }
+
         #region View Properties
         public Vector3 Position { get; protected set; }
         public Vector3 Target { get; protected set; }
@@ -29,13 +31,11 @@ namespace Anarian.DataStructures
         public float Roll { get; set; }
 
         public float Speed;
-
-        public Matrix CameraRotation { get; protected set; }
         #endregion
 
+        #region Chase/Orbit Camera
         public Matrix WorldPositionToChase;
 
-        #region Chase Camera
         private Vector3 desiredPosition;
         private Vector3 desiredTarget;
         private Vector3 offsetDistance;
@@ -87,8 +87,6 @@ namespace Anarian.DataStructures
 
             Speed = 0.3f;
 
-            CameraRotation = Matrix.Identity;
-            
             // Chase Camera Stuff
             desiredPosition = Position;
             desiredTarget = Target;
@@ -100,6 +98,8 @@ namespace Anarian.DataStructures
             Position = new Vector3(0, 0, 50);
             Target = new Vector3();
 
+            CameraRotation = Matrix.Identity;
+            
             View = Matrix.Identity;
             CreateProjectionMatrix(MathHelper.ToRadians(45.0f), 15 / 9, 0.5f, 500.0f);
             World = Matrix.Identity;
@@ -250,7 +250,7 @@ namespace Anarian.DataStructures
             Frustum = new BoundingFrustum(View * Projection);
         }
 
-        public void MoveCamera(GameTime gameTime, Vector3 addedVector)
+        public void Move(GameTime gameTime, Vector3 addedVector)
         {
             Position += (Speed * addedVector); // *(float)gameTime.ElapsedGameTime.TotalMilliseconds;
         }
@@ -337,26 +337,26 @@ namespace Anarian.DataStructures
         #region Moveable Implementation
         void IMoveable.Move(GameTime gameTime, Vector3 movement)
         {
-            MoveCamera(gameTime, movement);
+            Move(gameTime, movement);
         }
 
         void IMoveable.MoveHorizontal(GameTime gameTime, float amount)
         {
             Vector3 movement = new Vector3(amount, 0.0f, 0.0f);
-            MoveCamera(gameTime, movement * CameraRotation.Right);
+            Move(gameTime, movement * CameraRotation.Right);
         }
         void IMoveable.MoveVertical(GameTime gameTime, float amount)
         {
             Vector3 movement = new Vector3(0.0f, amount, 0.0f);
-            MoveCamera(gameTime, movement * CameraRotation.Up);
+            Move(gameTime, movement * CameraRotation.Up);
         }
         void IMoveable.MoveForward(GameTime gameTime, float amount)
         {
             Vector3 movement = new Vector3(0.0f, 0.0f, amount);
-            MoveCamera(gameTime, movement * CameraRotation.Forward);
+            Move(gameTime, movement * CameraRotation.Forward);
         }
 
-        void IMoveable.MoveToPosition(GameTime gameTime, Vector3 point) { throw new NotImplementedException(); }
+        void IMoveable.MoveToPosition(GameTime gameTime, Vector3 point) { Position = point; }
         #endregion
     }
 }

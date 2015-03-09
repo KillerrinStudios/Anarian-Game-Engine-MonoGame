@@ -34,6 +34,7 @@ namespace Anarian.DataStructures
         }
 
         public event EventHandler OnLoad;
+        public event EventHandler OnExited;
 
         public Level(GraphicsDevice graphics)
             :base()
@@ -68,6 +69,12 @@ namespace Anarian.DataStructures
 
             if (OnLoad != null)
                 OnLoad(this, null);
+        }
+
+        public virtual void LevelExited()
+        {
+            if (OnExited != null)
+                OnExited(this, null);
         }
 
         #region Interface Implimentation

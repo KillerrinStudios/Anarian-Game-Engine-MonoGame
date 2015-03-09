@@ -7,6 +7,9 @@ namespace Anarian.Enumerators
     public enum PausedState
     {
         Paused,
-        Unpaused
+        Unpaused,
+
+        // Special Cases
+        TemporaryPause,
     }
 }
