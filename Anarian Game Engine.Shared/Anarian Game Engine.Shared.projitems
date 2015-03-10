@@ -55,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\GuiState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\InputType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\LoadingStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enumerators\ModelType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\NavigationSaveState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\PausedState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enumerators\PointerPress.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\PathFoundEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\RuleMeasureType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\RuleTypeAppliedTo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrefabManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GUI\GuiObject.cs" />

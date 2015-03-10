@@ -37,6 +37,9 @@ namespace Anarian
         protected ResourceManager m_resourceManager;
         public ResourceManager ResourceManager { get { return m_resourceManager; } }
 
+        protected PrefabManager m_prefabManager;
+        public PrefabManager PrefabManager { get { return m_prefabManager; } }
+
         protected InputManager m_inputManager;
         public InputManager InputManager { get { return m_inputManager; } }
 
@@ -84,6 +87,7 @@ namespace Anarian
 
             // Create the Managers
             m_resourceManager = ResourceManager.Instance;
+            m_prefabManager = PrefabManager.Instance;
             m_inputManager = InputManager.Instance;
             m_sceneManager = SceneManager.Instance;
             m_guiManager = GUIManager.Instance;

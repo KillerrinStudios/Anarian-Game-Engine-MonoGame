@@ -22,7 +22,7 @@ namespace Anarian.DataStructures
         public Matrix CameraRotation { get; protected set; }
 
         #region View Properties
-        public Vector3 Position { get; protected set; }
+        public Vector3 Position { get; set; }
         public Vector3 Target { get; protected set; }
 
         #region Free Camera
