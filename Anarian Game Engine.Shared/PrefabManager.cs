@@ -25,16 +25,14 @@ namespace Anarian
         }
         #endregion
 
-        Dictionary<string, GameObject> m_prefabs;
-        Dictionary<string, AnimatedModel> m_animations;
+        Dictionary<string, AnarianObject> m_prefabs;
 
         private PrefabManager()
         {
-            m_prefabs = new Dictionary<string, GameObject>();
-            m_animations = new Dictionary<string, AnimatedModel>();
+            m_prefabs = new Dictionary<string, AnarianObject>();
         }
 
-        public void AddPrefab(GameObject prefab, string key)
+        public void AddPrefab(AnarianObject prefab, string key)
         {
             Debug.WriteLine("Adding Prefab: " + key);
             m_prefabs.Add(key, prefab);
@@ -46,7 +44,7 @@ namespace Anarian
             m_prefabs.Remove(key);
         }
 
-        public GameObject GetPrefab(string key)
+        public AnarianObject GetPrefab(string key)
         {
             Debug.WriteLine("Getting Prefab: " + key);
             return m_prefabs[key];

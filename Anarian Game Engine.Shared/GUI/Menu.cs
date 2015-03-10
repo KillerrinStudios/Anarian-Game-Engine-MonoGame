@@ -68,6 +68,11 @@ namespace Anarian.GUI
                 OnExited(this, null);
         }
 
+        public virtual void SendMessage(object message)
+        {
+
+        }
+
         #region Interface Implimentation
         #region IScene2D
         Transform2D IScene2D.SceneNode
