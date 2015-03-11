@@ -24,7 +24,7 @@ namespace Anarian.DataStructures.Components
         public Quaternion Rotation
         {
             get { return m_rotation; }
-            set { m_rotation = value; }
+            set { m_rotation = value; CreateRotationMatrix(); }
         }
 
         Vector3 m_scale;
@@ -128,7 +128,7 @@ namespace Anarian.DataStructures.Components
         }
         protected void CreateRotationMatrix()
         {
-            //m_rotationMatrix = Matrix.CreateFromQuaternion(WorldRotation);
+            m_rotationMatrix = Matrix.CreateFromQuaternion(WorldRotation);
 
             //Vector3 worldRot = WorldRotation;
             //Matrix rotX = Matrix.CreateRotationX(worldRotation.X);
@@ -147,7 +147,7 @@ namespace Anarian.DataStructures.Components
 
         public void CreateAllMatrices()
         {
-            CreateRotationMatrix();
+            //CreateRotationMatrix();
             CreateScaleMatrix();
             CreateTranslationMatrix();
             CreateWorldMatrix();

@@ -42,24 +42,32 @@ namespace Anarian.Helpers
         /// <param name="param">Vector2s representing position on the screen</param>
         public static void DrawPoints(SpriteBatch spriteBatch, Color color, int size, params Vector2[] param)
         {
-            if (Texture == null) SetDefaultTexture();
-            
-            spriteBatch.Begin();
-            for (int i = 0; i < param.Length; i++)
+            try
             {
-                Rectangle rect = GetCenterOfPoint(size, param[i]);
-                spriteBatch.Draw(Texture, rect, color);
+                if (Texture == null) SetDefaultTexture();
+
+                spriteBatch.Begin();
+                for (int i = 0; i < param.Length; i++)
+                {
+                    Rectangle rect = GetCenterOfPoint(size, param[i]);
+                    spriteBatch.Draw(Texture, rect, color);
+                }
+                spriteBatch.End();
             }
-            spriteBatch.End();
+            catch (Exception) { }
         }
 
         public static void DrawRect(SpriteBatch spriteBatch, Color color, Rectangle rect)
         {
-            if (Texture == null) SetDefaultTexture();
+            try
+            {
+                if (Texture == null) SetDefaultTexture();
 
-            spriteBatch.Begin();
-            spriteBatch.Draw(Texture, rect, color);
-            spriteBatch.End();
+                spriteBatch.Begin();
+                spriteBatch.Draw(Texture, rect, color);
+                spriteBatch.End();
+            }
+            catch (Exception) { }
         }
 
         public static void DrawRect(SpriteBatch spriteBatch, Color color, Vector2 startCorner, Vector2 endCorner)
