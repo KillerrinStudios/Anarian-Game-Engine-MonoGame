@@ -30,6 +30,7 @@ namespace Anarian.DataStructures
         public override bool CheckRayIntersection(Ray ray)
         {
             // Generate the bounding boxes
+            m_boundingSpheres = new List<BoundingSphere>();
             m_boundingBoxes = new List<BoundingBox>();
 
             // Create the ModelTransforms
@@ -38,10 +39,13 @@ namespace Anarian.DataStructures
 
             // Check intersection
             foreach (ModelMesh mesh in Model3D.Meshes) {
-                //BoundingSphere boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * WorldMatrix);
-                BoundingBox boundingBox = mesh.GenerateBoundingBox(m_transform.WorldMatrix);
+                var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
+                var boundingBox = mesh.GenerateBoundingBox(m_transform.WorldMatrix);
+
+                m_boundingSpheres.Add(boundingSphere);
                 m_boundingBoxes.Add(boundingBox);
 
+                if (ray.Intersects(boundingSphere) != null) return true;
                 if (ray.Intersects(boundingBox) != null) return true;
             }
             return false;
@@ -80,9 +84,21 @@ namespace Anarian.DataStructures
 
             // Check Against Frustrum to cull out objects
             if (m_cullDraw) {
-                for (int i = 0; i < m_boundingBoxes.Count; i++) {
-                    if (!m_boundingBoxes[i].Intersects(camera.Frustum)) return;
+                bool collided = false;
+                for (int i = 0; i < m_boundingSpheres.Count; i++)
+                {
+                    if (camera.Frustum.Intersects(m_boundingSpheres[i])) { collided = true; break; }   
                 }
+
+                if (!collided)
+                {
+                    for (int i = 0; i < m_boundingBoxes.Count; i++)
+                    {
+                        if (m_boundingBoxes[i].Intersects(camera.Frustum)) { collided = true; break; }
+                    }
+                }
+
+                if (!collided) return;
             }
 
             // Render This Object

@@ -84,6 +84,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\CustomContentLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DebugTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\HelperUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\BoundingFrustrumRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\BoundingSphereRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\PrimitiveHelper2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\PrimitiveHelper3D.cs" />

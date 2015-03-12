@@ -20,7 +20,9 @@ namespace Anarian.DataStructures
         protected bool    m_cullDraw;
         protected bool    m_renderBounds;
 
+        protected List<BoundingSphere> m_boundingSpheres;
         protected List<BoundingBox> m_boundingBoxes;
+
         protected List<Component> m_components;
 
         protected Transform m_transform;
@@ -73,7 +75,8 @@ namespace Anarian.DataStructures
             // Setup the Transform
             m_transform = new Transform(this);
 
-            // Setup Bounding Boxes
+            // Setup Bounds
+            m_boundingSpheres = new List<BoundingSphere>();
             m_boundingBoxes = new List<BoundingBox>();
 
             // Setup the other Components
@@ -161,10 +164,15 @@ namespace Anarian.DataStructures
 
         public virtual bool CheckRayIntersection(Ray ray)
         {
-            foreach (var bound in m_boundingBoxes) {
+            foreach (var bound in m_boundingSpheres) {
                 float? result = ray.Intersects(bound);
                 if (result.HasValue) return true;
             }
+            //foreach (var bound in m_boundingBoxes)
+            //{
+            //    float? result = ray.Intersects(bound);
+            //    if (result.HasValue) return true;
+            //}
             return false;
         }
 
