@@ -20,6 +20,7 @@ namespace Anarian.DataStructures.Rendering
     {
         #region Fields/Properties
         Texture2D m_texture;
+        BoundingBox m_boundingBox;
 
         public Texture2D Texture
         {
@@ -73,7 +74,7 @@ namespace Anarian.DataStructures.Rendering
             m_heightData = new TerrainHeightData(this, heightMap, 5.0f);
 
             SetupEffects(graphics);
-            GenerateBoundingBox();
+            CreateBounds();
         }
 
         private void SetupEffects(GraphicsDevice graphics)
@@ -86,17 +87,21 @@ namespace Anarian.DataStructures.Rendering
             }
         }
 
-        private void GenerateBoundingBox()
+        public override void CreateBounds()
         {
+            base.CreateBounds();
+
             // Get list of points
             Matrix world = m_transform.WorldMatrix;
             List<Vector3> points = new List<Vector3>();
 
-            for (int i = 0; i < m_heightData.Vertices.Length; i++) {
+            for (int i = 0; i < m_heightData.Vertices.Length; i++)
+            {
                 points.Add(Vector3.Transform(m_heightData.Vertices[i].Position, world));
             }
 
-            m_boundingBoxes.Add(BoundingBox.CreateFromPoints(points));
+            m_boundingBox = BoundingBox.CreateFromPoints(points);
+            m_boundingSpheres.Add(BoundingSphere.CreateFromBoundingBox(m_boundingBox));
         }
         #endregion
 
@@ -486,15 +491,14 @@ namespace Anarian.DataStructures.Rendering
         /// <returns></returns>
         public bool IsOnHeightmap(float pointX, float pointZ)
         {
-            foreach (var bound in m_boundingBoxes) {
-                if (pointX > bound.Min.X &&
-                    pointX < bound.Max.X &&
-                    //point.Y > bound.Min.Y ||
-                    //point.Y < bound.Max.Y ||
-                    pointZ > bound.Min.Z &&
-                    pointZ < bound.Max.Z) {
-                    return true;
-                }
+            if (pointX > m_boundingBox.Min.X &&
+                pointX < m_boundingBox.Max.X &&
+                //point.Y > m_boundingBox.Min.Y ||
+                //point.Y < m_boundingBox.Max.Y ||
+                pointZ > m_boundingBox.Min.Z &&
+                pointZ < m_boundingBox.Max.Z)
+            {
+                return true;
             }
             return false;
         }

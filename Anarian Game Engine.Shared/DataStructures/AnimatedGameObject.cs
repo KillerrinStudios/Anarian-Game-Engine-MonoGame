@@ -26,7 +26,7 @@ namespace Anarian.DataStructures
             { 
                 m_model = value;
                 CreateAnimationState();
-                CheckRayIntersection(new Ray());
+                CreateBounds();
             }
         }
 
@@ -42,15 +42,26 @@ namespace Anarian.DataStructures
         public AnimatedGameObject()
             :base()
         {
+        }
 
+        public override void CreateBounds()
+        {
+            base.CreateBounds();
+
+            // Get the ModelTransforms
+            Matrix[] modelTransforms = new Matrix[m_animationState.Bones.Count];
+            Model3D.Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
+
+            // Check intersection
+            foreach (ModelMesh mesh in Model3D.Model.Meshes)
+            {
+                var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
+                m_boundingSpheres.Add(boundingSphere);
+            }
         }
 
         public override bool CheckRayIntersection(Ray ray)
         {
-            // Generate the bounding boxes
-            m_boundingSpheres = new List<BoundingSphere>();
-            m_boundingBoxes = new List<BoundingBox>();
-
             // Create the ModelTransforms
             Matrix[] modelTransforms = new Matrix[m_animationState.Bones.Count];
             Model3D.Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
@@ -59,12 +70,7 @@ namespace Anarian.DataStructures
             foreach (ModelMesh mesh in Model3D.Model.Meshes) {
 
                 var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
-                var boundingBox = mesh.GenerateBoundingBox(m_transform.WorldMatrix);
-
-                m_boundingSpheres.Add(boundingSphere);
-                m_boundingBoxes.Add(boundingBox);
-
-                if (ray.Intersects(boundingBox) != null) return true;
+                if (ray.Intersects(boundingSphere).HasValue) return true;
             }
             return false;
         }
@@ -115,14 +121,6 @@ namespace Anarian.DataStructures
                     if (camera.Frustum.Intersects(m_boundingSpheres[i])) { collided = true; break; }
                 }
 
-                if (!collided)
-                {
-                    for (int i = 0; i < m_boundingBoxes.Count; i++)
-                    {
-                        if (m_boundingBoxes[i].Intersects(camera.Frustum)) { collided = true; break; }
-                    }
-                }
-
                 if (!collided) return;
             }
 
@@ -138,10 +136,7 @@ namespace Anarian.DataStructures
             if (m_renderBounds) {
                 foreach (ModelMesh mesh in m_model.Model.Meshes)
                 {
-                    //mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, Color.Red);
-                    for (int i = 0; i < m_boundingBoxes.Count; i++) {
-                        m_boundingBoxes[i].DrawBoundingBox(graphics, Color.Red, camera, Matrix.Identity);
-                    }
+                    mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, Color.Red);
                 }
             }
         }

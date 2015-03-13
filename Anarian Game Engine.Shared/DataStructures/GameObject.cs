@@ -21,7 +21,6 @@ namespace Anarian.DataStructures
         protected bool    m_renderBounds;
 
         protected List<BoundingSphere> m_boundingSpheres;
-        protected List<BoundingBox> m_boundingBoxes;
 
         protected List<Component> m_components;
 
@@ -56,6 +55,8 @@ namespace Anarian.DataStructures
             protected set { m_transform = value; }
         }
 
+        public List<BoundingSphere> BoundingSpheres { get { return m_boundingSpheres; } }
+
         public List<Component> Components
         {
             get { return m_components; }
@@ -77,10 +78,14 @@ namespace Anarian.DataStructures
 
             // Setup Bounds
             m_boundingSpheres = new List<BoundingSphere>();
-            m_boundingBoxes = new List<BoundingBox>();
 
             // Setup the other Components
             m_components = new List<Component>();
+        }
+
+        public virtual void CreateBounds()
+        {
+            m_boundingSpheres = new List<BoundingSphere>();
         }
 
         #region Component Management
