@@ -19,11 +19,14 @@ namespace Anarian.DataStructures
         public Matrix Projection { get; protected set; }
         public Matrix World { get; protected set; }
 
-        public Matrix CameraRotation { get; protected set; }
-
+        
         #region View Properties
         public Vector3 Position { get; set; }
         public Vector3 Target { get; protected set; }
+        public Matrix CameraRotation { get; set; }
+
+        public Vector3 DefaultCameraPosition { get; set; }
+        public Matrix DefaultCameraRotation { get; set; }
 
         #region Free Camera
         public float Yaw { get; set; }
@@ -75,6 +78,10 @@ namespace Anarian.DataStructures
         public UniversalCamera()
         {
             CurrentCameraMode = CameraMode.Free;
+            
+            DefaultCameraPosition = new Vector3(0, 0, 50);
+            DefaultCameraRotation = Matrix.Identity;
+
             ResetCamera();
         }
 
@@ -95,14 +102,20 @@ namespace Anarian.DataStructures
             WorldPositionToChase = new Matrix();
 
             // Standard Camera Stuff
-            Position = new Vector3(0, 0, 50);
+            Position = DefaultCameraPosition;
             Target = new Vector3();
 
-            CameraRotation = Matrix.Identity;
+            CameraRotation = DefaultCameraRotation;
             
             View = Matrix.Identity;
             CreateProjectionMatrix(MathHelper.ToRadians(45.0f), 15 / 9, 0.5f, 500.0f);
             World = Matrix.Identity;
+        }
+
+        public void ResetViewToDefaults()
+        {
+            Position = DefaultCameraPosition;
+            CameraRotation = DefaultCameraRotation;
         }
 
         public void ResetRotations()
@@ -110,7 +123,7 @@ namespace Anarian.DataStructures
             Yaw = 0.0f;
             Pitch = 0.0f;
             Roll = 0.0f;
-            CameraRotation = Matrix.Identity;
+            CameraRotation = DefaultCameraRotation;
         }
 
         public void CreateProjectionMatrix(float fov, float aspectRatio, float near, float far)
