@@ -90,7 +90,7 @@ namespace Anarian.DataStructures.Input
             if (MouseMoved != null) {
                 if (m_mouseState.Position != m_prevMouseState.Position)
                 {
-                    if (m_mouseState.Position != new Point(0, 0)) 
+                    if (m_mouseState.Position != Point.Zero) 
                         MouseMoved(this, new PointerMovedEventArgs(gameTime, GetMousePosition(), GetMouseDelta()));
                 }
             }
@@ -98,7 +98,7 @@ namespace Anarian.DataStructures.Input
             if (MouseIdle != null) {
                 if (m_mouseState.Position == m_prevMouseState.Position)
                 {
-                    if (m_mouseState.Position != new Point(0, 0)) 
+                    if (m_mouseState.Position != Point.Zero) 
                         MouseMoved(this, new PointerMovedEventArgs(gameTime, GetMousePosition(), GetMouseDelta()));
                 }
             }
