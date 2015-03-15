@@ -92,6 +92,11 @@ namespace Anarian.DataStructures.Input
                     MouseMoved(this, new PointerMovedEventArgs(gameTime, GetMousePosition(), GetMouseDelta()));
             }
 
+            if (MouseIdle != null) {
+                if (m_mouseState.Position == m_prevMouseState.Position)
+                    MouseMoved(this, new PointerMovedEventArgs(gameTime, GetMousePosition(), GetMouseDelta()));
+            }
+
             // If Mouse is Fixed, Place it back to its fixed location
             if (m_isMouseFixed) {
                 SetMousePosition(m_mouseFixedPos.X, m_mouseFixedPos.Y);
@@ -155,6 +160,7 @@ namespace Anarian.DataStructures.Input
         public event PointerDownEventHandler MouseDown;
         public event PointerPressedEventHandler MouseClicked;
         public event PointerMovedEventHandler MouseMoved;
+        public event PointerMovedEventHandler MouseIdle;
         #endregion
 
     }

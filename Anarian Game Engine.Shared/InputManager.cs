@@ -82,6 +82,7 @@ namespace Anarian
             m_mouse.MouseDown += m_mouse_MouseDown;
             m_mouse.MouseClicked += m_mouse_MouseClicked;
             m_mouse.MouseMoved += m_mouse_MouseMoved;
+            m_mouse.MouseIdle += m_mouse_MouseIdle;
 //#endif
             m_touchScreen.TouchDown += m_touchScreen_TouchDown;
             m_touchScreen.TouchPressed += m_touchScreen_TouchPressed;
@@ -103,6 +104,7 @@ namespace Anarian
             m_mouse.MouseDown -= m_mouse_MouseDown;
             m_mouse.MouseClicked -= m_mouse_MouseClicked;
             m_mouse.MouseMoved -= m_mouse_MouseMoved;
+            m_mouse.MouseIdle -= m_mouse_MouseIdle;
 
             m_touchScreen.TouchDown -= m_touchScreen_TouchDown;
             m_touchScreen.TouchPressed -= m_touchScreen_TouchPressed;
@@ -140,6 +142,7 @@ namespace Anarian
         public event PointerDownEventHandler PointerDown;
         public event PointerPressedEventHandler PointerPressed;
         public event PointerMovedEventHandler PointerMoved;
+        public event PointerMovedEventHandler PointerIdle;
 
         #region Pointers
         #region Mouse
@@ -162,6 +165,12 @@ namespace Anarian
                 PointerMoved(this, e);
             }
         }
+        private void m_mouse_MouseIdle(object sender, PointerMovedEventArgs e)
+        {
+            if (PointerIdle != null) {
+                PointerIdle(this, e);
+            }
+        }
         #endregion
 
         #region Touch
@@ -181,6 +190,12 @@ namespace Anarian
         {
             if (PointerMoved != null) {
                 PointerMoved(this, e);
+            }
+        }
+        private void m_touchScreen_TouchIdle(object sender, PointerMovedEventArgs e)
+        {
+            if (PointerIdle != null) {
+                PointerIdle(this, e);
             }
         }
         #endregion

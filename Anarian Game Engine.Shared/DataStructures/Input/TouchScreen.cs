@@ -97,8 +97,24 @@ namespace Anarian.DataStructures.Input
                     bool prevLocationAvailable = touch.TryGetPreviousLocation(out prevLocation);
                     if (!prevLocationAvailable) continue;
 
-                    if (touch.Position != prevLocation.Position) {
+                    if (touch.Position != prevLocation.Position)
+                    {
                         TouchMoved(this, new PointerMovedEventArgs(gameTime, touch.Id, touch.Position, touch.Position - prevLocation.Position));
+                    }
+                }
+            }
+
+            if (TouchIdle != null)
+            {
+                foreach (var touch in m_touchCollection)
+                {
+                    TouchLocation prevLocation;
+                    bool prevLocationAvailable = touch.TryGetPreviousLocation(out prevLocation);
+                    if (!prevLocationAvailable) continue;
+
+                    if (touch.Position != prevLocation.Position)
+                    {
+                        TouchIdle(this, new PointerMovedEventArgs(gameTime, touch.Id, touch.Position, touch.Position - prevLocation.Position));
                     }
                 }
             }
@@ -210,6 +226,7 @@ namespace Anarian.DataStructures.Input
         public event PointerDownEventHandler TouchDown;
         public event PointerPressedEventHandler TouchPressed;
         public event PointerMovedEventHandler TouchMoved;
+        public event PointerMovedEventHandler TouchIdle;
 
         public event TouchGestureEventHandler OnGesture;
         #endregion
