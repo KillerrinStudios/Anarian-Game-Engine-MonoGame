@@ -28,6 +28,9 @@ namespace Anarian.DataStructures
         public Vector3 DefaultCameraPosition { get; set; }
         public Matrix DefaultCameraRotation { get; set; }
 
+        public Vector3 MinClamp { get; set; }
+        public Vector3 MaxClamp { get; set; }
+
         #region Free Camera
         public float Yaw { get; set; }
         public float Pitch { get; set; }
@@ -81,6 +84,9 @@ namespace Anarian.DataStructures
             
             DefaultCameraPosition = new Vector3(0, 0, 50);
             DefaultCameraRotation = Matrix.Identity;
+
+            MinClamp = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+            MaxClamp = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 
             ResetCamera();
         }
@@ -206,6 +212,8 @@ namespace Anarian.DataStructures
         }
         private void UpdateViewMatrix()
         {
+            Position = Vector3.Clamp(Position, MinClamp, MaxClamp);
+
             switch (CurrentCameraMode)
             {
                 case CameraMode.Free:

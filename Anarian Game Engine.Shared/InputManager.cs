@@ -79,6 +79,7 @@ namespace Anarian
             //Controller.GamePadMoved += Controller_GamePadMoved;
 
             // Pointer
+
             m_mouse.MouseDown += m_mouse_MouseDown;
             m_mouse.MouseClicked += m_mouse_MouseClicked;
             m_mouse.MouseMoved += m_mouse_MouseMoved;
@@ -125,7 +126,7 @@ namespace Anarian
             m_touchScreen.Update(gameTime);
             
             // Update Windows Only Inputs
-//#if WINDOWS_APP
+#if WINDOWS_APP
             m_mouse.Update(gameTime);
             m_keyboard.Update(gameTime);
 
@@ -133,7 +134,7 @@ namespace Anarian
             m_controller2.Update(gameTime);
             m_controller3.Update(gameTime);
             m_controller4.Update(gameTime);
-//#endif
+#endif
         }
 
         #region Events
