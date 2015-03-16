@@ -26,6 +26,11 @@ namespace Anarian.DataStructures
         {
 
         }
+        public override void Reset()
+        {
+            base.Reset();
+        }
+
         public override void CreateBounds()
         {
             base.CreateBounds();

@@ -36,12 +36,21 @@ namespace Anarian.DataStructures
             get { return m_animationState; }
             set { m_animationState = value; }
         }
+        public AnimationPlayer CurrentAnimationPlayer { get { return m_animationState.AnimationPlayer; } }
+
         public void CreateAnimationState() { if (m_model != null) m_animationState = new AnimationState(m_model); }
         #endregion
 
         public AnimatedGameObject()
             :base()
         {
+        }
+        public override void Reset()
+        {
+            base.Reset();
+
+            m_animationState = null;
+            m_boundingSpheres.Clear();
         }
 
         public override void CreateBounds()

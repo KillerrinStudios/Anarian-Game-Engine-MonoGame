@@ -83,6 +83,11 @@ namespace Anarian.DataStructures
             m_components = new List<Component>();
         }
 
+        public virtual void Reset()
+        {
+            
+        }
+
         public virtual void CreateBounds()
         {
             m_boundingSpheres = new List<BoundingSphere>();
