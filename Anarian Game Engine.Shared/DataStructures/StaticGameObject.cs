@@ -109,36 +109,44 @@ namespace Anarian.DataStructures
             m_model.CopyAbsoluteBoneTransformsTo(boneTransforms);
 
             // Draw the model. A model can have multiple meshes, so loop.
-            foreach (ModelMesh mesh in m_model.Meshes) {
-                //Debug.WriteLine(mesh.Name);
-                // This is where the mesh orientation is set, as well 
-                // as our camera and projection.
-
-                foreach (Effect effect in mesh.Effects) {
-                    if (effect is BasicEffect) {
-                        BasicEffect beffect = effect as BasicEffect;
-                        beffect.World = boneTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix;
-                        beffect.View = camera.View;
-                        beffect.Projection = camera.Projection;
-                    }
-
-                    if (effect is SkinnedEffect) {
-                        SkinnedEffect seffect = effect as SkinnedEffect;
-                        seffect.World = boneTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix;
-                        seffect.View = camera.View;
-                        seffect.Projection = camera.Projection;
-                    }
-
-                    SetupEffects(effect, graphics, camera, gameTime);
-                }
-                // Draw the mesh, using the effects set above.
-                mesh.Draw();
-
-                if (m_renderBounds)
+            try
+            {
+                foreach (ModelMesh mesh in m_model.Meshes)
                 {
-                    mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, Color.Red);
+                    //Debug.WriteLine(mesh.Name);
+                    // This is where the mesh orientation is set, as well 
+                    // as our camera and projection.
+
+                    foreach (Effect effect in mesh.Effects)
+                    {
+                        if (effect is BasicEffect)
+                        {
+                            BasicEffect beffect = effect as BasicEffect;
+                            beffect.World = boneTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix;
+                            beffect.View = camera.View;
+                            beffect.Projection = camera.Projection;
+                        }
+
+                        if (effect is SkinnedEffect)
+                        {
+                            SkinnedEffect seffect = effect as SkinnedEffect;
+                            seffect.World = boneTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix;
+                            seffect.View = camera.View;
+                            seffect.Projection = camera.Projection;
+                        }
+
+                        SetupEffects(effect, graphics, camera, gameTime);
+                    }
+                    // Draw the mesh, using the effects set above.
+                    mesh.Draw();
+
+                    if (m_renderBounds)
+                    {
+                        mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, Color.Red);
+                    }
                 }
             }
+            catch (Exception) { }
         }
 
         protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)

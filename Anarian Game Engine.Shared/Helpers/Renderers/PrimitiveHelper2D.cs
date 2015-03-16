@@ -94,10 +94,14 @@ namespace Anarian.Helpers
             float angle = (float)Math.Acos(Vector2.Dot(v, -Vector2.UnitX));
             if (p1.Y > p2.Y) angle = MathHelper.TwoPi - angle;
 
-            // Draw the Line
-            spriteBatch.Begin();
-            spriteBatch.Draw(Texture, r, null, color, angle, Vector2.Zero, SpriteEffects.None, 0);
-            spriteBatch.End();
+            try
+            {
+                // Draw the Line
+                spriteBatch.Begin();
+                spriteBatch.Draw(Texture, r, null, color, angle, Vector2.Zero, SpriteEffects.None, 0);
+                spriteBatch.End();
+            }
+            catch (Exception) { }
 
             // Recursively Draw Lines until there are no more left
             if (param.Length > 0) {

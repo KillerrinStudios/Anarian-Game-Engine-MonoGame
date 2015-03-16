@@ -123,17 +123,22 @@ namespace Anarian.DataStructures.Rendering
             // Setup the Custom Effects
             SetupEffects(m_effect, graphics, camera, gameTime);
 
-            foreach (EffectPass pass in m_effect.CurrentTechnique.Passes) {
-                pass.Apply();
+            try
+            {
+                foreach (EffectPass pass in m_effect.CurrentTechnique.Passes)
+                {
+                    pass.Apply();
 
-                graphics.DrawUserIndexedPrimitives(
-                    PrimitiveType.TriangleList,
-                    m_vertices, 0, m_vertices.Length,
-                    m_indices, 0, m_indices.Length / 3,
-                    VertexPositionNormalTexture.VertexDeclaration);
+                    graphics.DrawUserIndexedPrimitives(
+                        PrimitiveType.TriangleList,
+                        m_vertices, 0, m_vertices.Length,
+                        m_indices, 0, m_indices.Length / 3,
+                        VertexPositionNormalTexture.VertexDeclaration);
+                }
+
+                //m_boundingBox.DrawBoundingBox(graphics, Color.Red, camera, Matrix.Identity);
             }
-
-            //m_boundingBox.DrawBoundingBox(graphics, Color.Red, camera, Matrix.Identity);
+            catch (Exception) { }
         }
 
         protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)

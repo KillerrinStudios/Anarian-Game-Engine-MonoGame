@@ -200,18 +200,22 @@ namespace Anarian.DataStructures.Rendering
             // Setup User Defined Effects
             SetupEffects(m_effect, graphics, camera, gameTime);
 
-            foreach (EffectPass pass in m_effect.CurrentTechnique.Passes)
+            try
             {
-                pass.Apply();
-                for (int row = 0; row < LATITUDE_COUNT; row++)
+                foreach (EffectPass pass in m_effect.CurrentTechnique.Passes)
                 {
-                    graphics.DrawUserIndexedPrimitives<VertexPositionNormalTexture>(PrimitiveType.TriangleStrip, m_north, 0, (LONGITUDE_COUNT + 1) * (LATITUDE_COUNT + 1), m_northStrips[row], 0, LONGITUDE_COUNT * 2);
-                    graphics.DrawUserIndexedPrimitives<VertexPositionNormalTexture>(PrimitiveType.TriangleStrip, m_south, 0, (LONGITUDE_COUNT + 1) * (LATITUDE_COUNT + 1), m_southStrips[row], 0, LONGITUDE_COUNT * 2);
+                    pass.Apply();
+                    for (int row = 0; row < LATITUDE_COUNT; row++)
+                    {
+                        graphics.DrawUserIndexedPrimitives<VertexPositionNormalTexture>(PrimitiveType.TriangleStrip, m_north, 0, (LONGITUDE_COUNT + 1) * (LATITUDE_COUNT + 1), m_northStrips[row], 0, LONGITUDE_COUNT * 2);
+                        graphics.DrawUserIndexedPrimitives<VertexPositionNormalTexture>(PrimitiveType.TriangleStrip, m_south, 0, (LONGITUDE_COUNT + 1) * (LATITUDE_COUNT + 1), m_southStrips[row], 0, LONGITUDE_COUNT * 2);
+                    }
                 }
-            }
 
-            if (m_renderBounds)
-                BoundingSphere.RenderBoundingSphere(graphics, Matrix.Identity, camera.View, camera.Projection, Color.White);
+                if (m_renderBounds)
+                    BoundingSphere.RenderBoundingSphere(graphics, Matrix.Identity, camera.View, camera.Projection, Color.White);
+            }
+            catch (Exception) { }
         }
 
         protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)

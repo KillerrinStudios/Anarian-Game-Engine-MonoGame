@@ -134,20 +134,24 @@ namespace Anarian.DataStructures
             }
 
             // Finally, we render This Object
-            Model3D.Draw(gameTime, graphics, camera, Transform.WorldMatrix, m_animationState,
-                (Effect delEffect, GraphicsDevice delGraphics, ICamera delCamera, GameTime delGameTime) =>
+            try
+            {
+                Model3D.Draw(gameTime, graphics, camera, Transform.WorldMatrix, m_animationState,
+                    (Effect delEffect, GraphicsDevice delGraphics, ICamera delCamera, GameTime delGameTime) =>
                     {
                         SetupEffects(delEffect, delGraphics, delCamera, delGameTime);
                     }
-            );
-            
+                );
 
-            if (m_renderBounds) {
-                foreach (ModelMesh mesh in m_model.Model.Meshes)
+                if (m_renderBounds)
                 {
-                    mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, Color.Red);
+                    foreach (ModelMesh mesh in m_model.Model.Meshes)
+                    {
+                        mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, Color.Red);
+                    }
                 }
             }
+            catch (Exception) { }
         }
 
         protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)
