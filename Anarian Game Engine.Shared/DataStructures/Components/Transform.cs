@@ -19,6 +19,8 @@ namespace Anarian.DataStructures.Components
         protected Transform m_followTarget;
         public Transform FollowTarget { get { return m_followTarget; } set { m_followTarget = value; } }
 
+        public float MovementSpeed;
+
         #region Vectors
         Quaternion m_rotation;
         public Quaternion Rotation
@@ -223,6 +225,7 @@ namespace Anarian.DataStructures.Components
         private void Setup()
         {
             m_followTarget = null;
+            MovementSpeed = 0.002f;
 
             // Setup Transform Vectors
             m_lastPosition = m_position;
@@ -312,7 +315,7 @@ namespace Anarian.DataStructures.Components
 
             Vector3 direction = CreateDirectionVector(point);
 
-            Vector3 speed = direction * 0.002f;
+            Vector3 speed = direction * MovementSpeed;
             Position += speed * gameTime.DeltaTime();
 
             // Rotate to the point
