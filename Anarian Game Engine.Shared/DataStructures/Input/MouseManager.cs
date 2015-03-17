@@ -158,6 +158,8 @@ namespace Anarian.DataStructures.Input
         #region Mouse Movement
         public Vector2 GetMousePosition() { return m_mouseState.Position.ToVector2(); }
         public Vector2 GetMouseDelta() { return m_mouseState.Position.ToVector2() - m_prevMouseState.Position.ToVector2(); }
+
+        public float GetMouseWheelDelta() { return m_mouseState.ScrollWheelValue - m_prevMouseState.ScrollWheelValue; }
         public void SetMousePosition(int x, int y) { Mouse.SetPosition(x, y); }
         #endregion
         #endregion

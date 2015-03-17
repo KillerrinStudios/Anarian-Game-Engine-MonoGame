@@ -55,6 +55,7 @@ namespace Anarian.DataStructures
 
         public override void CreateBounds()
         {
+            if (m_model == null) return;
             base.CreateBounds();
 
             // Get the ModelTransforms
@@ -71,6 +72,9 @@ namespace Anarian.DataStructures
 
         public override bool CheckRayIntersection(Ray ray)
         {
+            if (m_model == null) return false;
+            //if (m_animationState == null) return false;
+
             // Create the ModelTransforms
             Matrix[] modelTransforms = new Matrix[m_animationState.Bones.Count];
             Model3D.Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
@@ -103,7 +107,9 @@ namespace Anarian.DataStructures
             
             // We first Update the Children
             base.Update(gameTime);
-            
+
+            if (m_animationState == null) return;
+
             // Now we update the Animation
             m_animationState.Update(gameTime);
         }

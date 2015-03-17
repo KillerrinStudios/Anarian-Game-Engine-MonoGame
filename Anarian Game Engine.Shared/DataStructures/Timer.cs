@@ -16,11 +16,11 @@ namespace Anarian.DataStructures
         PausedState m_paused;
         public PausedState Paused { get { return m_paused; } set { m_paused = value; } }
 
-        TimeSpan m_lastTick;
+        TimeSpan m_currentTick;
         TimeSpan m_interval;
-        public TimeSpan LastTick { get { return m_lastTick; } protected set { m_lastTick = value; } }
+        public TimeSpan CurrentTick { get { return m_currentTick; } protected set { m_currentTick = value; } }
         public TimeSpan Interval { get { return m_interval; } set { m_interval = value; } }
-        public TimeSpan TimeRemaining { get { return m_interval - m_lastTick; } }
+        public TimeSpan TimeRemaining { get { return m_interval - m_currentTick; } }
         #endregion
 
         public Timer(TimeSpan interval)
@@ -34,7 +34,7 @@ namespace Anarian.DataStructures
         {
             m_progress = ProgressStatus.NotStarted;
             m_paused = PausedState.Unpaused;
-            m_lastTick = TimeSpan.Zero;
+            m_currentTick = TimeSpan.Zero;
         }
 
         #region Interface Implimentations
@@ -50,9 +50,10 @@ namespace Anarian.DataStructures
             if (m_progress == ProgressStatus.Completed) return;
             if (m_paused == PausedState.Paused) return;
 
-            m_lastTick += gameTime.ElapsedGameTime;
+            m_currentTick += gameTime.ElapsedGameTime;
 
-            if (m_lastTick < m_interval) {
+            if (m_currentTick < m_interval)
+            {
                 m_progress = ProgressStatus.InProgress;
 
                 if (Tick != null)
