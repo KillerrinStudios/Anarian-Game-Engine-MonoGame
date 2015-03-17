@@ -60,6 +60,20 @@ namespace Anarian.DataStructures
             }
             return false;
         }
+        public override bool CheckFrustumIntersection(BoundingFrustum frustum)
+        {
+            // Create the ModelTransforms
+            Matrix[] modelTransforms = new Matrix[Model3D.Bones.Count];
+            Model3D.CopyAbsoluteBoneTransformsTo(modelTransforms);
+
+            // Check intersection
+            foreach (ModelMesh mesh in Model3D.Meshes)
+            {
+                var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
+                if (frustum.Intersects(boundingSphere)) return true;
+            }
+            return false;
+        }
 
 
         #region Interface Implimentations

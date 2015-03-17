@@ -185,6 +185,20 @@ namespace Anarian.DataStructures
             //}
             return false;
         }
+        public virtual bool CheckFrustumIntersection(BoundingFrustum frustum)
+        {
+            foreach (var bound in m_boundingSpheres)
+            {
+                bool result = frustum.Intersects(bound);
+                if (result) return true;
+            }
+            //foreach (var bound in m_boundingBoxes)
+            //{
+            //    float? result = ray.Intersects(bound);
+            //    if (result.HasValue) return true;
+            //}
+            return false;
+        }
 
         #region Interface Implimentations
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
