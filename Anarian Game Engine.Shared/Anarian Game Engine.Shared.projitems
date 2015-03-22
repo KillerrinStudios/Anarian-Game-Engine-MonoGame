@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Collections\KDTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\PriorityQueue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\PriorityQueueNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\ThreadSafeList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\TreeNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreditsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\AnarianObject.cs" />
