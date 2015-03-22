@@ -117,7 +117,7 @@ namespace Anarian.Collections
 
         /// <summary>
         /// Gets the enumerator of a cloned instance of the list.
-        /// Any chances made will not be reflected to the actual data
+        /// Any chances made to the collection will not be reflected to the actual data
         /// </summary>
         /// <returns>The IEnumerator for the cloned list</returns>
         public IEnumerator<T> GetEnumerator()

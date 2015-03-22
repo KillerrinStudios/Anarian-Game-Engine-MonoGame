@@ -322,6 +322,7 @@ namespace Anarian.DataStructures.Components
             RotateToFaceForward(gameTime);
 
             // Exit out of the method signaling whether we have arrived yet
+            //Debug.WriteLine(Vector3.Distance(m_position, point));
             if (Vector3.Distance(m_position, point) <= boundry) return true;
             return false;
         }

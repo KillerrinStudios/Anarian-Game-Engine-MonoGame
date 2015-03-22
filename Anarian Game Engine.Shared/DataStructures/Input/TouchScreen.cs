@@ -214,7 +214,7 @@ namespace Anarian.DataStructures.Input
                     bool prevLocationAvailable = location.TryGetPreviousLocation(out prevLocation);
                     if (!prevLocationAvailable) break;
 
-                    return prevLocation.Position - location.Position;
+                    return location.Position - prevLocation.Position;
                 }
             }
 
