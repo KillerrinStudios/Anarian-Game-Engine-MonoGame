@@ -91,6 +91,7 @@ namespace Anarian.DataStructures
             ResetCamera();
         }
 
+        #region Resets
         public void ResetCamera()
         {
             // Free Camera Stuff
@@ -114,7 +115,7 @@ namespace Anarian.DataStructures
             CameraRotation = DefaultCameraRotation;
             
             View = Matrix.Identity;
-            CreateProjectionMatrix(MathHelper.ToRadians(45.0f), 15 / 9, 0.5f, 500.0f);
+            CreateProjectionMatrix(MathHelper.ToRadians(45.0f), 16 / 9, 0.5f, 500.0f);
             World = Matrix.Identity;
         }
 
@@ -131,6 +132,7 @@ namespace Anarian.DataStructures
             Roll = 0.0f;
             CameraRotation = DefaultCameraRotation;
         }
+        #endregion
 
         public void CreateProjectionMatrix(float fov, float aspectRatio, float near, float far)
         {

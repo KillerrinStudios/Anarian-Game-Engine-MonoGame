@@ -88,8 +88,6 @@ namespace Anarian.DataStructures
             
             // First we Update the children
             base.Update(gameTime);
-
-            // Then we Update this
         }
 
         public override bool Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)

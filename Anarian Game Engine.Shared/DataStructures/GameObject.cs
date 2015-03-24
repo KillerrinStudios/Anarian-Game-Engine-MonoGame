@@ -20,6 +20,8 @@ namespace Anarian.DataStructures
         protected bool    m_cullDraw;
         protected bool    m_renderBounds;
 
+        protected bool    m_updateBoundsEveryFrame;
+
         protected List<BoundingSphere> m_boundingSpheres;
 
         protected List<Component> m_components;
@@ -48,6 +50,11 @@ namespace Anarian.DataStructures
             set { m_renderBounds = value; }
         }
 
+        public bool UpdateBoundsEveryFrame
+        {
+            get { return m_updateBoundsEveryFrame; }
+            set { m_updateBoundsEveryFrame = value; }
+        }
 
         public Transform Transform
         {
@@ -70,8 +77,10 @@ namespace Anarian.DataStructures
             // Setup Defaults
             m_active        = true;
             m_visible       = true;
-            m_cullDraw      = true;
+            m_cullDraw      = false;
             m_renderBounds  = false;
+
+            m_updateBoundsEveryFrame = false;
 
             // Setup the Transform
             m_transform = new Transform(this);
@@ -220,8 +229,11 @@ namespace Anarian.DataStructures
                 component.Update(gameTime);
             }
 
-            // Finally, Update the Transform
+            // Update the Transform
             m_transform.Update(gameTime);
+
+            if (m_updateBoundsEveryFrame)
+                CreateBounds();
         }
         public virtual bool Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
         {

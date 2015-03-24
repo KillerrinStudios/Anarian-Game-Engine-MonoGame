@@ -80,8 +80,8 @@ namespace Anarian.DataStructures
             Model3D.Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
 
             // Check intersection
-            foreach (ModelMesh mesh in Model3D.Model.Meshes) {
-
+            foreach (ModelMesh mesh in Model3D.Model.Meshes) 
+            {
                 var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
                 if (ray.Intersects(boundingSphere).HasValue) return true;
             }
@@ -99,7 +99,6 @@ namespace Anarian.DataStructures
             // Check intersection
             foreach (ModelMesh mesh in Model3D.Model.Meshes)
             {
-
                 var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
                 if (frustum.Intersects(boundingSphere)) return true;
             }

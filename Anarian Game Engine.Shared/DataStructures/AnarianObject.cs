@@ -17,11 +17,11 @@ namespace Anarian.DataStructures
             set { m_name = value; }
         }
 
-        internal uint m_id;
-        public uint ID
+        internal uint m_anarianID;
+        public uint AnarianID
         {
-            get { return m_id; }
-            internal set { m_id = value; }
+            get { return m_anarianID; }
+            internal set { m_anarianID = value; }
         }
 
         internal string m_tag;
@@ -38,7 +38,7 @@ namespace Anarian.DataStructures
         public AnarianObject(string name = "", string tag = "")
         {
             m_name = name;
-            m_id = AnarianObjectIDManager.GetNewID();
+            m_anarianID = AnarianObjectIDManager.GetNewID();
             m_tag = tag;
             m_lockObject = new object();
         }
@@ -50,7 +50,7 @@ namespace Anarian.DataStructures
             return new AnarianObject
             {
                 Name = this.Name,
-                ID = this.ID,
+                AnarianID = this.AnarianID,
                 m_tag = this.Tag,
                 LockObject = new object()
             };
