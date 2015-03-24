@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Anarian.DataStructures;
 using Anarian.Interfaces;
 using Anarian.Helpers;
+using System.Diagnostics;
 
 namespace Anarian.DataStructures.Rendering
 {
@@ -150,8 +151,10 @@ namespace Anarian.DataStructures.Rendering
                     m_southStrips[row][col * 2] = (short)(row * (LONGITUDE_COUNT + 1) + col);
                     m_southStrips[row][col * 2 + 1] = (short)((row + 1) * (LONGITUDE_COUNT + 1) + col);
                 }
-
             }
+
+            // Now that the Sphere is made, lets make its bounds
+            CreateBounds();
         }
 
         private void SetupEffects(GraphicsDevice graphics)
@@ -163,6 +166,12 @@ namespace Anarian.DataStructures.Rendering
                 m_effect.TextureEnabled = true;
                 m_effect.Texture = m_texture;
             }
+        }
+
+        public override void CreateBounds()
+        {
+            base.CreateBounds();
+            m_boundingSpheres.Add(BoundingSphere);
         }
         #endregion
 
@@ -180,13 +189,24 @@ namespace Anarian.DataStructures.Rendering
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
+        public override bool Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
         {
-            if (!m_active) return;
-            if (!m_visible) return;
-
             // We Draw the base here so that the Children get taken care of
-            base.Draw(gameTime, spriteBatch, graphics, camera);
+            // We grab the result so we can know if it was visible or not
+            var result = base.Draw(gameTime, spriteBatch, graphics, camera);
+            if (!result) return false;
+
+            //// Check Against Frustrum to cull out objects
+            //if (m_cullDraw)
+            //{
+            //    bool collided = false;
+            //    for (int i = 0; i < m_boundingSpheres.Count; i++)
+            //    {
+            //        if (camera.Frustum.Intersects(m_boundingSpheres[i])) { collided = true; break; }
+            //    }
+            //
+            //    if (!collided) return false;
+            //}
 
             // Prep the Graphics Device
             graphics.RasterizerState.CullMode = CullMode.None;
@@ -215,12 +235,13 @@ namespace Anarian.DataStructures.Rendering
                 if (m_renderBounds)
                     BoundingSphere.RenderBoundingSphere(graphics, Matrix.Identity, camera.View, camera.Projection, Color.White);
             }
-            catch (Exception) { }
+            catch (Exception) { }//return false; }
+            return true;
         }
 
         protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)
         {
-            m_effect.EnableDefaultLighting();
+            ((BasicEffect)effect).EnableDefaultLighting();
         }
         #endregion
     }

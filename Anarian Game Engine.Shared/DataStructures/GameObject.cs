@@ -90,7 +90,7 @@ namespace Anarian.DataStructures
 
         public virtual void CreateBounds()
         {
-            m_boundingSpheres = new List<BoundingSphere>();
+            m_boundingSpheres.Clear();
         }
 
         #region Component Management
@@ -223,14 +223,34 @@ namespace Anarian.DataStructures
             // Finally, Update the Transform
             m_transform.Update(gameTime);
         }
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
+        public virtual bool Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
         {
-            if (!m_active) return;
-            if (!m_visible) return;
+            //Debug.WriteLine("GameObject");
+            if (!m_active) return false;
+            if (!m_visible) return false;
 
             // Render the Children
             foreach (var child in m_transform.GetChildren()) {
                 if (child != null) child.GameObject.Draw(gameTime, null, graphics, camera);
+            }
+
+            // Check Against Frustrum to cull out objects
+            if (m_cullDraw)
+            {
+                bool collided = false;
+                for (int i = 0; i < m_boundingSpheres.Count; i++)
+                {
+                    if (camera.Frustum.Intersects(m_boundingSpheres[i])) {
+                        collided = true;
+                        break; 
+                    }
+                }
+
+                if (!collided)// && m_boundingSpheres.Count > 0)
+                {
+                    //Debug.WriteLine("Culling: " + ID);
+                    return false;
+                }
             }
 
             // Draw Each Component
@@ -249,6 +269,8 @@ namespace Anarian.DataStructures
             graphicsDevice.BlendState = BlendState.Opaque;
             graphicsDevice.DepthStencilState = DepthStencilState.Default;
             graphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+
+            return true;
         }
         #endregion
     }

@@ -100,13 +100,24 @@ namespace Anarian.DataStructures.Rendering
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
+        public override bool Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
         {
-            if (!m_active) return;
-            if (!m_visible) return;
-
             // We Draw the base here so that the Children get taken care of
-            base.Draw(gameTime, spriteBatch, graphics, camera);
+            // We grab the result so we can know if it was visible or not
+            var result = base.Draw(gameTime, spriteBatch, graphics, camera);
+            if (!result) return false;
+
+            //// Check Against Frustrum to cull out objects
+            //if (m_cullDraw)
+            //{
+            //    bool collided = false;
+            //    for (int i = 0; i < m_boundingSpheres.Count; i++)
+            //    {
+            //        if (camera.Frustum.Intersects(m_boundingSpheres[i])) { collided = true; break; }
+            //    }
+            //
+            //    if (!collided) return false;
+            //}
 
             // Prep the Graphics Device
             graphics.RasterizerState.CullMode = CullMode.None;
@@ -135,12 +146,13 @@ namespace Anarian.DataStructures.Rendering
 
                 //m_boundingBox.DrawBoundingBox(graphics, Color.Red, camera, Matrix.Identity);
             }
-            catch (Exception) { }
+            catch (Exception) { return false; }
+            return true;
         }
 
         protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)
         {
-            m_effect.EnableDefaultLighting();
+            ((BasicEffect)effect).EnableDefaultLighting();
         }
         #endregion
     }
