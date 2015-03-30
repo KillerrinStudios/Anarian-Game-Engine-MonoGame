@@ -28,6 +28,7 @@ namespace Anarian.DataStructures
 
         protected Transform m_transform;
 
+        public Color BoundingSphereColor { get; set; }
 
         public bool Active
         {
@@ -81,6 +82,8 @@ namespace Anarian.DataStructures
             m_renderBounds  = false;
 
             m_updateBoundsEveryFrame = false;
+
+            BoundingSphereColor = Color.Black;
 
             // Setup the Transform
             m_transform = new Transform(this);

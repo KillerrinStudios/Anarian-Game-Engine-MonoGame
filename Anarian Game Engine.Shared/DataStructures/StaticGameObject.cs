@@ -152,7 +152,7 @@ namespace Anarian.DataStructures
 
                     if (m_renderBounds)
                     {
-                        mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, Color.Red);
+                        mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, BoundingSphereColor);
                     }
                 }
             }

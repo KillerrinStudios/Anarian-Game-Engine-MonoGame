@@ -167,7 +167,7 @@ namespace Anarian.DataStructures
                 {
                     foreach (ModelMesh mesh in m_model.Model.Meshes)
                     {
-                        mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, Color.Red);
+                        mesh.BoundingSphere.RenderBoundingSphere(graphics, m_transform.WorldMatrix, camera.View, camera.Projection, BoundingSphereColor);
                     }
                 }
             }
