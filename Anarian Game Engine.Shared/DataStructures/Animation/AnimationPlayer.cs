@@ -108,16 +108,20 @@ namespace Anarian.DataStructures.Animation
             this.clip = clip;
             m_animationState = animationState;
 
-            // Create the bone information classes
-            boneCnt = clip.Bones.Count;
-            boneInfos = new BoneInfo[boneCnt];
+            if (clip != null)
+            {
+                // Create the bone information classes
+                boneCnt = clip.Bones.Count;
+                boneInfos = new BoneInfo[boneCnt];
 
-            for (int b = 0; b < boneInfos.Length; b++) {
-                // Create it
-                boneInfos[b] = new BoneInfo(clip.Bones[b]);
+                for (int b = 0; b < boneInfos.Length; b++)
+                {
+                    // Create it
+                    boneInfos[b] = new BoneInfo(clip.Bones[b]);
 
-                // Assign it to a model bone
-                boneInfos[b].SetModel(m_animationState);
+                    // Assign it to a model bone
+                    boneInfos[b].SetModel(m_animationState);
+                }
             }
 
             Reset();
@@ -139,7 +143,8 @@ namespace Anarian.DataStructures.Animation
         /// </summary>
         public void Rewind()
         {
-            Position = 0;
+            if (this.clip != null)
+                Position = 0;
         }
 
         /// <summary>
@@ -148,6 +153,7 @@ namespace Anarian.DataStructures.Animation
         /// <param name="gameTime">The gameTime which will be used to animate off of</param>
         public void Update(GameTime gameTime)
         {
+            if (this.clip == null) return;
             if (Paused) return;
 
             Position = Position + (float)gameTime.ElapsedGameTime.TotalSeconds;

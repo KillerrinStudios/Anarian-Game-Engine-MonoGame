@@ -142,17 +142,6 @@ namespace Anarian.DataStructures
             // Then we render it
             if (m_model == null) return false;
 
-            //// Check Against Frustrum to cull out objects
-            //if (m_cullDraw) {
-            //    bool collided = false;
-            //    for (int i = 0; i < m_boundingSpheres.Count; i++)
-            //    {
-            //        if (camera.Frustum.Intersects(m_boundingSpheres[i])) { collided = true; break; }
-            //    }
-            //
-            //    if (!collided) return false;
-            //}
-
             // Finally, we render This Object
             try
             {
