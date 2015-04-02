@@ -204,11 +204,16 @@ namespace Anarian.DataStructures
                 bool result = frustum.Intersects(bound);
                 if (result) return true;
             }
-            //foreach (var bound in m_boundingBoxes)
-            //{
-            //    float? result = ray.Intersects(bound);
-            //    if (result.HasValue) return true;
-            //}
+            return false;
+        }
+
+        public virtual bool CheckSphereIntersection(BoundingSphere sphere)
+        {
+            foreach (var bound in m_boundingSpheres)
+            {
+                bool result = sphere.Intersects(bound);
+                if (result) return true;
+            }
             return false;
         }
 
@@ -273,6 +278,15 @@ namespace Anarian.DataStructures
                 if (component is IRenderable) {
                     ((IRenderable)component).Draw(gameTime, null, graphics, camera);
                 }
+            }
+
+            // Draw all the Bounding Boxes
+            if (m_renderBounds)
+            {
+                //foreach(var bound in m_boundingSpheres)
+                //{
+                //    bound.RenderBoundingSphere(graphics, camera.World, camera.View, camera.Projection, BoundingSphereColor);
+                //}
             }
 
             // Begin Setting up the GameObject for Rendering in the inherited classes

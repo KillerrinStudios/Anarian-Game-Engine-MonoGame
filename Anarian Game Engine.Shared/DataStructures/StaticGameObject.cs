@@ -74,6 +74,20 @@ namespace Anarian.DataStructures
             }
             return false;
         }
+        public override bool CheckSphereIntersection(BoundingSphere sphere)
+        {
+            // Create the ModelTransforms
+            Matrix[] modelTransforms = new Matrix[Model3D.Bones.Count];
+            Model3D.CopyAbsoluteBoneTransformsTo(modelTransforms);
+
+            // Check intersection
+            foreach (ModelMesh mesh in Model3D.Meshes)
+            {
+                var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
+                if (sphere.Intersects(boundingSphere)) return true;
+            }
+            return false;
+        }
 
 
         #region Interface Implimentations
@@ -101,17 +115,6 @@ namespace Anarian.DataStructures
             // We check if we have a model,
             // Then we render it
             if (m_model == null) return false;
-
-            //// Check Against Frustrum to cull out objects
-            //if (m_cullDraw) {
-            //    bool collided = false;
-            //    for (int i = 0; i < m_boundingSpheres.Count; i++)
-            //    {
-            //        if (camera.Frustum.Intersects(m_boundingSpheres[i])) { collided = true; break; }   
-            //    }
-            //
-            //    if (!collided) return false;
-            //}
 
             // Render This Object
             // Copy any parent transforms.

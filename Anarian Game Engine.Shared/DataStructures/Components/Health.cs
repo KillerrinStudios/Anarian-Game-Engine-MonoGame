@@ -99,6 +99,7 @@ namespace Anarian.DataStructures.Components
         #region Helper Methods
         public void IncreaseHealth(float amount, bool allowPastMax = false)
         {
+            //Debug.WriteLine("Increase Health");
             m_currentHealth += amount;
 
             if (!allowPastMax &&
@@ -123,8 +124,11 @@ namespace Anarian.DataStructures.Components
         public override void Update(GameTime gameTime)
         {
             if (!m_active) return;
-            if (!m_alive) return;
-            if (!m_regenerateHealth) return;
+            if (!m_regenerateHealth)
+            {
+                if (!m_alive) return;
+                return;
+            }
 
             if (m_invincible)
             {

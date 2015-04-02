@@ -104,6 +104,23 @@ namespace Anarian.DataStructures
             }
             return false;
         }
+        public override bool CheckSphereIntersection(BoundingSphere sphere)
+        {
+            if (m_model == null) return false;
+            //if (m_animationState == null) return false;
+
+            // Create the ModelTransforms
+            Matrix[] modelTransforms = new Matrix[m_animationState.Bones.Count];
+            Model3D.Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
+
+            // Check intersection
+            foreach (ModelMesh mesh in Model3D.Model.Meshes)
+            {
+                var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
+                if (sphere.Intersects(boundingSphere)) return true;
+            }
+            return false;
+        }
 
         #region Interface Implimentations
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
