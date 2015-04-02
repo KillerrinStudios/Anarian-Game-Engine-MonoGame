@@ -33,6 +33,9 @@ namespace Anarian.DataStructures.Components
             set { m_regenerateHealth = value; }
         }
 
+        bool m_invincible;
+        public bool Invincible { get { return m_invincible; } set { m_invincible = value; } }
+
         float m_currentHealth;
         public float CurrentHealth
         {
@@ -60,6 +63,7 @@ namespace Anarian.DataStructures.Components
         {
             m_alive = true;
             m_visible = true;
+            m_invincible = false;
 
             m_maxHealth = 100.0f;
             m_currentHealth = m_maxHealth;
@@ -105,6 +109,8 @@ namespace Anarian.DataStructures.Components
 
         public void DecreaseHealth(float amount)
         {
+            if (m_invincible) return;
+
             m_currentHealth -= amount;
 
             if (m_currentHealth <= 0.0f) {
@@ -119,6 +125,12 @@ namespace Anarian.DataStructures.Components
             if (!m_active) return;
             if (!m_alive) return;
             if (!m_regenerateHealth) return;
+
+            if (m_invincible)
+            {
+                m_currentHealth = m_maxHealth;
+                return;
+            }
 
             IncreaseHealth((float)(m_regenerationRate * gameTime.ElapsedGameTime.TotalMilliseconds));
         }
