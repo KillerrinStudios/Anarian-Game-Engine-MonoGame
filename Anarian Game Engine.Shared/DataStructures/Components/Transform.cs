@@ -210,6 +210,31 @@ namespace Anarian.DataStructures.Components
             Setup();
         }
 
+        public Transform(GameObject gameObject, Transform o)
+            :base(gameObject, o, ComponentTypes.Transform)
+        {
+            Reset();
+
+            m_forward = o.m_forward;
+            m_up = o.m_up;
+            m_right = o.m_right;
+
+            m_scale = o.m_scale;
+            m_scaleMatrix = o.m_scaleMatrix;
+
+            m_rotation = o.m_rotation;
+            m_rotationMatrix = o.m_rotationMatrix;
+
+            m_lastPosition = o.m_lastPosition;
+            m_position = o.Position;
+            m_translationMatrix = o.m_translationMatrix;
+
+            m_worldMatrix = o.WorldMatrix;
+
+            MovementSpeed = o.MovementSpeed;
+            m_followTarget = o.m_followTarget;
+        }
+
         public override void Reset()
         {
             base.Reset();

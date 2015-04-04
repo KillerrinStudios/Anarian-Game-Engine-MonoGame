@@ -131,6 +131,8 @@ namespace Anarian.DataStructures
         public virtual AnimationPlayer PlayClip(AnimationClip clip) {
             return m_animationState.PlayClip(clip);
         }
+
+        public void StopAnimation() { m_animationState.StopAnimation(); }
         #endregion
 
         #region Update/Draw

@@ -216,3 +216,5 @@ pip-log.txt
 .mr.developer.cfg
 *.pdb
 *.pdb
+Anarian Game Engine.Windows/bin/Debug/Anarian Game Engine.Windows.pdb
+Anarian Game Engine.WindowsPhone/bin/Debug/Anarian Game Engine.WindowsPhone.pdb

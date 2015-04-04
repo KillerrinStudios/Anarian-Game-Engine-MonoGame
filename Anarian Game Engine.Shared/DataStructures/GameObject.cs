@@ -60,7 +60,7 @@ namespace Anarian.DataStructures
         public Transform Transform
         {
             get { return m_transform; }
-            protected set { m_transform = value; }
+            protected internal set { m_transform = value; }
         }
 
         public List<BoundingSphere> BoundingSpheres { get { return m_boundingSpheres; } }
@@ -294,10 +294,9 @@ namespace Anarian.DataStructures
 
             // Since we are also using 2D, Reset the
             // Graphics Device to Render 3D Models properly
-            GraphicsDevice graphicsDevice = graphics;
-            graphicsDevice.BlendState = BlendState.Opaque;
-            graphicsDevice.DepthStencilState = DepthStencilState.Default;
-            graphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+            graphics.BlendState = BlendState.Opaque;
+            graphics.DepthStencilState = DepthStencilState.Default;
+            graphics.SamplerStates[0] = SamplerState.LinearWrap;
 
             return true;
         }

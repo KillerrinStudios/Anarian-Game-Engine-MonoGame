@@ -41,12 +41,22 @@ namespace Anarian.DataStructures.Components
             m_active = true;
             m_gameObject = gameObject;
         }
+
         public Component(GameObject gameObject, ComponentTypes componentType)
             :base(componentType.ToString())
         {
             m_componentType = componentType;
 
             m_active = true;
+            m_gameObject = gameObject;
+        }
+
+        public Component(GameObject gameObject, Component o, ComponentTypes componentType)
+            : base(componentType.ToString())
+        {
+            m_componentType = componentType;
+
+            m_active = o.m_active;
             m_gameObject = gameObject;
         }
 

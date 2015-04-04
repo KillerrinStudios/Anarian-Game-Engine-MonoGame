@@ -73,6 +73,11 @@ namespace Anarian.DataStructures.Animation
             return m_animationPlayer;
         }
 
+        public void StopAnimation()
+        {
+            m_animationPlayer = null;
+        }
+
         #region Helper Methods
         private void ObtainBones(Model model)
         {

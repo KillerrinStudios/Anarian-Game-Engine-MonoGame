@@ -31,6 +31,17 @@ namespace Anarian.DataStructures
             base.Reset();
         }
 
+        #region Operator Overloads
+        public static explicit operator StaticGameObject(AnimatedGameObject animatedGameObject)
+        {
+            StaticGameObject sGO = new StaticGameObject();
+            sGO.Model3D = animatedGameObject.Model3D;
+            sGO.Transform = new Transform(sGO, animatedGameObject.Transform);
+
+            return sGO;
+        }
+        #endregion
+
         public override void CreateBounds()
         {
             base.CreateBounds();
