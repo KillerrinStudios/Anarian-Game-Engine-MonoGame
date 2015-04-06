@@ -354,36 +354,11 @@ namespace Anarian.DataStructures.Components
         #endregion
 
         #region Rotations
-        public void RotateToFaceForward(GameTime gameTime) { RotateToPoint(gameTime, m_lastPosition); }
-        public void RotateToPoint(GameTime gameTime, Vector3 point)
+        public void RotateToFaceForward(GameTime gameTime) { RotateToPoint(gameTime, m_lastPosition - m_position); }
+        public void RotateToPoint(GameTime gameTime, Vector3 direction)
         {
-            //// the new forward vector, so the avatar faces the target
-            //Vector3 newForward = -(Vector3.Normalize(m_position - point));
-            //
-            //// Set the Forwards
-            //Forward = newForward;
-            //Right = Vector3.Cross(Forward, Up);
-            //
-            //// Rotate the Matrix
-            //Matrix rotMatrix = Matrix.Identity;
-            //rotMatrix.Forward = Forward;
-            //rotMatrix.Right = Right;
-            //rotMatrix.Up = Up;
-            //
-            ////Debug.WriteLine("Scale: {0}, {1}, {2}, {3}",
-            ////                rotMatrix.M11,
-            ////                rotMatrix.M22,
-            ////                rotMatrix.M33,
-            ////                rotMatrix.M44);
-            //
-            //// Fix the Matrix to forbid values of 0
-            //if (rotMatrix.M11 == 0.0f) { rotMatrix.M11 = 1.0f; }
-            //if (rotMatrix.M22 == 0.0f) { rotMatrix.M22 = 1.0f; }
-            //if (rotMatrix.M33 == 0.0f) { rotMatrix.M33 = 1.0f; }
-            //if (rotMatrix.M44 == 0.0f) { rotMatrix.M44 = 1.0f; }
-
             // Set the Rotation Matrix
-            Matrix rotMatrix = Matrix.CreateLookAt(Vector3.Zero, point - m_position, Vector3.Up);
+            Matrix rotMatrix = Matrix.CreateLookAt(Vector3.Zero, direction, Vector3.Up);
             rotMatrix = Matrix.Transpose(rotMatrix);
             
             m_rotationMatrix = rotMatrix;
