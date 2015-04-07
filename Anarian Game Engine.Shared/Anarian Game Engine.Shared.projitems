@@ -34,6 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Components\Mana.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Components\Physics.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Components\Transform.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStructures\ContinuousClock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\Controller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStructures\Input\KeyboardManager.cs" />
