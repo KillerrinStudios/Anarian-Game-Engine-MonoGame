@@ -28,9 +28,8 @@ namespace Anarian.DataStructures.Rendering
             set { m_texture = value; }
         }
 
-        BasicEffect m_effect;
-        public BasicEffect Effect { get { return m_effect; } }
-
+        Effect m_effect;
+        public Effect Effect { get { return m_effect; } }
 
         TerrainHeightData m_heightData;
         public TerrainHeightData HeightData { get { return m_heightData; } }
@@ -82,9 +81,11 @@ namespace Anarian.DataStructures.Rendering
             m_effect = new BasicEffect(graphics);
 
             if (m_texture != null) {
-                m_effect.TextureEnabled = true;
-                m_effect.Texture = m_texture;
+                ((BasicEffect)m_effect).TextureEnabled = true;
+                ((BasicEffect)m_effect).Texture = m_texture;
             }
+
+            SaveDefaultEffects();
         }
 
         public override void CreateBounds()
@@ -102,6 +103,17 @@ namespace Anarian.DataStructures.Rendering
 
             m_boundingBox = BoundingBox.CreateFromPoints(points);
             m_boundingSpheres.Add(BoundingSphere.CreateFromBoundingBox(m_boundingBox));
+        }
+
+        public override void SaveDefaultEffects()
+        {
+            base.SaveDefaultEffects();
+            m_defaultEffects.Add(m_effect);
+        }
+        public override void RestoreDefaultEffects()
+        {
+            base.RestoreDefaultEffects();
+            m_effect = m_defaultEffects[0];
         }
         #endregion
 
@@ -662,9 +674,12 @@ namespace Anarian.DataStructures.Rendering
 
             // Begin Drawing the World
             // Since the world will be generated outwards from its side, we are offsetting the orgin of the world to its center
-            m_effect.World = m_transform.WorldMatrix;
-            m_effect.View = camera.View;
-            m_effect.Projection = camera.Projection;
+            if (m_effect is BasicEffect)
+            {
+                ((BasicEffect)m_effect).World = m_transform.WorldMatrix;
+                ((BasicEffect)m_effect).View = camera.View;
+                ((BasicEffect)m_effect).Projection = camera.Projection;
+            }
             
             // Setup User Defined Effects
             SetupEffects(m_effect, graphics, camera, gameTime);
@@ -689,7 +704,10 @@ namespace Anarian.DataStructures.Rendering
 
         protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)
         {
-            ((BasicEffect)effect).EnableDefaultLighting();
+            if (effect is BasicEffect)
+            {
+                ((BasicEffect)effect).EnableDefaultLighting();
+            }
         }
         #endregion
     }

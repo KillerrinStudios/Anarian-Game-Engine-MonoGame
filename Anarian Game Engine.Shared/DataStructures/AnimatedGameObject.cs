@@ -27,6 +27,7 @@ namespace Anarian.DataStructures
                 m_model = value;
                 CreateAnimationState();
                 CreateBounds();
+                SaveDefaultEffects();
             }
         }
 
@@ -67,6 +68,35 @@ namespace Anarian.DataStructures
             {
                 var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
                 m_boundingSpheres.Add(boundingSphere);
+            }
+        }
+
+        public override void SaveDefaultEffects()
+        {
+            base.SaveDefaultEffects();
+
+            foreach (ModelMesh mesh in m_model.Model.Meshes)
+            {
+                foreach (Effect effect in mesh.Effects)
+                {
+                    m_defaultEffects.Add(effect);
+                }
+            }
+        }
+
+        public override void RestoreDefaultEffects()
+        {
+            base.RestoreDefaultEffects();
+            foreach (ModelMesh mesh in m_model.Model.Meshes)
+            {
+                try
+                {
+                    for (int i = 0; i < mesh.MeshParts.Count; i++)
+                    {
+                        mesh.MeshParts[i].Effect = m_defaultEffects[i];
+                    }
+                }
+                catch (Exception) { }
             }
         }
 

@@ -18,7 +18,7 @@ namespace Anarian.DataStructures
         public Model Model3D
         {
             get { return m_model; }
-            set { m_model = value; CreateBounds(); }
+            set { m_model = value; CreateBounds(); SaveDefaultEffects(); }
         }
 
         public StaticGameObject()
@@ -49,12 +49,41 @@ namespace Anarian.DataStructures
             // Get the ModelTransforms
             Matrix[] modelTransforms = new Matrix[Model3D.Bones.Count];
             Model3D.CopyAbsoluteBoneTransformsTo(modelTransforms);
-
+            
             // Check intersection
             foreach (ModelMesh mesh in Model3D.Meshes)
             {
                 var boundingSphere = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index] * m_transform.WorldMatrix);
                 m_boundingSpheres.Add(boundingSphere);
+            }
+        }
+
+        public override void SaveDefaultEffects()
+        {
+            base.SaveDefaultEffects();
+
+            foreach (ModelMesh mesh in m_model.Meshes)
+            {
+                foreach (Effect effect in mesh.Effects)
+                {
+                    m_defaultEffects.Add(effect);
+                }
+            }
+        }
+
+        public override void RestoreDefaultEffects()
+        {
+            base.RestoreDefaultEffects();
+            foreach (ModelMesh mesh in m_model.Meshes)
+            {
+                try
+                {
+                    for (int i = 0; i < mesh.MeshParts.Count; i++)
+                    {
+                        mesh.MeshParts[i].Effect = m_defaultEffects[i];
+                    }
+                }
+                catch (Exception) { }
             }
         }
 

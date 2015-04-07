@@ -12,9 +12,8 @@ namespace Anarian.DataStructures.Rendering
         protected Texture2D m_texture;
         public Texture2D Texture { get { return m_texture; } set { m_texture = value; } }
 
-        protected BasicEffect m_effect;
-        public BasicEffect Effect { get { return m_effect; } set { m_effect = value; } }
-
+        protected Effect m_effect;
+        public Effect Effect { get { return m_effect; } set { m_effect = value; } }
 
         private VertexPositionNormalTexture[] m_vertices;
         private short[] m_indices;
@@ -81,9 +80,35 @@ namespace Anarian.DataStructures.Rendering
 
             if (m_texture != null)
             {
-                m_effect.TextureEnabled = true;
-                m_effect.Texture = m_texture;
+                ((BasicEffect)m_effect).TextureEnabled = true;
+                ((BasicEffect)m_effect).Texture = m_texture;
             }
+            SaveDefaultEffects();
+        }
+
+        public override void CreateBounds()
+        {
+            base.CreateBounds();
+
+            List<Vector3> m_points = new List<Vector3>();
+            foreach (var p in m_vertices)
+            {
+                m_points.Add(p.Position);
+            }
+
+            var bs = BoundingSphere.CreateFromPoints(m_points);
+            m_boundingSpheres.Add(bs);
+        }
+
+        public override void SaveDefaultEffects()
+        {
+            base.SaveDefaultEffects();
+            m_defaultEffects.Add(m_effect);
+        }
+        public override void RestoreDefaultEffects()
+        {
+            base.RestoreDefaultEffects();
+            m_effect = m_defaultEffects[0];
         }
 
         #region Interface Implimentation
@@ -124,9 +149,12 @@ namespace Anarian.DataStructures.Rendering
 
             // Begin Drawing the World
             // Since the world will be generated outwards from its side, we are offsetting the orgin of the world to its center
-            m_effect.World = m_transform.WorldMatrix;
-            m_effect.View = camera.View;
-            m_effect.Projection = camera.Projection;
+            if (m_effect is BasicEffect)
+            {
+                ((BasicEffect)m_effect).World = m_transform.WorldMatrix;
+                ((BasicEffect)m_effect).View = camera.View;
+                ((BasicEffect)m_effect).Projection = camera.Projection;
+            }
 
             // Setup user defined effects
             SetupEffects(m_effect, graphics, camera, gameTime);
@@ -152,7 +180,10 @@ namespace Anarian.DataStructures.Rendering
 
         protected virtual void SetupEffects(Effect effect, GraphicsDevice graphics, ICamera camera, GameTime gameTime)
         {
-            ((BasicEffect)effect).EnableDefaultLighting();
+            if (effect is BasicEffect)
+            {
+                ((BasicEffect)effect).EnableDefaultLighting();
+            }
         }
         #endregion
     }

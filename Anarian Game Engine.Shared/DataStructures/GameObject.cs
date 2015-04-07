@@ -23,8 +23,8 @@ namespace Anarian.DataStructures
         protected bool    m_updateBoundsEveryFrame;
 
         protected List<BoundingSphere> m_boundingSpheres;
-
         protected List<Component> m_components;
+        protected List<Effect> m_defaultEffects;
 
         protected Transform m_transform;
 
@@ -88,8 +88,9 @@ namespace Anarian.DataStructures
             // Setup the Transform
             m_transform = new Transform(this);
 
-            // Setup Bounds
+            // Setup Lists
             m_boundingSpheres = new List<BoundingSphere>();
+            m_defaultEffects = new List<Effect>();
 
             // Setup the other Components
             m_components = new List<Component>();
@@ -103,6 +104,16 @@ namespace Anarian.DataStructures
         public virtual void CreateBounds()
         {
             m_boundingSpheres.Clear();
+        }
+
+        public virtual void SaveDefaultEffects()
+        {
+            m_defaultEffects.Clear();
+        }
+
+        public virtual void RestoreDefaultEffects()
+        {
+
         }
 
         #region Component Management
