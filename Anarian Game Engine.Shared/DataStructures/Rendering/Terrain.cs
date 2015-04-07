@@ -657,18 +657,6 @@ namespace Anarian.DataStructures.Rendering
             var result = base.Draw(gameTime, spriteBatch, graphics, camera);
             if (!result) return false;
 
-            //// Check Against Frustrum to cull out objects
-            //if (m_cullDraw)
-            //{
-            //    bool collided = false;
-            //    for (int i = 0; i < m_boundingSpheres.Count; i++)
-            //    {
-            //        if (camera.Frustum.Intersects(m_boundingSpheres[i])) { collided = true; break; }
-            //    }
-            //
-            //    if (!collided) return false;
-            //}
-
             // Prep the Graphics Device
             graphics.RasterizerState.CullMode = CullMode.None;
 
