@@ -208,20 +208,8 @@ namespace Anarian.DataStructures.Rendering
             var result = base.Draw(gameTime, spriteBatch, graphics, camera);
             if (!result) return false;
 
-            //// Check Against Frustrum to cull out objects
-            //if (m_cullDraw)
-            //{
-            //    bool collided = false;
-            //    for (int i = 0; i < m_boundingSpheres.Count; i++)
-            //    {
-            //        if (camera.Frustum.Intersects(m_boundingSpheres[i])) { collided = true; break; }
-            //    }
-            //
-            //    if (!collided) return false;
-            //}
-
             // Prep the Graphics Device
-            graphics.RasterizerState.CullMode = CullMode.None;
+            graphics.RasterizerState = RasterizerState.CullNone; //graphics.RasterizerState.CullMode = CullMode.None;
 
             // Begin Drawing the World
             // Since the world will be generated outwards from its side, we are offsetting the orgin of the world to its center

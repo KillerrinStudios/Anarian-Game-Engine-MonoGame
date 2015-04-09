@@ -11,7 +11,8 @@ namespace Anarian.DataStructures
 {
     public class UniversalCamera : ICamera, IMoveable
     {
-        public static float Aspect169 = 16 / 9;
+        public static float Aspect4x3 = 4 / 3;
+        public static float Aspect16x9 = 16 / 9;
 
         #region Fields/Properties
         public CameraMode CurrentCameraMode;

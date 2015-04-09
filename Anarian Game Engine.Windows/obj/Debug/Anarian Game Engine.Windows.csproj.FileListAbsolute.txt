@@ -31,6 +31,7 @@ D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\qualifiers.txt
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\qualifiers.txt.intermediate
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\Anarian Game Engine.Windows.csprojResolveAssemblyReference.cache
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\bin\Debug\Anarian Game Engine.Windows.dll
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\bin\Debug\Anarian Game Engine.Windows.pdb
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\bin\Debug\Anarian Game Engine.Windows.pri
@@ -51,6 +52,7 @@ C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engin
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\bin\Debug\SharpDX.DXGI.xml
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\bin\Debug\SharpDX.XInput.xml
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\bin\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\Anarian Game Engine.Windows.csprojResolveAssemblyReference.cache
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\Anarian Game Engine.Windows.dll
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\Anarian Game Engine.Windows.pdb
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\priconfig.xml
@@ -64,5 +66,3 @@ C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engin
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\qualifiers.txt
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\qualifiers.txt.intermediate
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\MultipleQualifiersPerDimensionFound.txt
-D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\Anarian Game Engine.Windows.csprojResolveAssemblyReference.cache
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.Windows\obj\Debug\Anarian Game Engine.Windows.csprojResolveAssemblyReference.cache

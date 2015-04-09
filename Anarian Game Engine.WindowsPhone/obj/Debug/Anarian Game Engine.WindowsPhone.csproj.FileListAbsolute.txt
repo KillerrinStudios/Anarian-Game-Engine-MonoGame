@@ -29,6 +29,7 @@ D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhon
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt.intermediate
 D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.csprojResolveAssemblyReference.cache
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.dll
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pdb
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\Anarian Game Engine.WindowsPhone.pri
@@ -61,4 +62,3 @@ C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engin
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\qualifiers.txt.intermediate
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\MultipleQualifiersPerDimensionFound.txt
-D:\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.csprojResolveAssemblyReference.cache
