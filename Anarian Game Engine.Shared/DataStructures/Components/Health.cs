@@ -56,6 +56,11 @@ namespace Anarian.DataStructures.Components
             get { return m_regenerationRate; }
             set { m_regenerationRate = value; }
         }
+
+        /// <summary>
+        /// The ammount of time which needs to pass before health can be regenerated
+        /// </summary>
+        public Timer RegenerationTimer;
         #endregion
 
         public Health (GameObject gameObject)
@@ -70,6 +75,8 @@ namespace Anarian.DataStructures.Components
 
             m_regenerateHealth = false;
             m_regenerationRate = 0.02f;
+
+            RegenerationTimer = new Timer(TimeSpan.FromSeconds(1.0));
         }
         public Health(GameObject gameObject, float maxHealth, bool regenerateHealth = false, float regenerationRate = 0.0f)
             : base(gameObject, ComponentTypes.Health)
@@ -82,6 +89,8 @@ namespace Anarian.DataStructures.Components
 
             m_regenerateHealth = regenerateHealth;
             m_regenerationRate = regenerationRate;
+
+            RegenerationTimer = new Timer(TimeSpan.FromSeconds(1.0));
         }
         public override void Reset()
         {
@@ -90,6 +99,8 @@ namespace Anarian.DataStructures.Components
             m_alive = true;
             m_visible = true;
             m_currentHealth = m_maxHealth;
+
+            RegenerationTimer.Reset();
         }
 
         #region Interface Implimentation
@@ -103,9 +114,13 @@ namespace Anarian.DataStructures.Components
             m_currentHealth += amount;
 
             if (!allowPastMax &&
-                m_currentHealth >= m_maxHealth) {
+                m_currentHealth >= m_maxHealth) 
+            {
                 m_currentHealth = m_maxHealth;
             }
+
+            if (m_currentHealth > 0.0f)
+                m_alive = true;
         }
 
         public void DecreaseHealth(float amount)
@@ -118,25 +133,31 @@ namespace Anarian.DataStructures.Components
                 m_currentHealth = 0.0f;
                 m_alive = false;
             }
+
+            RegenerationTimer.Reset();
         }
         #endregion
 
         public override void Update(GameTime gameTime)
         {
             if (!m_active) return;
-            if (!m_regenerateHealth)
-            {
-                if (!m_alive) return;
-                return;
-            }
 
             if (m_invincible)
             {
                 m_currentHealth = m_maxHealth;
                 return;
             }
+            
+            if (!m_alive) return;
 
-            IncreaseHealth((float)(m_regenerationRate * gameTime.ElapsedGameTime.TotalMilliseconds));
+            if (m_regenerateHealth)
+            {
+                RegenerationTimer.Update(gameTime);
+                if (RegenerationTimer.Progress == ProgressStatus.Completed)
+                    IncreaseHealth((float)(m_regenerationRate * gameTime.ElapsedGameTime.TotalMilliseconds));
+            }
+
+            return;
         }
 
         public override string ToString()
