@@ -48,7 +48,6 @@ C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engin
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.Direct2D1.xml
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.DXGI.xml
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\bin\Debug\SharpDX.MediaFoundation.xml
-C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.csprojResolveAssemblyReference.cache
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.dll
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\Anarian Game Engine.WindowsPhone.pdb
 C:\Users\Andrew\Documents\GitHub\Anarian-Game-Engine-MonoGame\Anarian Game Engine.WindowsPhone\obj\Debug\priconfig.xml

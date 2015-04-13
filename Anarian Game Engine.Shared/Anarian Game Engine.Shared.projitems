@@ -85,6 +85,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AnarianConsts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\CustomContentLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DebugTools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\FrameRateCounter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\HelperUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\BoundingFrustrumRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Renderers\BoundingSphereRenderer.cs" />
@@ -115,5 +116,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ResourceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GUI\GuiObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Particles\" />
   </ItemGroup>
 </Project>

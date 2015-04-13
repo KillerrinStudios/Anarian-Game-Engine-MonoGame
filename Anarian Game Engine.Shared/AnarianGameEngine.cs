@@ -30,6 +30,8 @@ namespace Anarian
         public Color BackgroundColor;
         public Random Random;
 
+        public FrameRateCounter FPSCounter;
+
         #region Managers
         protected SceneManager m_sceneManager;
         public SceneManager SceneManager { get { return m_sceneManager; } }
@@ -110,6 +112,7 @@ namespace Anarian
         {
             // Store the Screen Rectangle for later
             AnarianConsts.ScreenRectangle = GraphicsDevice.Viewport.GetViewportRectangle();
+            FPSCounter = new FrameRateCounter();
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -125,6 +128,9 @@ namespace Anarian
             // Blank Texture
             Texture2D blankTexture = Color.White.CreateTextureFromSolidColor(GraphicsDevice, 1, 1);
             m_resourceManager.AddAsset(blankTexture, ResourceManager.EngineReservedAssetNames.blankTextureName);
+
+            // Lastly, create other engine stuff
+
         }
 
         /// <summary>
@@ -152,8 +158,12 @@ namespace Anarian
         /// <param name="gameTime"></param>
         protected virtual void PreUpdate(GameTime gameTime)
         {
-            // First, we Update the Inputs
+            // First the FPS Counter
+            FPSCounter.Update(gameTime);
+
+            // Then, we Update the Inputs
             m_inputManager.Update(gameTime);
+
         }
 
         /// <summary>
@@ -212,6 +222,9 @@ namespace Anarian
         /// <param name="gameTime">The GameTime</param>
         protected virtual void PostDraw(GameTime gameTime)
         {
+            // As the last thing we do, draw the FPS Counter
+            FPSCounter.Draw(gameTime, spriteBatch, graphics.GraphicsDevice, m_sceneManager.CurrentScene.Camera);
+
             // Since we don't call MonoGame.Draw on the Draw method,
             // We call it here so that the screen will render
             base.Draw(gameTime);

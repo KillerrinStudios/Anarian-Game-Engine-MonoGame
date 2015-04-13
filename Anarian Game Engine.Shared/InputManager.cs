@@ -40,7 +40,6 @@ namespace Anarian
 
         TouchScreen m_touchScreen;
 
-
         public MouseManager Mouse { get { return m_mouse; } }
         public KeyboardManager Keyboard { get { return m_keyboard; } }
         public TouchScreen TouchScreen { get { return m_touchScreen; } }
@@ -68,8 +67,24 @@ namespace Anarian
             m_controller2 = new Controller(PlayerIndex.Two);
             m_controller3 = new Controller(PlayerIndex.Three);
             m_controller4 = new Controller(PlayerIndex.Four);
+//#endif
 
+            Activate();
+        }
+
+        public void Dispose()
+        {
+            Deactivate();
+
+            // Surpress the Finalize
+            GC.SuppressFinalize(this);
+        }
+
+        public void Activate()
+        {
             // Subscribe to Events
+
+//#if WINDOWS_APP
             // Button
             //m_keyboard.KeyboardDown += m_keyboard_KeyboardDown;
             //m_keyboard.KeyboardPressed += m_keyboard_KeyboardPressed;
@@ -79,20 +94,20 @@ namespace Anarian
             //Controller.GamePadMoved += Controller_GamePadMoved;
 
             // Pointer
-
             m_mouse.MouseDown += m_mouse_MouseDown;
             m_mouse.MouseClicked += m_mouse_MouseClicked;
             m_mouse.MouseMoved += m_mouse_MouseMoved;
             m_mouse.MouseIdle += m_mouse_MouseIdle;
 //#endif
+
             m_touchScreen.TouchDown += m_touchScreen_TouchDown;
             m_touchScreen.TouchPressed += m_touchScreen_TouchPressed;
             m_touchScreen.TouchMoved += m_touchScreen_TouchMoved;
         }
 
-        public void Dispose()
+        public void Deactivate()
         {
-            // Subscribe to Events
+            // Desubscribe to Events
             // Button
             m_keyboard.KeyboardDown -= m_keyboard_KeyboardDown;
             m_keyboard.KeyboardPressed -= m_keyboard_KeyboardPressed;
@@ -110,9 +125,6 @@ namespace Anarian
             m_touchScreen.TouchDown -= m_touchScreen_TouchDown;
             m_touchScreen.TouchPressed -= m_touchScreen_TouchPressed;
             m_touchScreen.TouchMoved -= m_touchScreen_TouchMoved;
-
-            // Surpress the Finalize
-            GC.SuppressFinalize(this);
         }
 
         #region Interface Implimentations
