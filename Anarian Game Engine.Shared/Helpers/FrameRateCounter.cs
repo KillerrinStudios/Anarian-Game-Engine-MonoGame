@@ -27,6 +27,8 @@ namespace Anarian.Helpers
 
 		TimeSpan m_elapsedTime = TimeSpan.Zero;
 
+        public bool Active;
+
 		public SpriteFont SpriteFont { get { return m_spriteFont; } set { m_spriteFont = value; } }
 		public Vector2 Position { get { return m_position; } set { m_position = value; } }
 
@@ -48,6 +50,7 @@ namespace Anarian.Helpers
 
         public void Reset()
         {
+            Active = true;
             m_position = new Vector2(10.0f, 10.0f);
             m_fpsPos = new Vector2();
         }
@@ -55,6 +58,8 @@ namespace Anarian.Helpers
 		void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
 		public void Update(GameTime gameTime)
 		{
+            if (!Active) return;
+
 			m_elapsedTime += gameTime.ElapsedGameTime;
 
 			if (m_elapsedTime > TimeSpan.FromSeconds(1))
@@ -68,10 +73,12 @@ namespace Anarian.Helpers
 		void IRenderable.Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera) { Draw(gameTime, spriteBatch, graphics, camera); }
 		public void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
 		{
+            if (!Active) return;
+
 			m_frameCounter++;
-			string fps = string.Format("{0} FPS", m_frameRate);
 
             if (m_spriteFont == null) return;
+			string fps = string.Format("{0} FPS", m_frameRate);
 			m_fpsPos = new Vector2((graphics.Viewport.Width - m_spriteFont.MeasureString(fps).X) - 15, 10);
 
 			spriteBatch.Begin();
