@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +26,11 @@ namespace Anarian.Interfaces
         Matrix World { get; set; }
 
         BoundingFrustum Frustum { get; set; }
+
+
+        Ray GetMouseRay(Vector2 mousePosition, Viewport viewport);
+        Vector2 ProjectToScreenCoordinates(Vector3 position, Viewport viewport);
+        BoundingFrustum UnprojectRectangle(Rectangle source, Viewport viewport);
 
         void Update(GameTime gameTime);
     }

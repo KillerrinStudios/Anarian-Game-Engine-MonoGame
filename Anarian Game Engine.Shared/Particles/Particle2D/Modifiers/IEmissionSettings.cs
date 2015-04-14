@@ -6,7 +6,7 @@ using System.Text;
 namespace Anarian.Particles.Particle2D.Modifiers
 {
     public interface IEmissionSettings
-    {
+    {         
         bool CanEmmit(GameTime gameTime, ParticleEmitter2D emitter);
     }
 }

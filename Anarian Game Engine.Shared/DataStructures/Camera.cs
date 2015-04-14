@@ -156,7 +156,7 @@ namespace Anarian.DataStructures
             m_world = Matrix.Identity;
         }
 
-
+        Ray ICamera.GetMouseRay(Vector2 mousePosition, Viewport viewport) { return GetMouseRay(mousePosition, viewport); }
         public Ray GetMouseRay(Vector2 mousePosition, Viewport viewport)
         {
             Vector3 nearPoint = new Vector3(mousePosition, 0);
@@ -173,6 +173,7 @@ namespace Anarian.DataStructures
             return new Ray(nearPoint, direction);
         }
 
+        Vector2 ICamera.ProjectToScreenCoordinates(Vector3 position, Viewport viewport) { return ProjectToScreenCoordinates(position, viewport); }
         public Vector2 ProjectToScreenCoordinates(Vector3 position, Viewport viewport)
         {
             // Project the 3d position first
@@ -183,6 +184,7 @@ namespace Anarian.DataStructures
             return screenPos2D;
         }
 
+        BoundingFrustum ICamera.UnprojectRectangle(Rectangle source, Viewport viewport) { return UnprojectRectangle(source, viewport); }
         public BoundingFrustum UnprojectRectangle(Rectangle source, Viewport viewport)
         {
             //http://forums.create.msdn.com/forums/p/6690/35401.aspx , by "The Friggm"
@@ -206,7 +208,6 @@ namespace Anarian.DataStructures
 
             return new BoundingFrustum(View * regionProjMatrix);
         }
-
         #region ICamera Implimentation
         void ICamera.Update(GameTime gameTime) { }
 

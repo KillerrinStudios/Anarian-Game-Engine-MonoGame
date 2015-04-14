@@ -7,7 +7,9 @@ namespace Anarian.Helpers
 {
     public static class AnarianConsts
     {
-        public static Game AnarianGameEngine;
+        public static AnarianGameEngine AnarianGameEngine;
         public static Rectangle ScreenRectangle;
+
+        public static Random Random = new Random();
     }
 }

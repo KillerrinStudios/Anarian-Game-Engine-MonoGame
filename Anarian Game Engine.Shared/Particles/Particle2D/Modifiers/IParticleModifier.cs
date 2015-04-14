@@ -7,6 +7,6 @@ namespace Anarian.Particles.Particle2D.Modifiers
 {
     public interface IParticleModifier
     {
-        void ApplyModifier(GameTime gameTime, Particle2D particle);
+        void ApplyModifier(GameTime gameTime, ParticleEmitter2D emitter, Particle2D particle);
     }
 }

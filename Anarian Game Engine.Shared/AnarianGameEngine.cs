@@ -28,7 +28,6 @@ namespace Anarian
         public PrimitiveBatch PrimitiveBatch { get { return primitiveBatch; } protected set { primitiveBatch = value; } }
 
         public Color BackgroundColor;
-        public Random Random;
 
         public FrameRateCounter FPSCounter;
 
@@ -81,11 +80,10 @@ namespace Anarian
         /// </summary>
         protected override void Initialize()
         {
-            // Store the Game Engine for later access if needed
+            // Setup the Anarian Consts
             AnarianConsts.AnarianGameEngine = this;
 
             // Store other variables
-            Random = new System.Random();
 
             // Create the Managers
             m_resourceManager = ResourceManager.Instance;
