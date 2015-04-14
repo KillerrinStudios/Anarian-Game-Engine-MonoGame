@@ -117,6 +117,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Particles\Particle2D\Particle2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Particles\Particle2D\ParticleEmitter2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Particles\ParticleHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\TextureColorPair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStarNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStarPathFinder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStarTerrainRule.cs" />

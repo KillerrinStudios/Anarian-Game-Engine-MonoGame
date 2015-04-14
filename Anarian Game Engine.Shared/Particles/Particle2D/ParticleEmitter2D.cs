@@ -27,7 +27,7 @@ namespace Anarian.Particles.Particle2D
         public IEmissionSettings EmissionSettings;
         public IParticleLifespan ParticleLifespan;
 
-        public List<Texture2D> ParticleTextures;
+        public List<TextureColorPair> ParticleTextures;
         public List<IParticleModifier> ParticleModifiersPreUpdate;
         public List<IParticleModifier> ParticleModifiersPostUpdate;
 
@@ -90,7 +90,7 @@ namespace Anarian.Particles.Particle2D
             EmissionSettings = emissionSetting;
             ParticleLifespan = particleLifespan;
 
-            ParticleTextures = new List<Texture2D>();
+            ParticleTextures = new List<TextureColorPair>();
             ParticleModifiersPreUpdate = new List<IParticleModifier>();
             ParticleModifiersPostUpdate = new List<IParticleModifier>();
 
@@ -118,10 +118,8 @@ namespace Anarian.Particles.Particle2D
         protected virtual void InitializeParticle(GameTime gameTime, Particle2D particle)
         {
             if (ParticleTextures.Count == 0) return;
-            Texture2D texture = ParticleTextures[ParticleHelpers.RandomBetween(0, ParticleTextures.Count)];
-            if (texture == null) return;
-
-            Color color = Color.White;
+            TextureColorPair textureColorPair = ParticleTextures[ParticleHelpers.RandomBetween(0, ParticleTextures.Count)];
+            if (textureColorPair == null) return;
 
             // first, call PickRandomDirection to figure out which way the particle
             // will be moving. velocity and acceleration's values will come from this.
@@ -136,7 +134,7 @@ namespace Anarian.Particles.Particle2D
 
             // then initialize it with those random values. initialize will save those,
             // and make sure it is marked as active.
-            particle.Initialize(texture, color,
+            particle.Initialize(textureColorPair.Texture, textureColorPair.Colour,
                                 Position, velocity * direction, acceleration * direction,
                                 lifespan,
                                 scale, 0.0f, rotationSpeed);
