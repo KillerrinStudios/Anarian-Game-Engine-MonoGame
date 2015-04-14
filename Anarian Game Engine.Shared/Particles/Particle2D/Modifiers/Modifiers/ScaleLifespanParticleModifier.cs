@@ -16,6 +16,8 @@ namespace Anarian.Particles.Particle2D.Modifiers.Modifiers
             EndScale = endScale;
         }
         public static ScaleLifespanParticleModifier ZeroScale() { return new ScaleLifespanParticleModifier(1.0f, 0.0f); }
+        public static ScaleLifespanParticleModifier SimpleScale(float scale) { return new ScaleLifespanParticleModifier(scale, 0.0f); }
+
 
         void IParticleModifier.ApplyModifier(GameTime gameTime, ParticleEmitter2D emitter, Particle2D particle) { ApplyModifier(gameTime, emitter, particle); }
         public void ApplyModifier(GameTime gameTime, ParticleEmitter2D emitter, Particle2D particle)
