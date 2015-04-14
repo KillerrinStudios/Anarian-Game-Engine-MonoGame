@@ -19,13 +19,13 @@ namespace Anarian.Particles.Particle2D.Modifiers.Lifespan
         float IParticleLifespan.GetNormalizedLifespan(GameTime gameTime, ParticleEmitter2D emitter, Particle2D particle) { return GetNormalizedLifespan(gameTime, emitter, particle); }
         public float GetNormalizedLifespan(GameTime gameTime, ParticleEmitter2D emitter, Particle2D particle)
         {
-            return particle.TimeAlive / particle.TotalLifespan;
+            return particle.TimeAlive / particle.MaxLifespan;
         }
 
         bool IParticleLifespan.IsAlive(GameTime gameTime, ParticleEmitter2D emitter, Particle2D particle) { return IsAlive(gameTime, emitter, particle); }
         public bool IsAlive(GameTime gameTime, ParticleEmitter2D emitter, Particle2D particle)
         {
-            if (particle.TimeAlive >= particle.TotalLifespan)
+            if (particle.TimeAlive >= particle.MaxLifespan)
             {
                 particle.Alive = false;
                 return false;

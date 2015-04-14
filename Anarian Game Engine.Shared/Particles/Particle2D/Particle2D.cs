@@ -12,7 +12,7 @@ namespace Anarian.Particles.Particle2D
         public bool Alive;
 
         public float TimeAlive;
-        public float TotalLifespan;
+        public float MaxLifespan;
 
         public Vector2 InitialPosition;
         public Color InitialColor;
@@ -47,7 +47,7 @@ namespace Anarian.Particles.Particle2D
         {
             Alive = true;
             TimeAlive = 0.0f;
-            TotalLifespan = totalLifespan;
+            MaxLifespan = totalLifespan;
 
             InitialPosition = position;
             InitialColor = colour;

@@ -21,6 +21,7 @@ namespace Anarian.Particles.Particle2D
         public int InactiveCount { get { return m_inactiveParticles.Count; } }
 
         public event AnarianEventHandler OnEmission;
+        public event AnarianEventHandler OnNoActiveParticlesRemaining;
 
         #region Emitter Settings
         public IEmissionSettings EmissionSettings;
@@ -182,6 +183,12 @@ namespace Anarian.Particles.Particle2D
 
                     InitializeParticle(gameTime, particle);
                 }
+            }
+
+            if (m_activeParticles.Count == 0)
+            {
+                if (OnNoActiveParticlesRemaining != null)
+                    OnNoActiveParticlesRemaining(this, new AnarianEventArgs(gameTime));
             }
         }
 
