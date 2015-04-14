@@ -32,6 +32,7 @@ namespace Anarian.Particles.Particle2D
         public List<IParticleModifier> ParticleModifiersPostUpdate;
 
         public Vector2 Position;
+        public Vector2 ProjectedWorldPosition;
 
         /// <summary>
         /// minInitialSpeed and maxInitialSpeed are used to control the initial velocity
@@ -94,6 +95,7 @@ namespace Anarian.Particles.Particle2D
             ParticleModifiersPostUpdate = new List<IParticleModifier>();
 
             Position = Vector2.Zero;
+            ProjectedWorldPosition = Vector2.Zero;
 
             InitializeConstants();
             Reset();
@@ -196,15 +198,13 @@ namespace Anarian.Particles.Particle2D
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, blendState);
-
             foreach (var particle in m_activeParticles)
             {
                 if (!particle.Alive) continue;
 
-                spriteBatch.Draw(particle.Texture, particle.Position, null, particle.Colour,
+                spriteBatch.Draw(particle.Texture, particle.Position + ProjectedWorldPosition, null, particle.Colour,
                                  particle.Rotation, particle.Origin, particle.Scale, SpriteEffects.None, 0.0f);
             }
-
             spriteBatch.End();
         }
         #endregion
