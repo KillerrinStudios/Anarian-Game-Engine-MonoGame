@@ -218,7 +218,7 @@ pip-log.txt
 Anarian Game Engine.Windows/bin/Debug/Anarian Game Engine.Windows.pdb
 Anarian Game Engine.WindowsPhone/bin/Debug/Anarian Game Engine.WindowsPhone.pdb
 
-Anarian Game Engine.Windows/obj/Debug/
-Anarian Game Engine.WindowsPhone/obj/Debug/
-Anarian Game Engine.Windows/bin/Debug/
-Anarian Game Engine.WindowsPhone/bin/Debug/
+#Anarian Game Engine.Windows/obj/Debug/
+#Anarian Game Engine.WindowsPhone/obj/Debug/
+#Anarian Game Engine.Windows/bin/Debug/
+#Anarian Game Engine.WindowsPhone/bin/Debug/
