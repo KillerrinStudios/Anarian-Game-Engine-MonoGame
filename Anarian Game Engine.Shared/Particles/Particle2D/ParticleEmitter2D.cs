@@ -1,4 +1,5 @@
 ﻿using Anarian.DataStructures;
+using Anarian.Enumerators;
 using Anarian.Events;
 using Anarian.Interfaces;
 using Anarian.Particles.Particle2D.Modifiers;
@@ -13,6 +14,8 @@ namespace Anarian.Particles.Particle2D
 {
     public abstract class ParticleEmitter2D : AnarianObject, IUpdatable, IRenderable
     {
+        public ProgressStatus Progress;
+
         public readonly uint MaxNumberOfParticles;
         public List<Particle2D> m_activeParticles;
         public List<Particle2D> m_inactiveParticles;
@@ -102,6 +105,8 @@ namespace Anarian.Particles.Particle2D
         }
         public virtual void Reset()
         {
+            Progress = ProgressStatus.NotStarted;
+
             m_activeParticles.Clear();
             m_inactiveParticles.Clear();
 
@@ -150,8 +155,11 @@ namespace Anarian.Particles.Particle2D
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
         public virtual void Update(GameTime gameTime)
         {
-            if (EmissionSettings.CanEmmit(gameTime, this))
+            if (EmissionSettings.CanEmmit(gameTime, this) ||
+                Progress == ProgressStatus.NotStarted)
             {
+                Progress = ProgressStatus.InProgress;
+
                 if (OnEmission != null)
                     OnEmission(this, new AnarianEventArgs(gameTime));
 
@@ -187,6 +195,7 @@ namespace Anarian.Particles.Particle2D
 
             if (m_activeParticles.Count == 0)
             {
+                Progress = ProgressStatus.Completed;
                 if (OnNoActiveParticlesRemaining != null)
                     OnNoActiveParticlesRemaining(this, new AnarianEventArgs(gameTime));
             }
