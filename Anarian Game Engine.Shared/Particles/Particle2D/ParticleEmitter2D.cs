@@ -152,6 +152,22 @@ namespace Anarian.Particles.Particle2D
         void IUpdatable.Update(GameTime gameTime) { Update(gameTime); }
         public virtual void Update(GameTime gameTime)
         {
+            if (EmissionSettings.CanEmmit(gameTime, this))
+            {
+                if (OnEmission != null)
+                    OnEmission(this, new AnarianEventArgs(gameTime));
+
+                for (int i = m_inactiveParticles.Count - 1; i > -1; i--)
+                {
+                    var particle = m_inactiveParticles[i];
+
+                    m_activeParticles.Add(particle);
+                    m_inactiveParticles.RemoveAt(i);
+
+                    InitializeParticle(gameTime, particle);
+                }
+            }
+
             for (int i = m_activeParticles.Count - 1; i > -1; i--)
             {
                 if (!ParticleLifespan.IsAlive(gameTime, this, m_activeParticles[i]))
@@ -168,22 +184,6 @@ namespace Anarian.Particles.Particle2D
 
                     foreach (var modifier in ParticleModifiersPostUpdate)
                         modifier.ApplyModifier(gameTime, this, m_activeParticles[i]);
-                }
-            }
-
-            if (EmissionSettings.CanEmmit(gameTime, this))
-            {
-                if (OnEmission != null)
-                    OnEmission(this, new AnarianEventArgs(gameTime));
-
-                for (int i = m_inactiveParticles.Count - 1; i > -1; i--)
-                {
-                    var particle = m_inactiveParticles[i];
-
-                    m_activeParticles.Add(particle);
-                    m_inactiveParticles.RemoveAt(i);
-
-                    InitializeParticle(gameTime, particle);
                 }
             }
 
