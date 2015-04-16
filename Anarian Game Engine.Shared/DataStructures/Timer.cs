@@ -20,7 +20,8 @@ namespace Anarian.DataStructures
         TimeSpan m_interval;
         public TimeSpan CurrentTick { get { return m_currentTick; } protected set { m_currentTick = value; } }
         public TimeSpan Interval { get { return m_interval; } set { m_interval = value; } }
-        public TimeSpan TimeRemaining { get { return m_interval - m_currentTick; } }
+        public TimeSpan TimeRemaining { get { return m_interval - m_currentTick; } 
+        }
         #endregion
 
         public Timer(TimeSpan interval)
@@ -61,6 +62,7 @@ namespace Anarian.DataStructures
             }
             else {
                 m_progress = ProgressStatus.Completed;
+                m_currentTick = m_interval;
 
                 if (Completed != null)
                     Completed(this, null);

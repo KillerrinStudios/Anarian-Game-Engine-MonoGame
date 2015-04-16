@@ -11,6 +11,10 @@ namespace Anarian.Particles.Particle2D.Modifiers.Lifespan
         public Vector2 Lifespan { get { return m_lifespan; } set { m_lifespan = value; } }
         Vector2 IParticleLifespan.TotalLifespan { get { return Lifespan; } set { Lifespan = value; } }
 
+        public TimebasedParticleLifespan(float maximumLifespan)
+        {
+            m_lifespan = new Vector2(maximumLifespan, maximumLifespan);
+        }
         public TimebasedParticleLifespan(float minimumLifespan, float maximumLifespan)
         {
             m_lifespan = new Vector2(minimumLifespan, maximumLifespan);
