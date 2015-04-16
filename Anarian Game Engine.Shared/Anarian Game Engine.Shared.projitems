@@ -111,6 +111,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Particles\Particle2D\Modifiers\IParticleLifespan.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Particles\Particle2D\Modifiers\Lifespan\DistanceParticleLifespan.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Particles\Particle2D\Modifiers\Lifespan\TimebasedParticleLifespan.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\Particle2D\Modifiers\Modifiers\MoveToPositionParticleModifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Particles\Particle2D\Modifiers\Modifiers\PositionProjectionParticleModifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Particles\Particle2D\Modifiers\Modifiers\ScaleLifespanParticleModifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Particles\Particle2D\Modifiers\Modifiers\OpacityLifespanParticleModifier.cs" />

@@ -214,6 +214,19 @@ namespace Anarian.Particles.Particle2D
             }
             spriteBatch.End();
         }
+
+        public virtual void DrawProjected(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDevice graphics, ICamera camera)
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, blendState);
+            foreach (var particle in m_activeParticles)
+            {
+                if (!particle.Alive) continue;
+
+                spriteBatch.Draw(particle.Texture, particle.Position + ProjectedWorldPosition, null, particle.Colour,
+                                 particle.Rotation, particle.Origin, particle.Scale, SpriteEffects.None, 0.0f);
+            }
+            spriteBatch.End();
+        }
         #endregion
     }
 }

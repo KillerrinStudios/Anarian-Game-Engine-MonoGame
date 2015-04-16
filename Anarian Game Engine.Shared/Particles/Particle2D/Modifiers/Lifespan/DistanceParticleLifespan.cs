@@ -8,7 +8,8 @@ namespace Anarian.Particles.Particle2D.Modifiers.Lifespan
     public class DistanceParticleLifespan : IParticleLifespan
     {
         Vector2 m_lifespan;
-        Vector2 IParticleLifespan.TotalLifespan { get { return m_lifespan; } set { m_lifespan = value; } }
+        public Vector2 Lifespan { get { return m_lifespan; } set { m_lifespan = value; } }
+        Vector2 IParticleLifespan.TotalLifespan { get { return Lifespan; } set { Lifespan = value; } }
 
         public Vector2 TargetPosition;
 
